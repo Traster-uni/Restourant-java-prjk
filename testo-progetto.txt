@@ -1,0 +1,38 @@
+Gestore di un Ristorante (gruppi da 3)
+Si vuole realizzare il gestore di un piccolo ristorante con lo scopo di digitalizzare la gestione delle ordinazioni e 
+l’emissione degli scontrini. Gli utilizzatori di questo progetto appartengono a 4 differenti ruoli all’interno del ristorante:
+
+
+Chef: dovrà avere la possibilità di aggiungere, modificare o rimuovere i piatti all’interno del menù
+Cameriere: dovrà avere la possibilità di prendere le ordinazioni dei clienti di ciascun tavolo, 
+scegliendo tra i prodotti presenti in un menù
+
+Cuoco: dovrà avere la possibilità di ricevere le ordinazioni provenienti dai camerieri per poi evaderle una volta che i piatti sono stati evasi
+
+Responsabile di cassa: dovrà avere la possibilità di elargire uno scontrino sulla base delle ordinazioni effettuate da un tavolo
+
+Il progetto dovrà soddisfare le necessità appena descritte. Da un punto di vista più tecnico, il programma dovrà:
+
+Menù Principale: visualizzare un menù iniziale, mostrato all’avvio del programma, 
+che permetta sia l’accesso alle schermate relative ai diversi dipendenti che l’uscita dall’applicazione
+
+Chef: offrire la possibilità di aggiungere, modificare e rimuovere le pietanze all’interno di un menù, 
+identificate da un nome, univoco, ed un prezzo. La lista delle pietanze all’interno di un menù dovrà essere persistita all’interno di un file, 
+in modo tale che le successive esecuzioni del programma non debbano ricostruire nuovamente il menù
+
+Cameriere: gestire la creazione di un ordine attraverso una schermata in cui venga visualizzato il menù e nel quale,
+cliccando su una pietanza, venga aggiunta all’interno dell’ordine con la quantità desiderata. Poiché un cliente può cambiare idea durante l’ordinazione, 
+la creazione di una comanda dovrà prevedere la modifica delle quantità e l’eventuale rimozione di un piatto. 
+Ad ordine finalizzato non sarà più possibile effettuare una modifica
+
+Cuoco: fornire una schermata per la cucina in cui vengano visualizzati tutti gli ordini di ciascun tavolo, 
+rimuovendo un ordine una volta che tutti i piatti al suo interno sono stati evasi
+
+Responsabile di cassa: fornire una schermata che permetta il pagamento del conto, 
+selezionandolo da una lista di conti di tutti i tavoli che non hanno ancora effettuato il pagamento. 
+In aggiunta a ciò, dovrà essere simulata la creazione di uno scontrino sotto forma di file di testo. A pagamento effettuato,
+l’ordine di quel tavolo non dovrà più essere visibile.
+
+All’interno della schermata di ciascun dipendente deve essere data la possibilità di tornare al menù principale
+
+Ai fini di una maggior comprensione, a seguire viene fornito uno schema generale del ciclo di vita dell’applicazione:
