@@ -30,9 +30,21 @@ public class Cheff {
         menuDirectory = "";
     }
 
-    public Cheff(String newName, String directory){
+    public Cheff(String newName){
         this.name = newName;
         bufferPlate = new ArrayList<>();
-        menuDirectory = directory;
+        menuDirectory = "";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    protected ArrayList<Plate> getBufferPlate(){
+        return bufferPlate;
+    }
+
+    protected void setMenuDirectory(String directory){
+        this.menuDirectory = directory;
     }
 }
