@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Employee {
-    private int servedTable;
+    private Integer servedTable;
     private ArrayList<Plate> order;
 
     /**
@@ -16,7 +16,7 @@ public class Employee {
      * Default empty constructor for the Employee object.
      * @param initialServedTable - the number of the served table.
      */
-    public Employee(int initialServedTable){
+    public Employee(Integer initialServedTable){
         servedTable = initialServedTable;
         order = new ArrayList<>();
     }
@@ -25,7 +25,7 @@ public class Employee {
      * Served table number getter.
      * @return served table
      */
-    public int getServedTable() {
+    public Integer getServedTable() {
         return servedTable;
     }
 
@@ -36,4 +36,6 @@ public class Employee {
     public ArrayList<Plate> getOrder() {
         return order;
     }
+
+
 }
