@@ -10,6 +10,7 @@
 
 public class Plate {
     private String name;
+    private Integer category;
     private double prize;
 
     /**
@@ -22,11 +23,14 @@ public class Plate {
 
     /**
      * Default constructor for a Plate object.
+     * The selectable categories are labeled numerically from 1 to 4
+     * 1 = appetizer, 2 = first dishes, 3 = second dishes, 4 = dessert
      * @param name - the name of the plate.
      * @param prize - the prize of the plate.
      */
-    public Plate(String name, double prize){
+    public Plate(String name, Integer selectCategory, double prize){
         this.name = name;
+        this.category = selectCategory;
         this.prize = prize;
     }
 

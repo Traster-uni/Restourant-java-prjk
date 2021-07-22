@@ -29,18 +29,56 @@ import java.util.HashMap;
 public class Restaurant {
     String restaurantName;
     Integer tablesNumbs;
-    Cheff cheff;
+    Chef chef;
     ArrayList<Employee> employeeArrayList;
     ArrayList<Plate> menuArray;
     HashMap<Integer, ArrayList<Plate>> orderDict;
     HashMap<Integer, ArrayList<Plate>> payableDict;
 
-    public Restaurant(String newRestaurantName, String cheffName){
+    public Restaurant(String newRestaurantName, String chefName){
         this.restaurantName = newRestaurantName;
-        this.cheff = new Cheff(cheffName);
+        this.tablesNumbs = 0;
+        this.chef = new Chef(chefName);
         employeeArrayList = new ArrayList<Employee>();
         menuArray = new ArrayList<>();
         orderDict = new HashMap<>();
         payableDict = new HashMap<>();
     }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public Integer getTablesNumbs() {
+        return tablesNumbs;
+    }
+
+    public Chef getCheff() {
+        return chef;
+    }
+
+    public ArrayList<Employee> getEmployeeArrayList() {
+        return employeeArrayList;
+    }
+
+    public ArrayList<Plate> getMenuArray() {
+        return menuArray;
+    }
+
+    public HashMap<Integer, ArrayList<Plate>> getOrderDict() {
+        return orderDict;
+    }
+
+    public HashMap<Integer, ArrayList<Plate>> getPayableDict() {
+        return payableDict;
+    }
+
+    public void setTablesNumbs(Integer tablesNumbs) {
+        this.tablesNumbs = tablesNumbs;
+    }
+
+    public void addEmployee(Employee newEmployee){
+        employeeArrayList.add(newEmployee);
+    }
+
 }

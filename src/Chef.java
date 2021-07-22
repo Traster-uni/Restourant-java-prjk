@@ -19,18 +19,18 @@ import java.util.ArrayList;
 //      protected writeMenu( ): scrive su filepath i piatti inseriti in bufferPlate indicizzando gli inserimenti.
 //      protected readMenu( ): legge il file e compila bufferPlate per una eventuale modifica del file del menu.
 
-public class Cheff {
+public class Chef {
     private String name;
     private ArrayList<Plate> bufferPlate;
     private String menuDirectory;
 
-    public Cheff(){
+    public Chef(){
         name = "";
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
     }
 
-    public Cheff(String newName){
+    public Chef(String newName){
         this.name = newName;
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
