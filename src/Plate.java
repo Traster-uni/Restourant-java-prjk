@@ -43,12 +43,28 @@ public class Plate {
         return this.name;
     }
 
+    public Integer getCategory() {
+        return category;
+    }
+
     /**
      * Plate prize getter.
      * @return prize
      */
     public double getPrize() {
         return prize;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
+    }
+
+    public void setPrize(double prize) {
+        this.prize = prize;
     }
 
     @Override

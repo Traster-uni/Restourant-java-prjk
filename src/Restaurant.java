@@ -4,6 +4,8 @@
  * Project: Restourant-java-prjk
  */
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -137,5 +139,19 @@ public class Restaurant {
      */
     public void addPaymentDict(Integer tablesNumbs, ArrayList<Plate> tobePayedArray){
         this.payableDict.get(tablesNumbs).add(tobePayedArray);
+    }
+
+    /**
+     * Deletes the first Array of dishes in the Dictionary.
+     * @param tablesNumber - table served
+     * @return True if the deletion is successful, False otherwise
+     */
+    public boolean deleteOrder(Integer tablesNumber, ArrayList<Plate> evadedOrder){
+        if (evadedOrder.equals(orderDict.get(tablesNumber).get(0))) {
+            orderDict.get(tablesNumber).remove(0);
+            return true;
+        }else{
+            return false;
+        }
     }
 }
