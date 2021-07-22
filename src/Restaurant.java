@@ -32,53 +32,110 @@ public class Restaurant {
     Chef chef;
     ArrayList<Employee> employeeArrayList;
     ArrayList<Plate> menuArray;
-    HashMap<Integer, ArrayList<Plate>> orderDict;
-    HashMap<Integer, ArrayList<Plate>> payableDict;
+    HashMap< Integer, ArrayList<ArrayList<Plate>> > orderDict;
+    HashMap< Integer, ArrayList<ArrayList<Plate>> > payableDict;
 
     public Restaurant(String newRestaurantName, String chefName){
         this.restaurantName = newRestaurantName;
         this.tablesNumbs = 0;
         this.chef = new Chef(chefName);
-        employeeArrayList = new ArrayList<Employee>();
+        employeeArrayList = new ArrayList<>();
         menuArray = new ArrayList<>();
         orderDict = new HashMap<>();
         payableDict = new HashMap<>();
     }
 
+    /**
+     * Returns the Restaurant name.
+     * @return name
+     */
     public String getRestaurantName() {
         return restaurantName;
     }
 
+    /**
+     *  Returns the number of tables in the Restaurant.
+     * @return tables
+     */
     public Integer getTablesNumbs() {
         return tablesNumbs;
     }
 
-    public Chef getCheff() {
+    /**
+     * Returns the Chef object.
+     * @return Chef instance
+     */
+    public Chef getChef() {
         return chef;
     }
 
+    /**
+     * Returns the collection of Employees working in the restaurant.
+     * @return Employees
+     */
     public ArrayList<Employee> getEmployeeArrayList() {
         return employeeArrayList;
     }
 
+    /**
+     * Returns the menu Array o dishes orderable in the Restaurant.
+     * @return menuArray
+     */
     public ArrayList<Plate> getMenuArray() {
         return menuArray;
     }
 
-    public HashMap<Integer, ArrayList<Plate>> getOrderDict() {
+    /**
+     * Returns a collection of table's numbers and Arrays of Array of dishes.
+     * @return OrderDictionary
+     */
+    public HashMap< Integer, ArrayList<ArrayList<Plate>> > getOrderDict() {
         return orderDict;
     }
 
-    public HashMap<Integer, ArrayList<Plate>> getPayableDict() {
+    /**
+     * Returns the Dictionary containing the payble Orders evaded by the kitchen.
+     * @return Payable order Dictionary
+     */
+    public HashMap< Integer, ArrayList<ArrayList<Plate>> > getPayableDict() {
         return payableDict;
     }
 
+    /**
+     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
+     * @param tablesNumbs - number of tables present in the Restaurant
+     */
     public void setTablesNumbs(Integer tablesNumbs) {
         this.tablesNumbs = tablesNumbs;
+        for(Integer i = 1; i <= tablesNumbs; i++) {
+            orderDict.put(i, new ArrayList<>());
+            payableDict.put(i, new ArrayList<>());
+        }
     }
 
+    /**
+     * Adds to the array of Employees a new Employee instance
+     * @param newEmployee - a new Employee instance
+     */
     public void addEmployee(Employee newEmployee){
         employeeArrayList.add(newEmployee);
     }
 
+    /**
+     * Adds a new order to be prepared by the kitchen.
+     * @param tableNumber - the number of the tables that refers to the order.
+     * @param orderArray - the Array containing a list of dishes
+     */
+    public void addOrderDict(Integer tableNumber, ArrayList<Plate> orderArray){
+        this.orderDict.get(tableNumber).add(orderArray);
+    }
+
+    /**
+     * Adds an evaded order to the to-be-Payed Dictionary.
+     * @param tablesNumbs - the number of the tables that refers to the order.
+     * @param tobePayedArray - the Array of payable orders evaded by the kitchen.
+     */
+    public void addPaymentDict(Integer tablesNumbs, ArrayList<Plate> tobePayedArray){
+        this.payableDict.get(tablesNumbs).add(tobePayedArray);
+    }
 }

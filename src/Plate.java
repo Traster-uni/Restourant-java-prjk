@@ -18,13 +18,14 @@ public class Plate {
      */
     public Plate(){
         name = "";
+        category = 0;
         prize = 0;
     }
 
     /**
      * Default constructor for a Plate object.
-     * The selectable categories are labeled numerically from 1 to 4
-     * 1 = appetizer, 2 = first dishes, 3 = second dishes, 4 = dessert
+     * The selectable categories are labeled numerically from 1 to 4,
+     *      1: appetizer, 2: first dishes, 3: second dishes, 4: dessert
      * @param name - the name of the plate.
      * @param prize - the prize of the plate.
      */
