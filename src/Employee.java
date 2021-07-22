@@ -37,5 +37,11 @@ public class Employee {
         return order;
     }
 
-
+    /**
+     * Sets a new served table.
+     * @param number - served table
+     */
+    public void setServedTable(Integer number){
+        servedTable = number;
+    }
 }
