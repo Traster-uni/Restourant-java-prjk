@@ -1,0 +1,7 @@
+RESTAURANT 
+Plate 1: refhjjefjqj           280,00€
+Plate 2: fqjjfq                 22,00€
+Plate 3: fhref                  28,00€
+Plate 4: fqfkqejfjwejfqenjr     28,00€
+--------------------------------------
+                        TOTAL: 358,00€

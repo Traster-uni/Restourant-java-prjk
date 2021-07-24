@@ -17,7 +17,7 @@ public class Cook extends Employee{
      */
     public Cook() {
         super();
-        allOrders = "";
+        allOrders = "Plate, category, price\n";
         cookedDirectory = "";
         orderToPrepare = new ArrayList<>();
         orderReady = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Cook extends Employee{
      */
     public Cook(String initialCookedDirectory) {
         super();
-        allOrders = "";
+        allOrders = "Plate, category, price\n";
         cookedDirectory = initialCookedDirectory;
         orderToPrepare = new ArrayList<>();
         orderReady = new ArrayList<>();
@@ -48,14 +48,15 @@ public class Cook extends Employee{
      * Selects an order to prepare.
      * @param restaurant - our restaurant
      */
-    public void setOrderToPrepare(Restaurant restaurant){
+    public void selectOrderToPrepare(Restaurant restaurant){
         HashMap< Integer, ArrayList<ArrayList<Plate>> > tableOrders = restaurant.getOrderDict();
         orderToPrepare = tableOrders.get(super.getServedTable()).get(0);
         restaurant.deleteOrder(super.getServedTable(), orderToPrepare);
-        for (int i=0; i>orderToPrepare.size(); i++)
+        for (int i=0; i<orderToPrepare.size(); i++)
         {
             Plate currentPlate = orderToPrepare.get(i);
-            allOrders += currentPlate.toString() + "\n";
+            allOrders += currentPlate.getName() +", " + currentPlate.getCategory() +", " +
+                    String.format("%.2f", currentPlate.getPrize()) + "\n";
         }
         allOrders += "\n" + "\n";
     }
@@ -91,14 +92,19 @@ public class Cook extends Employee{
                 FileWriter fileWriter = new FileWriter(inputFile);
                 if (!inputFile.exists()) {
                     boolean created = inputFile.createNewFile();
+                    fileWriter.write(allOrders);
                 }
-                fileWriter.write(allOrders);
+                else {
+                    fileWriter.append(allOrders);
+                }
                 fileWriter.flush();
                 fileWriter.close();
+                allOrders = "";
             }
             catch (IOException ex){
                 System.out.println(ex.getMessage());
             }
+            orderReady.clear();
             return true;
         }
         else{

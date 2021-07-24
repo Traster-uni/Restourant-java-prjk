@@ -62,4 +62,12 @@ public class Waiter extends Employee{
         restaurant.addOrderDict(super.getServedTable(), order);
         order.clear();
     }
+
+    /**
+     * Sets a new served table.
+     * @param num - served table number
+     */
+    public void setServedTable(Integer num) {
+        super.setServedTable(num);
+    }
 }
