@@ -59,8 +59,7 @@ public class Waiter extends Employee{
      * @param restaurant - our restaurant
      */
     public void endOrder(Restaurant restaurant){
-        HashMap<Integer, ArrayList<ArrayList<Plate>>> orders = restaurant.getOrderDict();
-        orders.get(super.getServedTable()).add(order);
+        restaurant.addOrderDict(super.getServedTable(), order);
         order.clear();
     }
 }
