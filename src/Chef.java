@@ -29,14 +29,14 @@ public class Chef {
     private ArrayList<ArrayList<Plate>> bufferPlate;
     private String menuDirectory;
 
-    public Chef(){
+    public Chef() {
         name = "";
         categoriesNumbs = 0;
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
     }
 
-    public Chef(String newName){
+    public Chef(String newName) {
         name = newName;
         categoriesNumbs = 0;
         bufferPlate = new ArrayList<>();
@@ -47,17 +47,17 @@ public class Chef {
         return name;
     }
 
-    protected ArrayList<ArrayList<Plate>> getBufferPlate(){
+    protected ArrayList<ArrayList<Plate>> getBufferPlate() {
         return bufferPlate;
     }
 
-    protected void setMenuDirectory(String directory){
+    protected void setMenuDirectory(String directory) {
         this.menuDirectory = directory;
     }
 
-    protected void setNumberOfCategories(int newQuantities){
+    protected void setNumberOfCategories(int newQuantities) {
         this.categoriesNumbs = newQuantities;
-        for (int i = 0; i < categoriesNumbs; i++){
+        for (int i = 0; i < categoriesNumbs; i++) {
             bufferPlate.add(new ArrayList<Plate>());
         }
     }
@@ -67,12 +67,13 @@ public class Chef {
      * the bufferArray to keep the menu partially organized. If the dish already exist the method
      * throws an unchecked exception.
      * Chose from 1 = appetizers
-     *            2 = first dishes
-     *            3 = second dishes
-     *            4 = desserts
+     * 2 = first dishes
+     * 3 = second dishes
+     * 4 = desserts
+     *
      * @param dishName String - the name of the dish.
      * @param category Integer - the number corresponding to the Category of the dish.
-     * @param prize Double - the prize of the dish.
+     * @param prize    Double - the prize of the dish.
      */
     protected void addNewDish(String dishName, Integer category, Double prize) {
         Plate newDish = new Plate(dishName, category, prize);
@@ -91,9 +92,10 @@ public class Chef {
 
     /**
      * Return the Dish given the name and the category.
-     * @param dishName  String - the name of the dish.
-     * @param category  Integer - the category of the dish needed to find the desired Dish.
-     * @return  Plate - the Plate Instance.
+     *
+     * @param dishName String - the name of the dish.
+     * @param category Integer - the category of the dish needed to find the desired Dish.
+     * @return Plate - the Plate Instance.
      */
     //TODO: MISSING RETURN STATEMENT
 //    protected Plate getDish(String dishName, Integer category){
@@ -104,12 +106,11 @@ public class Chef {
 //            }
 //        }
 //    }
-
-    protected void changeDish(String dishName, Integer category, Double prize){
+    protected void changeDish(String dishName, Integer category, Double prize) {
         Plate modifyDish = new Plate(dishName, category, prize);
-        if (bufferPlate.get(category - 1).contains(modifyDish)){
+        if (bufferPlate.get(category - 1).contains(modifyDish)) {
             int m = bufferPlate.get(category - 1).indexOf(modifyDish);
-            bufferPlate.get(category - 1).set(m,modifyDish);
+            bufferPlate.get(category - 1).set(m, modifyDish);
         }
     }
 
@@ -117,24 +118,24 @@ public class Chef {
         try {
             File inputFile = new File(menuDirectory);
             FileWriter csvWriter = new FileWriter(inputFile);
-            if (inputFile.exists()){
-                for (int i=0; i<bufferPlate.size(); i++){
+            if (inputFile.exists()) {
+                for (int i = 0; i < bufferPlate.size(); i++) {
                     ArrayList<Plate> categoryArray = bufferPlate.get(i);
                     int j = 0;
-                    if (i == 0){
+                    if (i == 0) {
                         csvWriter.write("ANTIPASTI: ");
                         csvWriter.write("\n");
-                    }else if(i == 1){
+                    } else if (i == 1) {
                         csvWriter.write("PRIMI: ");
                         csvWriter.write("\n");
-                    }else if(i == 2){
+                    } else if (i == 2) {
                         csvWriter.write("SECONDI: ");
                         csvWriter.write("\n");
-                    }else if(i == 3){
+                    } else if (i == 3) {
                         csvWriter.write("DESSERT: ");
                         csvWriter.write("\n");
                     }
-                    while (j < categoryArray.size()){
+                    while (j < categoryArray.size()) {
                         csvWriter.write(categoryArray.get(j).toString());
                         csvWriter.write("\n");
                         j++;
@@ -142,11 +143,11 @@ public class Chef {
                 }
                 csvWriter.flush();
                 csvWriter.close();
-            }else{
+            } else {
                 inputFile.createNewFile();
                 // TODO: crea il file quando non esiste;
             }
-        }catch(IOException e){
+        } catch (IOException e) {
             System.out.println("AN ERROR OCCURRED");
             e.printStackTrace();
         }
@@ -156,21 +157,21 @@ public class Chef {
      * Reads the file given by the directory statement. Populate the bufferArray attribute with instances of Plates for
      * further modification by the user.
      */
-    public void readMenu(){
+    public void readMenu() {
         try {
             File inputFile = new File(menuDirectory);
             Scanner csvReader = new Scanner(inputFile);
             csvReader.useDelimiter(", ");
-            while(csvReader.hasNextLine()){
-                if(csvReader.next().endsWith(":"))
+            while (csvReader.hasNextLine()) {
+                if (csvReader.next().endsWith(":"))
                     //TODO: Declaration not allowed.
                     String nameRaed = csvReader.next();
-                    Integer categoryRead = csvReader.nextInt();
-                    Double priceRead = csvReader.nextDouble();
+                Integer categoryRead = csvReader.nextInt();
+                Double priceRead = csvReader.nextDouble();
 
-                    bufferPlate.get(categoryRead).add(new Plate(nameRaed, categoryRead, priceRead));
+                bufferPlate.get(categoryRead).add(new Plate(nameRaed, categoryRead, priceRead));
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println("No file with such name was found");
             e.printStackTrace();
         }
@@ -179,10 +180,10 @@ public class Chef {
     /**
      * Wipes the arrays.
      */
-    protected void clearBufferArray(){
+    protected void clearBufferArray() {
         bufferPlate.clear();
-        for (int i = 0; i < categoriesNumbs; i++){
+        for (int i = 0; i < categoriesNumbs; i++) {
             bufferPlate.add(new ArrayList<Plate>());
         }
     }
-
+}
