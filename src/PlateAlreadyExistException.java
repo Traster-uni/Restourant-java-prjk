@@ -3,8 +3,7 @@
  * Time: 17:33
  * Project: Restourant-java-prjk
  */
-public class PlateAlreadyExistException
-    extends RuntimeException {
+public class PlateAlreadyExistException extends RuntimeException {
     public PlateAlreadyExistException(String message){
         super(message);
     }
