@@ -32,7 +32,7 @@ public class Waiter extends Employee{
     protected void addPlate(String plateName, Integer category, Restaurant restaurant){
         ArrayList<ArrayList<Plate>> menu = restaurant.getMenuArray();
         ArrayList<Plate> categoryMenu = menu.get(category-1);
-        for (int i = 0; i<menu.size(); i++){
+        for (int i = 0; i<categoryMenu.size(); i++){
             Plate currentPlate = categoryMenu.get(i);
             if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
             {
@@ -46,7 +46,7 @@ public class Waiter extends Employee{
      * @param plateName - plate name.
      */
     protected void deletePlate(String plateName){
-        for (int i=0; i>order.size(); i++){
+        for (int i=0; i<order.size(); i++){
             Plate currentPlate = order.get(i);
             if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
             {
@@ -61,7 +61,7 @@ public class Waiter extends Employee{
      */
     protected void endOrder(Restaurant restaurant){
         restaurant.addOrderDict(super.getServedTable(), order);
-        order.clear();
+        order = new ArrayList<>();
     }
 
     /**
@@ -73,7 +73,7 @@ public class Waiter extends Employee{
     }
 
     public ArrayList<Plate> getOrder() {
-        return super.getOrder();
+        return order;
     }
 
 }

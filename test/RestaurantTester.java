@@ -1,4 +1,5 @@
 import javax.swing.plaf.synth.SynthLookAndFeel;
+import java.util.ArrayList;
 
 /**
  * Created by Tommaso M. Lopedote on 11/08/2021
@@ -48,12 +49,21 @@ public class RestaurantTester {
         Waiter waiter = new Waiter(1);
         waiter.addPlate("Pizza", 2,  DaGino);
         waiter.addPlate("Fritti Vari",1, DaGino);
-        System.out.println(waiter.getOrder());
         waiter.deletePlate("Fritti Vari");
-        System.out.println(waiter.getOrder());
+//        ArrayList<Plate> plates = new ArrayList<>();
+//        plates.add(new Plate("Pasta", 1, 7.0));
+//        DaGino.addOrderDict(1, plates);
         waiter.endOrder(DaGino);
-        System.out.println(waiter.getOrder());
         System.out.println(DaGino.getOrderDict());
+
+        waiter.setServedTable(3);
+        waiter.addPlate("Fritti Vari", 1, DaGino);
+        waiter.addPlate("Pizza", 2, DaGino);
+        waiter.addPlate("Pizza", 2, DaGino);
+        waiter.endOrder(DaGino);
+        System.out.println(DaGino.getOrderDict());
+
+
 
     }
 
