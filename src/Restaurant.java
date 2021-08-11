@@ -96,7 +96,7 @@ public class Restaurant {
     }
 
     /**
-     * Returns the Dictionary containing the payble Orders evaded by the kitchen.
+     * Returns the Dictionary containing the payable Orders evaded by the kitchen.
      * @return Payable order Dictionary
      */
     public HashMap< Integer, ArrayList<ArrayList<Plate>> > getPayableDict() {
@@ -157,8 +157,7 @@ public class Restaurant {
 
     /**
      * Deletes the first array of orders contained into the Payable orders Dictionary defined by
-     * the number given for the tabel.
-     *
+     * the number given for the table.\
      * Here's a reminder of the structure of the HashMap: HashMap< Integer, ArrayList<ArrayList<Plate>> >
      * @param tableNumber - Number related to the table desired
      * @return True if the deletion is successful, False otherwise.

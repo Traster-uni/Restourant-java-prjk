@@ -4,6 +4,8 @@
  * Project: Restourant-java-prjk
  */
 
+import java.util.Objects;
+
 /**
  * The Plate object is a basic implementation of a dish that could be prepared or served in a restaurant
  */
@@ -71,5 +73,18 @@ public class Plate {
     public String toString() {
         return name + ";" + category + ";" + prize + ";";
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Plate plate = (Plate) o;
+        return Double.compare(plate.getPrize(), getPrize()) == 0 && getName().equals(plate.getName()) && getCategory().equals(plate.getCategory());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getCategory(), getPrize());
     }
 }
