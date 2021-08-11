@@ -33,7 +33,7 @@ public class Restaurant {
     Integer tablesNumbs;
     Chef chef;
     ArrayList<Employee> employeeArrayList;
-    ArrayList<Plate> menuArray;
+    ArrayList<ArrayList<Plate>> menuArray;
     HashMap< Integer, ArrayList<ArrayList<Plate>> > orderDict;
     HashMap< Integer, ArrayList<ArrayList<Plate>> > payableDict;
 
@@ -83,7 +83,7 @@ public class Restaurant {
      * Returns the menu Array o dishes orderable in the Restaurant.
      * @return menuArray
      */
-    public ArrayList<Plate> getMenuArray() {
+    public ArrayList<ArrayList<Plate>> getMenuArray() {
         return menuArray;
     }
 
@@ -103,6 +103,13 @@ public class Restaurant {
         return payableDict;
     }
 
+    /**
+     * Sets the new menu.
+     * @param newMenu - the new menu.
+     */
+    public void loadMenuFromChef(ArrayList<Plate> newMenu){
+        this.menuArray = chef.getBufferPlate();
+    }
     /**
      * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
      * @param tablesNumbs - number of tables present in the Restaurant

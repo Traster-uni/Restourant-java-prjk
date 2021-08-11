@@ -191,6 +191,7 @@ public class Chef {
         }
     }
 
+
     /**
      * Wipes the BufferArray.
      */
