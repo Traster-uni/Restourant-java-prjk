@@ -1,7 +1,7 @@
-/**
- * Created by Tommaso M. Lopedote on 21/07/2021
- * Time: 18:43
- * Project: Restourant-java-prjk
+/*
+  Created by Tommaso M. Lopedote on 21/07/2021
+  Time: 18:43
+  Project: Restourant-java-prjk
  */
 
 import org.jetbrains.annotations.NotNull;
@@ -142,15 +142,32 @@ public class Restaurant {
     }
 
     /**
-     * Deletes the first Array of dishes in the Dictionary.
-     * @param tablesNumber - table served
+     * Deletes the first Array of dishes in the order Dictionary.
+     * @param tableNumber - table served
      * @return True if the deletion is successful, False otherwise
      */
-    public boolean deleteOrder(Integer tablesNumber, ArrayList<Plate> evadedOrder){
-        if (evadedOrder.equals(orderDict.get(tablesNumber).get(0))) {
-            orderDict.get(tablesNumber).remove(0);
+    public boolean deleteOrder(Integer tableNumber, ArrayList<Plate> evadedOrder){
+        if (evadedOrder.equals(orderDict.get(tableNumber).get(0))) {
+            orderDict.get(tableNumber).remove(0);
             return true;
         }else{
+            return false;
+        }
+    }
+
+    /**
+     * Deletes the first array of orders contained into the Payable orders Dictionary defined by
+     * the number given for the tabel.
+     *
+     * Here's a reminder of the structure of the HashMap: HashMap< Integer, ArrayList<ArrayList<Plate>> >
+     * @param tableNumber - Number related to the table desired
+     * @return True if the deletion is successful, False otherwise.
+     */
+    public boolean deletePayedOrder(Integer tableNumber){
+        if (!payableDict.get(tableNumber).get(0).isEmpty()){
+            payableDict.get(tableNumber).get(0).clear();
+            return true;
+        } else {
             return false;
         }
     }
