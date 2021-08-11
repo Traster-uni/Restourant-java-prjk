@@ -9,7 +9,8 @@ public class RestaurantTester {
     public static void main(String[] args) {
         Restaurant DaGino = new Restaurant("Da Gino", "Gino Giocondo");
         Chef ginoChef = DaGino.getChef();
-        DaGino.setTablesNumbs(5);
+        int tableNum = 5;
+        DaGino.setTablesNumbs(tableNum);
 
         System.out.println("Welcome to Restourant " + DaGino.getRestaurantName());
         System.out.println("With 5 star micheline chef "+ginoChef.getName());
@@ -21,7 +22,7 @@ public class RestaurantTester {
 //        DaGino.addEmployee(waiter);
 //        System.out.println(DaGino.getEmployeeArrayList());
 
-        String directory = "C:\\Users\\trast\\Desktop\\Università\\GitHub\\Restourant-java-prjk\\menu.csv";
+        String directory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\menu.csv";
         ginoChef.setMenuDirectory(directory);
         ginoChef.setNumberOfCategories(4);
         try {
@@ -41,6 +42,18 @@ public class RestaurantTester {
         ginoChef.readMenu();
         System.out.println("Gino has read the menu");
         System.out.println(ginoChef.getBufferPlate());
+
+        System.out.println();
+        Waiter waiter = new Waiter(1);
+        waiter.addPlate("Pizza", DaGino);
+        waiter.addPlate("Fritti Vari", DaGino);
+        System.out.println(waiter.getOrder());
+        waiter.deletePlate("Fritti Vari");
+        System.out.println(waiter.getOrder());
+        waiter.endOrder(DaGino);
+        System.out.println(waiter.getOrder());
+        System.out.println(DaGino.getOrderDict());
+
     }
 
 }
