@@ -42,11 +42,12 @@ public class RestaurantTester {
         ginoChef.readMenu();
         System.out.println("Gino has read the menu");
         System.out.println(ginoChef.getBufferPlate());
+        DaGino.loadMenuFromChef();
 
         System.out.println();
         Waiter waiter = new Waiter(1);
-        waiter.addPlate("Pizza", DaGino);
-        waiter.addPlate("Fritti Vari", DaGino);
+        waiter.addPlate("Pizza", 2,  DaGino);
+        waiter.addPlate("Fritti Vari",1, DaGino);
         System.out.println(waiter.getOrder());
         waiter.deletePlate("Fritti Vari");
         System.out.println(waiter.getOrder());

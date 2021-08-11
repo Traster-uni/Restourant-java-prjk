@@ -26,12 +26,14 @@ public class Waiter extends Employee{
     /**
      * Adds the dish to the order list.
      * @param plateName - plate name
+     * @param category - category
      * @param restaurant - our restaurant
      */
-    protected void addPlate(String plateName,  Restaurant restaurant){
-        ArrayList<Plate> menu = restaurant.getMenuArray();
+    protected void addPlate(String plateName, Integer category, Restaurant restaurant){
+        ArrayList<ArrayList<Plate>> menu = restaurant.getMenuArray();
+        ArrayList<Plate> categoryMenu = menu.get(category-1);
         for (int i = 0; i<menu.size(); i++){
-            Plate currentPlate = menu.get(i);
+            Plate currentPlate = categoryMenu.get(i);
             if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
             {
                 order.add(currentPlate);
