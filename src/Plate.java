@@ -69,10 +69,7 @@ public class Plate {
 
     @Override
     public String toString() {
-        return "Plate{" +
-                "name= " + name + ',' +
-                "category= " + category + ',' +
-                "prize= " + prize +
-                '}';
+        return name + ";" + category + ";" + prize + ";";
+
     }
 }

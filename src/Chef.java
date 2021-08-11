@@ -4,11 +4,13 @@
  * Project: Restourant-java-prjk
  */
 
+
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Scanner;
 
 //class Cheff
 //	attributi:
@@ -24,17 +26,20 @@ import java.util.ArrayList;
 
 public class Chef {
     private String name;
+    private int categoriesNumbs;
     private ArrayList<ArrayList<Plate>> bufferPlate;
     private String menuDirectory;
 
-    public Chef(){
+    public Chef() {
         name = "";
+        categoriesNumbs = 0;
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
     }
 
-    public Chef(String newName){
-        this.name = newName;
+    public Chef(String newName) {
+        name = newName;
+        categoriesNumbs = 0;
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
     }
@@ -43,68 +48,152 @@ public class Chef {
         return name;
     }
 
-    protected ArrayList<ArrayList<Plate>> getBufferPlate(){
+    protected ArrayList<ArrayList<Plate>> getBufferPlate() {
         return bufferPlate;
     }
 
-    protected void setMenuDirectory(String directory){
+    protected void setMenuDirectory(String directory) {
         this.menuDirectory = directory;
     }
+    //TODO: il numero di categorie e' sempre 4, se non fosse cosi' dovresti cambiare il metodo writeMenu
+    protected void setNumberOfCategories(int newQuantities) {
+        this.categoriesNumbs = newQuantities;
+        for (int i = 0; i < categoriesNumbs; i++) {
+            bufferPlate.add(new ArrayList<Plate>());
+        }
+    }
 
-    protected boolean addNewDish(String dishName, Integer category, Double prize){
+    /**
+     * Creates and Adds an instance of Plate class to one of the four arrays contained in
+     * the bufferArray to keep the menu partially organized. If the dish already exist the method
+     * throws an unchecked exception.
+     * The method codify categories of dishes with numbers in the following way:
+     * 1 = appetizers
+     * 2 = first dishes
+     * 3 = second dishes
+     * 4 = desserts
+     *
+     * @param dishName String - the name of the dish.
+     * @param category Integer - the number corresponding to the Category of the dish.
+     * @param prize    Double - the prize of the dish.
+     */
+    protected void addNewDish(String dishName, Integer category, Double prize) {
         Plate newDish = new Plate(dishName, category, prize);
-        if (bufferPlate.get(category - 1).contains(newDish)) {
-            return false;
-        }else{
+        if (bufferPlate.get(category - 1).size() != 0) {
+
+            if (bufferPlate.get(category - 1).contains(newDish)) {
+                throw new PlateAlreadyExistException("The Plate is already in the list");
+            } else {
+                bufferPlate.get(category - 1).add(newDish);
+            }
+
+        } else {
             bufferPlate.get(category - 1).add(newDish);
-            return true;
         }
     }
 
-    protected void changeDish(String dishName, Integer category, Double prize){
+    /**
+     * Return the Dish given the name and the category.
+     *
+     * @param dishName String - the name of the dish.
+     * @param category Integer - the category of the dish needed to find the desired Dish.
+     */
+    protected Plate getDish(String dishName, Integer category) {
+        ArrayList<Plate> categoryArray = bufferPlate.get(category - 1);
+        for (Plate plate : categoryArray) {
+            if (plate.getName().equals(dishName)) {
+                return plate;
+            } else {
+                throw new NoSuchPlateException("The plate doesn't exist in the buffer");
+            }
+        }
+        //dummy empty plate.
+        return new Plate();
+    }
+
+    protected void changeDish(String dishName, Integer category, Double prize) {
         Plate modifyDish = new Plate(dishName, category, prize);
-        if (bufferPlate.get(category - 1).contains(modifyDish)){
+        if (bufferPlate.get(category - 1).contains(modifyDish)) {
             int m = bufferPlate.get(category - 1).indexOf(modifyDish);
-            bufferPlate.get(category - 1).set(m,modifyDish);
+            bufferPlate.get(category - 1).set(m, modifyDish);
         }
     }
 
+    /**
+     * Writes the menu.csv file using the instances of plates inserted by the chef.
+     * If the file is not existent, creates a new file and compiles it.
+     */
     protected void writeMenu() {
         try {
             File inputFile = new File(menuDirectory);
             FileWriter csvWriter = new FileWriter(inputFile);
-            if (inputFile.exists()){
-                for (int i=0; i<bufferPlate.size(); i++){
-                    ArrayList<Plate> categoryArray = bufferPlate.get(i);
-                    int j = 0;
-                    if (i == 0){
-                        csvWriter.write("Antipasti: ");
-                        csvWriter.write("\n");
-                    }else if(i == 1){
-                        csvWriter.write("Primi: ");
-                        csvWriter.write("\n");
-                    }else if(i == 2){
-                        csvWriter.write("Secondi: ");
-                        csvWriter.write("\n");
-                    }else if(i == 3){
-                        csvWriter.write("Desserts: ");
-                        csvWriter.write("\n");
-                    }
-                    while (j < categoryArray.size()){
-                        csvWriter.write(categoryArray.get(j).toString());
-                        j++;
-                    }
-                }
-                csvWriter.flush();
-                csvWriter.close();
-            }else{
+            if (!inputFile.exists()) {
                 inputFile.createNewFile();
-                // TODO: crea il file quando non esiste;
             }
-        }catch(IOException e){
-            System.out.println("AN ERROR OCCURRED");
+            for (int i = 0; i < bufferPlate.size(); i++) {
+                ArrayList<Plate> categoryArray = bufferPlate.get(i);
+                int j = 0;
+                //Valuta se eliminare tale classificazione dal csv
+//                if (i == 0) {
+//                    csvWriter.write("ANTIPASTI: ");
+//                    csvWriter.write("\n");
+//                } else if (i == 1) {
+//                    csvWriter.write("PRIMI: ");
+//                    csvWriter.write("\n");
+//                } else if (i == 2) {
+//                    csvWriter.write("SECONDI: ");
+//                    csvWriter.write("\n");
+//                } else if (i == 3) {
+//                    csvWriter.write("DESSERT: ");
+//                    csvWriter.write("\n");
+//                }
+                while (j < categoryArray.size()) {
+                    csvWriter.write(categoryArray.get(j).toString());
+                    csvWriter.write("\n");
+                    j++;
+                }
+            }
+            csvWriter.flush();
+            csvWriter.close();
+            } catch (IOException e) {
+                System.out.println("AN ERROR OCCURRED");
+                e.printStackTrace();
+        }
+    }
+
+    /**
+     * Reads the file given by the directory statement. Populate the bufferArray attribute with instances of Plates for
+     * further modification by the user.
+     */
+    public void readMenu() {
+        try {
+            File inputFile = new File(menuDirectory);
+            Scanner csvReader = new Scanner(inputFile);
+            csvReader.useDelimiter(";");
+            while (csvReader.hasNext()) {
+                String nameRaed = csvReader.next();
+                String categoryRead = csvReader.next();
+                //TODO: Scanner throws exception wile parsing a double, \n symbol may be the problem.
+                Double priceRead = csvReader.nextDouble();
+                System.out.println("name "+nameRaed);
+                System.out.println("cat "+categoryRead);
+                System.out.println("price "+priceRead);
+
+                //bufferPlate.get(categoryRead).add(new Plate(nameRaed, categoryRead, priceRead));
+            }
+        } catch (IOException e) {
+            System.out.println("No file with such name was found");
             e.printStackTrace();
         }
     }
 
+    /**
+     * Wipes the BufferArray.
+     */
+    protected void clearBufferArray() {
+        bufferPlate.clear();
+        for (int i = 0; i < categoriesNumbs; i++) {
+            bufferPlate.add(new ArrayList<Plate>());
+        }
+    }
 }

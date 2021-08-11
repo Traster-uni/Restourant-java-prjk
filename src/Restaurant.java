@@ -154,4 +154,6 @@ public class Restaurant {
             return false;
         }
     }
+
+    //TODO: metodo dedito al confronto dei file csv generati dalle classi Cook e Cashier.
 }
