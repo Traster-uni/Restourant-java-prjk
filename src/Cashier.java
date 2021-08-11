@@ -93,7 +93,7 @@ public class Cashier extends Employee{
      * @param receiptDirectory - receipt dorectory
      * @param restaurant - our restaurant
      */
-    //todo: manca una riga(si deve cancelare la lista con tutti gli ordini pagati)
+
     public void printReceipt(String receiptDirectory, Restaurant restaurant){
         maxLength += 10;
         try {
@@ -117,7 +117,7 @@ public class Cashier extends Employee{
         catch (IOException ex){
             System.out.println(ex.getMessage());
         }
-
+        restaurant.deletePayedOrder(super.getServedTable());
         maxLength = 0;
         order.clear();
         change = 0;
