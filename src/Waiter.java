@@ -26,10 +26,9 @@ public class Waiter extends Employee{
     /**
      * Adds the dish to the order list.
      * @param plateName - plate name
-     * @param category - selectable category
      * @param restaurant - our restaurant
      */
-    public void addPlate(String plateName, Integer category, Restaurant restaurant){
+    protected void addPlate(String plateName,  Restaurant restaurant){
         ArrayList<Plate> menu = restaurant.getMenuArray();
         for (int i = 0; i<menu.size(); i++){
             Plate currentPlate = menu.get(i);
@@ -44,7 +43,7 @@ public class Waiter extends Employee{
      * Delete the dish to the order list.
      * @param plateName - plate name.
      */
-    public void deletePlate(String plateName){
+    protected void deletePlate(String plateName){
         for (int i=0; i>order.size(); i++){
             Plate currentPlate = order.get(i);
             if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
@@ -58,7 +57,7 @@ public class Waiter extends Employee{
      * Submit the order in the order table and cancel the order.
      * @param restaurant - our restaurant
      */
-    public void endOrder(Restaurant restaurant){
+    protected void endOrder(Restaurant restaurant){
         restaurant.addOrderDict(super.getServedTable(), order);
         order.clear();
     }
@@ -70,4 +69,9 @@ public class Waiter extends Employee{
     public void setServedTable(Integer num) {
         super.setServedTable(num);
     }
+
+    public ArrayList<Plate> getOrder() {
+        return super.getOrder();
+    }
+
 }
