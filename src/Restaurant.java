@@ -107,7 +107,7 @@ public class Restaurant {
      * Sets the new menu.
      * @param newMenu - the new menu.
      */
-    public void loadMenuFromChef(ArrayList<Plate> newMenu){
+    public void loadMenuFromChef(){
         this.menuArray = chef.getBufferPlate();
     }
     /**
