@@ -55,8 +55,8 @@ public class Cook extends Employee{
         for (int i=0; i<orderToPrepare.size(); i++)
         {
             Plate currentPlate = orderToPrepare.get(i);
-            allOrders += currentPlate.getName() +", " + currentPlate.getCategory() +", " +
-                    String.format("%.2f", currentPlate.getPrize()) + "\n";
+            allOrders += currentPlate.getName() +";" + currentPlate.getCategory() +";" +
+                    String.format("%.2f", currentPlate.getPrize()).replace(",",".") + "\n";
         }
         allOrders += "\n" + "\n";
     }
