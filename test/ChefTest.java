@@ -25,7 +25,7 @@ public class ChefTest {
         System.out.println(chefCapo.getBufferPlate());
         System.out.println("#########################");
         System.out.println("flush buffer plate");
-        chefCapo.clearBufferArray();
+        chefCapo.clearBufferPlate();
         System.out.println("chef instance reads menu.csv");
         chefCapo.readMenu();
     }

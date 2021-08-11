@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -55,6 +56,7 @@ public class Chef {
     protected void setMenuDirectory(String directory) {
         this.menuDirectory = directory;
     }
+
     //TODO: il numero di categorie e' sempre 4, se non fosse cosi' dovresti cambiare il metodo writeMenu
     protected void setNumberOfCategories(int newQuantities) {
         this.categoriesNumbs = newQuantities;
@@ -169,17 +171,19 @@ public class Chef {
         try {
             File inputFile = new File(menuDirectory);
             Scanner csvReader = new Scanner(inputFile);
+            csvReader.useLocale(Locale.US);
             csvReader.useDelimiter(";");
             while (csvReader.hasNext()) {
                 String nameRaed = csvReader.next();
-                String categoryRead = csvReader.next();
+                Integer categoryRead = csvReader.nextInt();
                 //TODO: Scanner throws exception wile parsing a double, \n symbol may be the problem.
                 Double priceRead = csvReader.nextDouble();
+                csvReader.nextLine();
                 System.out.println("name "+nameRaed);
                 System.out.println("cat "+categoryRead);
                 System.out.println("price "+priceRead);
 
-                //bufferPlate.get(categoryRead).add(new Plate(nameRaed, categoryRead, priceRead));
+                bufferPlate.get(categoryRead - 1).add(new Plate(nameRaed, categoryRead, priceRead));
             }
         } catch (IOException e) {
             System.out.println("No file with such name was found");
@@ -190,7 +194,7 @@ public class Chef {
     /**
      * Wipes the BufferArray.
      */
-    protected void clearBufferArray() {
+    protected void clearBufferPlate() {
         bufferPlate.clear();
         for (int i = 0; i < categoriesNumbs; i++) {
             bufferPlate.add(new ArrayList<Plate>());
