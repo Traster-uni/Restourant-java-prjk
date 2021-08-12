@@ -152,7 +152,7 @@ public class Restaurant {
      */
     public boolean deleteOrder(Integer tableNumber, ArrayList<Plate> evadedOrder){
         if (evadedOrder.equals(orderDict.get(tableNumber).get(0))) {
-            orderDict.get(tableNumber).clear();
+            orderDict.get(tableNumber).remove(0);
             return true;
         }else{
             return false;
@@ -168,7 +168,7 @@ public class Restaurant {
      */
     public boolean deletePayedOrder(Integer tableNumber){
         if (!payableDict.get(tableNumber).get(0).isEmpty()){
-            payableDict.get(tableNumber).get(0).clear();
+            payableDict.get(tableNumber).clear();
             return true;
         } else {
             return false;
