@@ -103,10 +103,7 @@ public class Restaurant {
         return payableDict;
     }
 
-    /**
-     * Sets the new menu.
-     * @param newMenu - the new menu.
-     */
+
     public void loadMenuFromChef(){
         this.menuArray = chef.getBufferPlate();
     }
@@ -155,7 +152,7 @@ public class Restaurant {
      */
     public boolean deleteOrder(Integer tableNumber, ArrayList<Plate> evadedOrder){
         if (evadedOrder.equals(orderDict.get(tableNumber).get(0))) {
-            orderDict.get(tableNumber).remove(0);
+            orderDict.get(tableNumber).clear();
             return true;
         }else{
             return false;

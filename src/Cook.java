@@ -67,7 +67,7 @@ public class Cook extends Employee{
      */
     public void preparePlate(String namePlate){
         Plate currentPlate = new Plate();
-        for (int i=0; i > orderToPrepare.size(); i++){
+        for (int i=0; i < orderToPrepare.size(); i++){
             Plate tempPlate = orderToPrepare.get(i);
             if (tempPlate.getName().toLowerCase().equals(namePlate.toLowerCase()))
             {
