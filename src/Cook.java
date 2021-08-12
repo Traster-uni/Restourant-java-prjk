@@ -30,7 +30,7 @@ public class Cook extends Employee{
      */
     public Cook(String initialCookedDirectory) {
         super();
-        allOrders = "Plate, category, price\n";
+        allOrders = "Plate;category;price\n";
         cookedDirectory = initialCookedDirectory;
         orderToPrepare = new ArrayList<>();
         orderReady = new ArrayList<>();
@@ -84,6 +84,7 @@ public class Cook extends Employee{
      * @param restaurant - our restaurant
      * @return true if order is ready, false otherwise
      */
+    //TODO risolvere la scrittura del file
     public boolean checkPreparedOrder(Restaurant restaurant){
         if (orderToPrepare.isEmpty()){
             restaurant.addPaymentDict(super.getServedTable(), orderReady);
@@ -104,11 +105,19 @@ public class Cook extends Employee{
             catch (IOException ex){
                 System.out.println(ex.getMessage());
             }
-            orderReady.clear();
+            orderReady = new ArrayList<>();
             return true;
         }
         else{
             return false;
         }
+    }
+
+    public ArrayList<Plate> getOrderToPrepare() {
+        return orderToPrepare;
+    }
+
+    public ArrayList<Plate> getOrderReady() {
+        return orderReady;
     }
 }
