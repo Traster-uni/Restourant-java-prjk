@@ -120,6 +120,16 @@ public class RestaurantTester {
 
         System.out.println();
         System.out.println("Ordini non pagati: " + DaGino.getPayableDict());
+        cashier.setServedTable(3);
+        System.out.println("Il casiere sceglie il tavolo 3");
+        cashier.selectOrder(DaGino);
+        System.out.println("Il cliente deve pagare: " + cashier.getPayment());
+        double amount2 = 40;
+        System.out.println("Il cliente riceve il resto: " + cashier.giveChange(amount2));
+        String receipt2 = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\receipt2.txt";
+        cashier.printReceipt(receipt2, DaGino);
+
+
 
 
 

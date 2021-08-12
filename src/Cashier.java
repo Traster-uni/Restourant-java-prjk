@@ -1,3 +1,4 @@
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -133,7 +134,9 @@ public class Cashier extends Employee{
                 fileWriter.write(ordersHistory);
             }
             else {
-                fileWriter.append(ordersHistory);
+                BufferedWriter bufferedWritter = new BufferedWriter(fileWriter);
+                bufferedWritter.write(ordersHistory);
+                bufferedWritter.close();
             }
             fileWriter.flush();
             fileWriter.close();
