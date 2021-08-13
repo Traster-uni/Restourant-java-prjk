@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Waiter extends Employee{
-    private ArrayList<Plate> order;
+    private Order<Plate> order;
 
     /**
      * Default constructor for Waiter object calls
@@ -10,7 +10,7 @@ public class Waiter extends Employee{
      */
     public Waiter() {
         super();
-        order = new ArrayList<>();
+        order = new Order<>();
     }
 
     /**
@@ -20,7 +20,7 @@ public class Waiter extends Employee{
      */
     public Waiter(Integer initialServedTable){
         super(initialServedTable);
-        order = new ArrayList<>();
+        order = new Order<>();
     }
 
     /**
@@ -60,8 +60,9 @@ public class Waiter extends Employee{
      * @param restaurant - our restaurant
      */
     protected void endOrder(Restaurant restaurant){
+        order.setStatusOrder("");
         restaurant.addOrderDict(super.getServedTable(), order);
-        order = new ArrayList<>();
+        order = new Order<>();
     }
 
     /**
