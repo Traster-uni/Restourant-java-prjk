@@ -1,5 +1,4 @@
 import java.awt.desktop.SystemSleepEvent;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -50,7 +49,7 @@ public class Cook extends Employee{
      * @param restaurant - our restaurant
      */
     public void selectOrderToPrepare(Restaurant restaurant){
-        HashMap< Integer, ArrayList<ArrayList<Plate>> > tableOrders = restaurant.getOrderDict();
+        HashMap< Integer, ArrayList<Order> > tableOrders = restaurant.getOrderDict();
         orderToPrepare = tableOrders.get(super.getServedTable()).get(0);
         restaurant.deleteOrder(super.getServedTable(), orderToPrepare);
         for (int i=0; i<orderToPrepare.size(); i++)
@@ -59,7 +58,7 @@ public class Cook extends Employee{
             allOrders += currentPlate.getName() +";" + currentPlate.getCategory() +";" +
                     String.format("%.2f", currentPlate.getPrize()).replace(",",".") + "\n";
         }
-        allOrders += "\n";
+        allOrders += "\n" + "\n";
     }
 
     /**
@@ -85,6 +84,7 @@ public class Cook extends Employee{
      * @param restaurant - our restaurant
      * @return true if order is ready, false otherwise
      */
+    //TODO risolvere la scrittura del file
     public boolean checkPreparedOrder(Restaurant restaurant){
         if (orderToPrepare.isEmpty()){
             restaurant.addPaymentDict(super.getServedTable(), orderReady);
@@ -96,9 +96,7 @@ public class Cook extends Employee{
                     fileWriter.write(allOrders);
                 }
                 else {
-                    BufferedWriter bufferedWritter = new BufferedWriter(fileWriter);
-                    bufferedWritter.write(allOrders);
-                    bufferedWritter.close();
+                    fileWriter.append(allOrders);
                 }
                 fileWriter.flush();
                 fileWriter.close();

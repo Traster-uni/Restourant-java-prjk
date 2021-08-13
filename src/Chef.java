@@ -57,7 +57,10 @@ public class Chef {
         this.menuDirectory = directory;
     }
 
-    //TODO: il numero di categorie e' sempre 4, se non fosse cosi' dovresti cambiare il metodo writeMenu
+    /**
+     *
+     * @param newQuantities
+     */
     protected void setNumberOfCategories(int newQuantities) {
         this.categoriesNumbs = newQuantities;
         for (int i = 0; i < categoriesNumbs; i++) {
@@ -134,7 +137,6 @@ public class Chef {
             }
             for (int i = 0; i < bufferPlate.size(); i++) {
                 ArrayList<Plate> categoryArray = bufferPlate.get(i);
-                int j = 0;
                 //Valuta se eliminare tale classificazione dal csv
 //                if (i == 0) {
 //                    csvWriter.write("ANTIPASTI: ");
@@ -149,6 +151,7 @@ public class Chef {
 //                    csvWriter.write("DESSERT: ");
 //                    csvWriter.write("\n");
 //                }
+                int j = 0;
                 while (j < categoryArray.size()) {
                     csvWriter.write(categoryArray.get(j).toString());
                     csvWriter.write("\n");

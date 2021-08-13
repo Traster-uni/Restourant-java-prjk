@@ -129,10 +129,6 @@ public class RestaurantTester {
         String receipt2 = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\receipt2.txt";
         cashier.printReceipt(receipt2, DaGino);
 
-
-
-
-
     }
 
 }

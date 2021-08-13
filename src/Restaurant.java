@@ -34,8 +34,8 @@ public class Restaurant {
     Chef chef;
     ArrayList<Employee> employeeArrayList;
     ArrayList<ArrayList<Plate>> menuArray;
-    HashMap< Integer, ArrayList<ArrayList<Plate>> > orderDict;
-    HashMap< Integer, ArrayList<ArrayList<Plate>> > payableDict;
+    HashMap< Integer, ArrayList<Order> > orderDict;
+    HashMap< Integer, ArrayList<Order> > payableDict;
 
     public Restaurant(String newRestaurantName, String chefName){
         this.restaurantName = newRestaurantName;
@@ -75,7 +75,7 @@ public class Restaurant {
      * Returns the collection of Employees working in the restaurant.
      * @return Employees
      */
-    public ArrayList<Employee> getEmployeeArrayList() {
+    public ArrayList<Employee> getEmployeeArray() {
         return employeeArrayList;
     }
 
@@ -91,7 +91,7 @@ public class Restaurant {
      * Returns a collection of table's numbers and Arrays of Array of dishes.
      * @return OrderDictionary
      */
-    public HashMap< Integer, ArrayList<ArrayList<Plate>> > getOrderDict() {
+    public HashMap< Integer, ArrayList<Order> > getOrderDict() {
         return orderDict;
     }
 
@@ -99,7 +99,7 @@ public class Restaurant {
      * Returns the Dictionary containing the payable Orders evaded by the kitchen.
      * @return Payable order Dictionary
      */
-    public HashMap< Integer, ArrayList<ArrayList<Plate>> > getPayableDict() {
+    public HashMap< Integer, ArrayList<Order> > getPayableDict() {
         return payableDict;
     }
 
@@ -107,6 +107,7 @@ public class Restaurant {
     public void loadMenuFromChef(){
         this.menuArray = chef.getBufferPlate();
     }
+
     /**
      * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
      * @param tablesNumbs - number of tables present in the Restaurant
@@ -132,8 +133,8 @@ public class Restaurant {
      * @param tableNumber - the number of the tables that refers to the order.
      * @param orderArray - the Array containing a list of dishes
      */
-    public void addOrderDict(Integer tableNumber, ArrayList<Plate> orderArray){
-        this.orderDict.get(tableNumber).add(orderArray);
+    public void addOrderDict(Integer tableNumber, Order newOrder){
+        this.orderDict.get(tableNumber).add(newOrder);
     }
 
     /**
@@ -141,8 +142,8 @@ public class Restaurant {
      * @param tablesNumbs - the number of the tables that refers to the order.
      * @param tobePayedArray - the Array of payable orders evaded by the kitchen.
      */
-    public void addPaymentDict(Integer tablesNumbs, ArrayList<Plate> tobePayedArray){
-        this.payableDict.get(tablesNumbs).add(tobePayedArray);
+    public void addPaymentDict(Integer tablesNumbs, Order tobePayedOrder){
+        this.payableDict.get(tablesNumbs).add(tobePayedOrder);
     }
 
     /**
@@ -150,7 +151,7 @@ public class Restaurant {
      * @param tableNumber - table served
      * @return True if the deletion is successful, False otherwise
      */
-    public boolean deleteOrder(Integer tableNumber, ArrayList<Plate> evadedOrder){
+    public boolean deleteOrder(Integer tableNumber, Order evadedOrder){
         if (evadedOrder.equals(orderDict.get(tableNumber).get(0))) {
             orderDict.get(tableNumber).remove(0);
             return true;
