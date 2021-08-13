@@ -34,8 +34,8 @@ public class Restaurant {
     Chef chef;
     ArrayList<Employee> employeeArrayList;
     ArrayList<ArrayList<Plate>> menuArray;
-    HashMap< Integer, ArrayList<Order> > orderDict;
-    HashMap< Integer, ArrayList<Order> > payableDict;
+    HashMap< Integer, ArrayList<Order<Plate>> > orderDict;
+    HashMap< Integer, ArrayList<Order<Plate>> > payableDict;
 
     public Restaurant(String newRestaurantName, String chefName){
         this.restaurantName = newRestaurantName;
@@ -91,7 +91,7 @@ public class Restaurant {
      * Returns a collection of table's numbers and Arrays of Array of dishes.
      * @return OrderDictionary
      */
-    public HashMap< Integer, ArrayList<Order> > getOrderDict() {
+    public HashMap< Integer, ArrayList<Order<Plate> >> getOrderDict() {
         return orderDict;
     }
 
@@ -99,7 +99,7 @@ public class Restaurant {
      * Returns the Dictionary containing the payable Orders evaded by the kitchen.
      * @return Payable order Dictionary
      */
-    public HashMap< Integer, ArrayList<Order> > getPayableDict() {
+    public HashMap< Integer, ArrayList<Order<Plate> >> getPayableDict() {
         return payableDict;
     }
 
@@ -133,7 +133,7 @@ public class Restaurant {
      * @param tableNumber - the number of the tables that refers to the order.
      * @param orderArray - the Array containing a list of dishes
      */
-    public void addOrderDict(Integer tableNumber, Order newOrder){
+    public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){
         this.orderDict.get(tableNumber).add(newOrder);
     }
 
@@ -142,7 +142,7 @@ public class Restaurant {
      * @param tablesNumbs - the number of the tables that refers to the order.
      * @param tobePayedArray - the Array of payable orders evaded by the kitchen.
      */
-    public void addPaymentDict(Integer tablesNumbs, Order tobePayedOrder){
+    public void addPaymentDict(Integer tablesNumbs, Order<Plate> tobePayedOrder){
         this.payableDict.get(tablesNumbs).add(tobePayedOrder);
     }
 
@@ -151,7 +151,7 @@ public class Restaurant {
      * @param tableNumber - table served
      * @return True if the deletion is successful, False otherwise
      */
-    public boolean deleteOrder(Integer tableNumber, Order evadedOrder){
+    public boolean deleteOrder(Integer tableNumber, Order<Plate> evadedOrder){
         if (evadedOrder.equals(orderDict.get(tableNumber).get(0))) {
             orderDict.get(tableNumber).remove(0);
             return true;

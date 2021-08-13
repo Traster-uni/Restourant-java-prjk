@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cashier extends Employee{
-    ArrayList<Plate> order;
+    Order<Plate> order;
     String paymentDirectory;
     double change;
     double payment;
@@ -24,7 +24,7 @@ public class Cashier extends Employee{
         payment = 0;
         ordersHistory = "Plate, category, price\n";
         maxLength = 0;
-        order = new ArrayList<>();
+        order = new Order<>();
     }
 
     /**
@@ -39,7 +39,7 @@ public class Cashier extends Employee{
         payment = 0;
         ordersHistory = "Plate;category,;price\n";
         maxLength = 0;
-        order = new ArrayList<>();
+        order = new Order<>();
     }
 
     /**
@@ -56,8 +56,8 @@ public class Cashier extends Employee{
      * @param restaurant - our restaurant
      */
     public void selectOrder(Restaurant restaurant){
-        HashMap< Integer, ArrayList<ArrayList<Plate>> > tableOrders = restaurant.getPayableDict();
-        ArrayList<ArrayList<Plate>> allOrders = tableOrders.get(super.getServedTable());
+        HashMap< Integer, ArrayList<Order<Plate>> > tableOrders = restaurant.getPayableDict();
+        ArrayList<Order<Plate>> allOrders = tableOrders.get(super.getServedTable());
         for (int i=0; i<allOrders.size(); i++){
             ArrayList<Plate> currentOrder = allOrders.get(i);
             for (int j=0; j<currentOrder.size(); j++){
@@ -87,6 +87,7 @@ public class Cashier extends Employee{
      */
     public double giveChange(double pay){
         change = pay - payment;
+        order.setStatusOrder("payed");
         return change;
     }
 
@@ -123,7 +124,7 @@ public class Cashier extends Employee{
         }
         restaurant.deletePayedOrder(super.getServedTable());
         maxLength = 0;
-        order = new ArrayList<>();
+        order = new Order<>();
         change = 0;
         payment=0;
         try {

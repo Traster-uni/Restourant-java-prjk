@@ -60,7 +60,7 @@ public class Waiter extends Employee{
      * @param restaurant - our restaurant
      */
     protected void endOrder(Restaurant restaurant){
-        order.setStatusOrder("");
+        order.setStatusOrder("ready");
         restaurant.addOrderDict(super.getServedTable(), order);
         order = new Order<>();
     }

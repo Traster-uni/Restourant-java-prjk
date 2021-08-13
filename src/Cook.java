@@ -1,4 +1,5 @@
 import java.awt.desktop.SystemSleepEvent;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,8 +9,8 @@ import java.util.HashMap;
 public class Cook extends Employee{
     private String cookedDirectory;
     private String allOrders;
-    private ArrayList<Plate> orderToPrepare;
-    private ArrayList<Plate> orderReady;
+    private Order<Plate> orderToPrepare;
+    private Order<Plate> orderReady;
 
     /**
      * Default constructor for Cook object calls
@@ -19,8 +20,8 @@ public class Cook extends Employee{
         super();
         allOrders = "Plate, category, price\n";
         cookedDirectory = "";
-        orderToPrepare = new ArrayList<>();
-        orderReady = new ArrayList<>();
+        orderToPrepare = new Order<>();
+        orderReady = new Order<>();
     }
 
     /**
@@ -32,8 +33,8 @@ public class Cook extends Employee{
         super();
         allOrders = "Plate;category;price\n";
         cookedDirectory = initialCookedDirectory;
-        orderToPrepare = new ArrayList<>();
-        orderReady = new ArrayList<>();
+        orderToPrepare = new Order<>();
+        orderReady = new Order<>();
     }
 
     /**
@@ -49,7 +50,7 @@ public class Cook extends Employee{
      * @param restaurant - our restaurant
      */
     public void selectOrderToPrepare(Restaurant restaurant){
-        HashMap< Integer, ArrayList<Order> > tableOrders = restaurant.getOrderDict();
+        HashMap< Integer, ArrayList<Order<Plate>> > tableOrders = restaurant.getOrderDict();
         orderToPrepare = tableOrders.get(super.getServedTable()).get(0);
         restaurant.deleteOrder(super.getServedTable(), orderToPrepare);
         for (int i=0; i<orderToPrepare.size(); i++)
@@ -87,6 +88,7 @@ public class Cook extends Employee{
     //TODO risolvere la scrittura del file
     public boolean checkPreparedOrder(Restaurant restaurant){
         if (orderToPrepare.isEmpty()){
+            orderReady.setStatusOrder("evaded");
             restaurant.addPaymentDict(super.getServedTable(), orderReady);
             try {
                 File inputFile = new File(cookedDirectory);
@@ -96,7 +98,9 @@ public class Cook extends Employee{
                     fileWriter.write(allOrders);
                 }
                 else {
-                    fileWriter.append(allOrders);
+                    BufferedWriter bufferedWritter = new BufferedWriter(fileWriter);
+                    bufferedWritter.write(allOrders);
+                    bufferedWritter.close();
                 }
                 fileWriter.flush();
                 fileWriter.close();
@@ -105,7 +109,7 @@ public class Cook extends Employee{
             catch (IOException ex){
                 System.out.println(ex.getMessage());
             }
-            orderReady = new ArrayList<>();
+            orderReady = new Order<Plate>();
             return true;
         }
         else{
