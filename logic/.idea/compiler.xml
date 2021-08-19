@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15">
-      <module name="graphics" target="15" />
+      <module name="graphics" target="1.5" />
       <module name="Restourant-java-prjk" target="" />
     </bytecodeTargetLevel>
   </component>
