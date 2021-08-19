@@ -29,6 +29,5 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" exported="" name="javaFX" level="project" />
   </component>
 </module>

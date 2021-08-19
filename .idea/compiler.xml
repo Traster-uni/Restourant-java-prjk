@@ -6,11 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="demo" />
+        <module name="graphics" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="15">
-      <module name="demo" target="15" />
       <module name="graphics" target="15" />
       <module name="Restourant-java-prjk" target="" />
     </bytecodeTargetLevel>
