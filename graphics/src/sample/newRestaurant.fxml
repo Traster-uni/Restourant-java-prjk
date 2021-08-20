@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="framePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="782.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7a5116a8" height="597.0" layoutX="-6.0" layoutY="-10.0" stroke="BLACK" strokeType="INSIDE" width="789.0" />
+        <ImageView fx:id="imageBackground" fitHeight="555.0" fitWidth="758.0" layoutX="13.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../res/imgCrop.png" />
+            </image>
+        </ImageView>
+        <Text fill="WHITE" layoutX="19.0" layoutY="542.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam project &quot;Metodologie di programmazione&quot;">
+            <font>
+                <Font name="Segoe UI Bold" size="12.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="19.0" layoutY="558.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Baranovska Anastasiia - Lopedote Tommaso Maria">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Text>
+        <Line endX="752.3999633789062" endY="2.86102294921875E-6" layoutX="15.0" layoutY="15.0" startX="-1.3000001907348633" startY="2.86102294921875E-6" />
+        <Line fx:id="line2" endX="-1.8000001907348633" endY="-0.4999971389770508" layoutX="14.0" layoutY="15.0" startX="-1.8000001907348633" startY="553.7999877929688" />
+        <Line endX="350.79998779296875" endY="0.29998779296875" layoutX="418.0" layoutY="569.0" startX="-406.29998779296875" startY="0.29998779296875" />
+        <Line endX="3.59283447265625" endY="299.09283447265625" layoutX="765.0" layoutY="269.0" startX="2.89996337890625" startY="-253.5" />
+        <Line endX="-6.800004959106445" endY="-11.499990463256836" layoutX="19.0" layoutY="26.0" startX="-37.72846984863281" startY="-47.22843551635742" />
+        <Line endX="133.16436767578125" endY="-94.73554229736328" layoutX="665.0" layoutY="80.0" startX="102.89996337890625" startY="-64.5" />
+        <Line endX="-229.8355712890625" endY="200.6644287109375" layoutX="212.0" layoutY="403.0" startX="-199.30001831054688" startY="166.29998779296875" />
+        <Line endX="224.564453125" endY="177.26446533203125" layoutX="572.0" layoutY="424.0" startX="197.29998779296875" startY="144.79998779296875" />
+    </children>
+</AnchorPane>

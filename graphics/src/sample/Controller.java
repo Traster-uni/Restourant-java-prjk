@@ -4,13 +4,18 @@
 
 package sample;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 
 public class Controller {
 
@@ -29,19 +34,30 @@ public class Controller {
     @FXML // fx:id="imageWelcome"
     private ImageView imageWelcome; // Value injected by FXMLLoader
 
-    @FXML // fx:id="buttomNewRestourant"
-    private Button buttomNewRestourant; // Value injected by FXMLLoader
+    @FXML // fx:id="buttonNewRestaurant"
+    private Button buttonNewRestaurant; // Value injected by FXMLLoader
 
-    @FXML // fx:id="buttomResume"
-    private Button buttomResume; // Value injected by FXMLLoader
+    @FXML // fx:id="buttonResume"
+    private Button buttonResume; // Value injected by FXMLLoader
 
     @FXML // fx:id="line2"
     private Line line2; // Value injected by FXMLLoader
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        buttomNewRestourant.setOnAction(event ->  {
-            System.out.println("New Restourant");
+        buttonNewRestaurant.setOnAction(event ->  {
+            buttonNewRestaurant.getScene().getWindow().hide();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/sample/newRestaurant.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
         });
 
     }
