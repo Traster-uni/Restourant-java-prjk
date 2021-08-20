@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho fatto la scherma iniziale">
-      <change afterPath="$PROJECT_DIR$/graphics/src/sample/newRestaurant.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/src/sample/newRestaurantController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javaFX.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javaFX.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/src/sample/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/sample.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
