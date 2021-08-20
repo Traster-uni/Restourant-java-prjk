@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho fatto la scherma iniziale">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javafx.xml" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho fatto la finestra iniziale">
+      <change afterPath="$PROJECT_DIR$/graphics/src/sample/ErrorRestaurantAlreadyExistsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graphics/src/sample/errorRestaurantAlreadyExists.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restaurantHistory.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javaFX.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javaFX.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphics/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -275,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629387891231</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Ho fatto la finestra iniziale">
+      <created>1629453487005</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1629453487005</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -325,7 +338,8 @@
     <MESSAGE value="added Java.doc" />
     <MESSAGE value="." />
     <MESSAGE value="Ho fatto la scherma iniziale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho fatto la scherma iniziale" />
+    <MESSAGE value="Ho fatto la finestra iniziale" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ho fatto la finestra iniziale" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
