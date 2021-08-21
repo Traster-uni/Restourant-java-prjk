@@ -52,31 +52,24 @@ public class Controller {
             buttonNewRestaurant.getScene().getWindow().hide();
             if (inputFile.length() != 0 )
             {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/sample/errorRestaurantAlreadyExists.fxml"));
-                try {
-                    loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Parent root = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.showAndWait();
+                openNewWindow("/sample/errorRestaurantAlreadyExists.fxml");
             }
             else {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/sample/newRestaurant.fxml"));
-                try {
-                    loader.load();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Parent root = loader.getRoot();
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.showAndWait(); }
+                openNewWindow("/sample/newRestaurant.fxml"); }
         });
+    }
 
+    public void openNewWindow(String window){
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(window));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.showAndWait();
     }
 }

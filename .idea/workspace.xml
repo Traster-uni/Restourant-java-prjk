@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho fatto la finestra iniziale">
-      <change afterPath="$PROJECT_DIR$/graphics/src/sample/ErrorRestaurantAlreadyExistsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graphics/src/sample/errorRestaurantAlreadyExists.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/restaurantHistory.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javaFX.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/javaFX.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/javafx.xml" beforeDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graphics/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -288,7 +282,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629453487005</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste">
+      <created>1629476378947</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1629476378947</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -339,7 +340,8 @@
     <MESSAGE value="." />
     <MESSAGE value="Ho fatto la scherma iniziale" />
     <MESSAGE value="Ho fatto la finestra iniziale" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho fatto la finestra iniziale" />
+    <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

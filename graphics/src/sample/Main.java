@@ -16,9 +16,9 @@ public class Main extends Application {
         launch(args);
         String restaurantHistory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\restaurantHistory.txt";
         try {
-            File inpurFile = new File(restaurantHistory);
-            if (!inpurFile.exists()){
-                inpurFile.createNewFile();
+            File inputFile = new File(restaurantHistory);
+            if (!inputFile.exists()){
+                inputFile.createNewFile();
             }
         }
         catch ( IOException e){
@@ -34,19 +34,4 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
-
-//    public static void main(String[] args) {
-//        launch(args);
-//        String restaurantHistory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\restaurantHistory.txt";
-//        try {
-//            File inpurFile = new File(restaurantHistory);
-//            if (!inpurFile.exists()){
-//                inpurFile.createNewFile();
-//            }
-//        }
-//        catch ( IOException e){
-//            System.out.println(e);
-//        }
-//    }
 }
