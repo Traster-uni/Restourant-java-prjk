@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="removed fxmloader">
+      <change afterPath="$PROJECT_DIR$/logic/src/start.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphics/src/sample/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/graphics/src/sample/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Restourant-java-prjk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Restourant-java-prjk.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +37,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/logic/test/ChefTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1vdPo2FplB15wHivhAszTXh8D30" />
@@ -289,7 +292,28 @@
       <option name="project" value="LOCAL" />
       <updated>1629476378947</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="removed fxmloader">
+      <created>1631281619100</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1631281619100</updated>
+    </task>
+    <task id="LOCAL-00023" summary="removed fxmloader">
+      <created>1631281624836</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1631281624836</updated>
+    </task>
+    <task id="LOCAL-00024" summary="removed fxmloader">
+      <created>1631281663026</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1631281663026</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -341,7 +365,8 @@
     <MESSAGE value="Ho fatto la scherma iniziale" />
     <MESSAGE value="Ho fatto la finestra iniziale" />
     <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
+    <MESSAGE value="removed fxmloader" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed fxmloader" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
