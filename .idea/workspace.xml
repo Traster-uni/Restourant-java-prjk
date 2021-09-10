@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="removed fxmloader">
-      <change afterPath="$PROJECT_DIR$/logic/src/start.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="basic jSwing module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Restourant-java-prjk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Restourant-java-prjk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/start.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/start.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/start.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/test/RestourantFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestourantFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +58,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="4" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/javafx-sdk-11.0.2/lib" />
@@ -76,7 +76,7 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk\logic" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.start">
     <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChefTest" />
       <module name="Restourant-java-prjk" />
@@ -105,15 +105,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlateTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="PlateTest" />
+    <configuration name="RestaurantTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RestaurantTester" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RestaurantTester" />
+    <configuration name="start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="start" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -123,16 +123,16 @@
       <item itemvalue="Application.ChefTest" />
       <item itemvalue="Application.FrameTests" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Application.PlateTest" />
       <item itemvalue="Application.RestaurantTester" />
+      <item itemvalue="Application.start" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.start" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.RestaurantTester" />
         <item itemvalue="Application.FrameTests" />
         <item itemvalue="Application.ChefTest" />
-        <item itemvalue="Application.PlateTest" />
       </list>
     </recent_temporary>
   </component>
@@ -313,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631281663026</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="basic jSwing module">
+      <created>1631283585815</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1631283585815</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -366,7 +373,8 @@
     <MESSAGE value="Ho fatto la finestra iniziale" />
     <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
     <MESSAGE value="removed fxmloader" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed fxmloader" />
+    <MESSAGE value="basic jSwing module" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic jSwing module" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
