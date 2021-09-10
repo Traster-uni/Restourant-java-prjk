@@ -45,7 +45,7 @@ public class Restaurant {
         payableDict = new HashMap<>();
     }
 
-    public setTablesNum(Integer n){
+    public void setTablesNum(Integer n){
         this.tablesNumbs = n;
     }
 
