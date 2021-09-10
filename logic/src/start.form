@@ -10,14 +10,15 @@
     </properties>
     <border type="none"/>
     <children>
-      <component id="7a903" class="javax.swing.JButton" binding="STARTButton" default-binding="true">
+      <component id="7a903" class="javax.swing.JButton" binding="startButton">
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <focusPainted value="false"/>
-          <font name="JetBrains Mono"/>
+          <font name="Droid Sans" size="16" style="1"/>
           <text value="START"/>
+          <verticalAlignment value="0"/>
         </properties>
       </component>
     </children>

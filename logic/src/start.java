@@ -12,29 +12,29 @@ import java.util.Locale;
  * Project: Restourant-java-prjk
  */
 public class start {
-    private JButton STARTButton;
+    private JButton startButton;
     private JPanel panel1;
 
     public start() {
-        STARTButton.addActionListener(new ActionListener() {
+        startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(panel1, "Hello world");
+//                JOptionPane.showMessageDialog(panel1, "Hello world");
             }
         });
+
     }
 
     public static void main(String[] args) {
+        //objects instances
         JFrame frame1 = new JFrame("Restaurant");
-        JPanel panel1 = new JPanel();
-        JButton STARTButton = new JButton("START");
+
         //frame options
         frame1.setSize(1000, 800);
         frame1.setContentPane(new start().panel1);
-
-        panel1.add(STARTButton);
         frame1.setVisible(true);
         frame1.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
     }
 
     {
@@ -55,12 +55,13 @@ public class start {
         panel1 = new JPanel();
         panel1.setLayout(new com.intellij.uiDesigner.core.GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel1.setForeground(new Color(-4211270));
-        STARTButton = new JButton();
-        STARTButton.setFocusPainted(false);
-        Font STARTButtonFont = this.$$$getFont$$$("JetBrains Mono", -1, -1, STARTButton.getFont());
-        if (STARTButtonFont != null) STARTButton.setFont(STARTButtonFont);
-        STARTButton.setText("START");
-        panel1.add(STARTButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_HORIZONTAL, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_SHRINK | com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        startButton = new JButton();
+        startButton.setFocusPainted(false);
+        Font startButtonFont = this.$$$getFont$$$("Droid Sans", Font.BOLD, 16, startButton.getFont());
+        if (startButtonFont != null) startButton.setFont(startButtonFont);
+        startButton.setText("START");
+        startButton.setVerticalAlignment(0);
+        panel1.add(startButton, new com.intellij.uiDesigner.core.GridConstraints(0, 0, 1, 1, com.intellij.uiDesigner.core.GridConstraints.ANCHOR_CENTER, com.intellij.uiDesigner.core.GridConstraints.FILL_NONE, com.intellij.uiDesigner.core.GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
     }
 
     /**
