@@ -26,28 +26,22 @@ import java.util.Scanner;
 //      protected readMenu( ): legge il file e compila bufferPlate per una eventuale modifica del file del menu.
 
 public class Chef {
-    private String name;
     private int categoriesNumbs;
     private ArrayList<ArrayList<Plate>> bufferPlate;
     private String menuDirectory;
 
     public Chef() {
-        name = "";
         categoriesNumbs = 0;
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
     }
 
     public Chef(String newName) {
-        name = newName;
         categoriesNumbs = 0;
         bufferPlate = new ArrayList<>();
         menuDirectory = "";
     }
 
-    public String getName() {
-        return name;
-    }
 
     protected ArrayList<ArrayList<Plate>> getBufferPlate() {
         return bufferPlate;
@@ -57,8 +51,11 @@ public class Chef {
         this.menuDirectory = directory;
     }
 
+    protected void setNumberOfTables(Integer quantity){
+        setNumberOfTables(quantity);
+    }
     /**
-     *
+     *  Sets the number of type of dishes that the restaurant will be serving
      * @param newQuantities
      */
     protected void setNumberOfCategories(int newQuantities) {
@@ -132,9 +129,6 @@ public class Chef {
         try {
             File inputFile = new File(menuDirectory);
             FileWriter csvWriter = new FileWriter(inputFile);
-            if (!inputFile.exists()) {
-                inputFile.createNewFile();
-            }
             for (int i = 0; i < bufferPlate.size(); i++) {
                 ArrayList<Plate> categoryArray = bufferPlate.get(i);
                 //Valuta se eliminare tale classificazione dal csv

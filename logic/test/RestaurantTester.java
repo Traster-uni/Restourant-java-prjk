@@ -8,13 +8,13 @@ import java.util.ArrayList;
  */
 public class RestaurantTester {
     public static void main(String[] args) {
-        Restaurant DaGino = new Restaurant("Da Gino", "Gino Giocondo");
+        Restaurant DaGino = new Restaurant();
         Chef ginoChef = DaGino.getChef();
         int tableNum = 5;
         DaGino.setTablesNumbs(tableNum);
 
         System.out.println("Welcome to Restourant " + DaGino.getRestaurantName());
-        System.out.println("With 5 star micheline chef "+ginoChef.getName());
+//        System.out.println("With 5 star micheline chef "+ginoChef.getName());
         System.out.println("Number of table at your disposal: "+ DaGino.getTablesNumbs());
 
 //        Cook cook1 = new Cook();
@@ -36,7 +36,7 @@ public class RestaurantTester {
         }
 
         ginoChef.writeMenu();
-        System.out.println(ginoChef.getName()+" ha scritto il menu");
+//        System.out.println(ginoChef.getName()+" ha scritto il menu");
         System.out.println(ginoChef.getBufferPlate());
         ginoChef.clearBufferPlate();
         System.out.println("Gino wiped the array");

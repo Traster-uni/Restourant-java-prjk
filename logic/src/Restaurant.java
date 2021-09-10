@@ -29,30 +29,24 @@ import java.util.HashMap;
  */
 
 public class Restaurant {
-    String restaurantName;
-    Integer tablesNumbs;
-    Chef chef;
-    ArrayList<Employee> employeeArrayList;
-    ArrayList<ArrayList<Plate>> menuArray;
-    HashMap< Integer, ArrayList<Order<Plate>> > orderDict;
-    HashMap< Integer, ArrayList<Order<Plate>> > payableDict;
+    protected Integer tablesNumbs;
+    protected Chef chef;
+    protected ArrayList<Employee> employeeArrayList;
+    protected ArrayList<ArrayList<Plate>> menuArray;
+    protected HashMap< Integer, ArrayList<Order<Plate>> > orderDict;
+    protected HashMap< Integer, ArrayList<Order<Plate>> > payableDict;
 
-    public Restaurant(String newRestaurantName, String chefName){
-        this.restaurantName = newRestaurantName;
+    public Restaurant(){
         this.tablesNumbs = 0;
-        this.chef = new Chef(chefName);
+        this.chef = new Chef();
         employeeArrayList = new ArrayList<>();
         menuArray = new ArrayList<>();
         orderDict = new HashMap<>();
         payableDict = new HashMap<>();
     }
 
-    /**
-     * Returns the Restaurant name.
-     * @return name
-     */
-    public String getRestaurantName() {
-        return restaurantName;
+    public setTablesNum(Integer n){
+        this.tablesNumbs = n;
     }
 
     /**
