@@ -20,8 +20,7 @@ public class start {
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//
-
+                mainMenu menu = new mainMenu();
 
             }
         });

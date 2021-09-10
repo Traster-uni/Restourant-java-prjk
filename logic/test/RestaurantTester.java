@@ -13,7 +13,7 @@ public class RestaurantTester {
         int tableNum = 5;
         DaGino.setTablesNumbs(tableNum);
 
-        System.out.println("Welcome to Restourant " + DaGino.getRestaurantName());
+        System.out.println("Welcome to Restourant " );
 //        System.out.println("With 5 star micheline chef "+ginoChef.getName());
         System.out.println("Number of table at your disposal: "+ DaGino.getTablesNumbs());
 

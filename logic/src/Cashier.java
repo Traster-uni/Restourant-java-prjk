@@ -105,7 +105,7 @@ public class Cashier extends Employee{
             File inputFile = new File(receiptDirectory);
             FileWriter fileWriter = new FileWriter(inputFile);
             boolean created = inputFile.createNewFile();
-            fileWriter.write("RESTAURANT " + restaurant.getRestaurantName().toUpperCase() + "\n");
+            fileWriter.write("RESTAURANT " + "\n");
             for (int i=0; i<order.size(); i++){
                 Plate currentPlate = order.get(i);
                 String price = String.format("%.2f", currentPlate.getPrize());
