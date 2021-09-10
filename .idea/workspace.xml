@@ -4,18 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho cambiato le dimensioni del pulsante startButtom">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho cambito dimensioni del pulsante chefButton">
+      <change afterPath="$PROJECT_DIR$/logic/src/Frame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/MainMenuPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/StartPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Cashier.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Cashier.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestaurantTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestaurantTester.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Cashier.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Cashier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/mainMenu.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/mainMenu.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/mainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/mainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/start.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/start.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/start.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/test/RestaurantTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestaurantTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,9 +76,9 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk\logic" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.start">
-    <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChefTest" />
+  <component name="RunManager" selected="Application.Frame">
+    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Frame" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -127,19 +120,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ChefTest" />
       <item itemvalue="Application.FrameTests" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.RestaurantTester" />
       <item itemvalue="Application.start" />
+      <item itemvalue="Application.Frame" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Frame" />
         <item itemvalue="Application.start" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.RestaurantTester" />
         <item itemvalue="Application.FrameTests" />
-        <item itemvalue="Application.ChefTest" />
       </list>
     </recent_temporary>
   </component>
@@ -327,7 +320,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631283585815</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Ho cambito dimensioni del pulsante chefButton">
+      <created>1631289298702</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1631289298702</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -381,7 +381,8 @@
     <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
     <MESSAGE value="removed fxmloader" />
     <MESSAGE value="basic jSwing module" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic jSwing module" />
+    <MESSAGE value="Ho cambito dimensioni del pulsante chefButton" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ho cambito dimensioni del pulsante chefButton" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
