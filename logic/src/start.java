@@ -16,6 +16,7 @@ public class start {
     private JPanel panel1;
 
     public start() {
+        startButton.setPreferredSize(new Dimension(200, 60));
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

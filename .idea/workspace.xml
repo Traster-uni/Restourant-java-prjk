@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="basic start button with simple text output">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="basic jSwing module">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestourantFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestourantFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/start.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/start.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/start.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/test/RestourantFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestourantFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +58,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="566" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="4" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/javafx-sdk-11.0.2/lib" />
@@ -320,14 +320,7 @@
       <option name="project" value="LOCAL" />
       <updated>1631283585815</updated>
     </task>
-    <task id="LOCAL-00026" summary="basic start button with simple text output">
-      <created>1631285549016</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1631285549016</updated>
-    </task>
-    <option name="localTasksCounter" value="27" />
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -381,8 +374,7 @@
     <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
     <MESSAGE value="removed fxmloader" />
     <MESSAGE value="basic jSwing module" />
-    <MESSAGE value="basic start button with simple text output" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic start button with simple text output" />
+    <option name="LAST_COMMIT_MESSAGE" value="basic jSwing module" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
