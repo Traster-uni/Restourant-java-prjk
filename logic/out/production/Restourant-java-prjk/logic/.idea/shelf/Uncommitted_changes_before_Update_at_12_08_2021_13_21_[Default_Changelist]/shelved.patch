@@ -1,0 +1,30 @@
+Index: src/Cook.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.awt.desktop.SystemSleepEvent;\r\nimport java.io.File;\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\npublic class Cook extends Employee{\r\n    private String cookedDirectory;\r\n    private String allOrders;\r\n    private ArrayList<Plate> orderToPrepare;\r\n    private ArrayList<Plate> orderReady;\r\n\r\n    /**\r\n     * Default constructor for Cook object calls\r\n     * super class constructor by default with no arguments.\r\n     */\r\n    public Cook() {\r\n        super();\r\n        allOrders = \"Plate, category, price\\n\";\r\n        cookedDirectory = \"\";\r\n        orderToPrepare = new ArrayList<>();\r\n        orderReady = new ArrayList<>();\r\n    }\r\n\r\n    /**\r\n     * Default constructor for Waiter object calls\r\n     * super class constructor by default.\r\n     * @param initialCookedDirectory - name of cooked directory\r\n     */\r\n    public Cook(String initialCookedDirectory) {\r\n        super();\r\n        allOrders = \"Plate;category;price\\n\";\r\n        cookedDirectory = initialCookedDirectory;\r\n        orderToPrepare = new ArrayList<>();\r\n        orderReady = new ArrayList<>();\r\n    }\r\n\r\n    /**\r\n     * Selects a table for service.\r\n     * @param num - table number\r\n     */\r\n    public void setServedTable(Integer num){\r\n        super.setServedTable(num);\r\n    }\r\n\r\n    /**\r\n     * Selects an order to prepare.\r\n     * @param restaurant - our restaurant\r\n     */\r\n    public void selectOrderToPrepare(Restaurant restaurant){\r\n        HashMap< Integer, ArrayList<ArrayList<Plate>> > tableOrders = restaurant.getOrderDict();\r\n        orderToPrepare = tableOrders.get(super.getServedTable()).get(0);\r\n        restaurant.deleteOrder(super.getServedTable(), orderToPrepare);\r\n        for (int i=0; i<orderToPrepare.size(); i++)\r\n        {\r\n            Plate currentPlate = orderToPrepare.get(i);\r\n            allOrders += currentPlate.getName() +\";\" + currentPlate.getCategory() +\";\" +\r\n                    String.format(\"%.2f\", currentPlate.getPrize()).replace(\",\",\".\") + \"\\n\";\r\n        }\r\n        allOrders += \"\\n\" + \"\\n\";\r\n    }\r\n\r\n    /**\r\n     * Prepares one plate from the order.\r\n     * @param namePlate - plate name\r\n     */\r\n    public void preparePlate(String namePlate){\r\n        Plate currentPlate = new Plate();\r\n        for (int i=0; i < orderToPrepare.size(); i++){\r\n            Plate tempPlate = orderToPrepare.get(i);\r\n            if (tempPlate.getName().toLowerCase().equals(namePlate.toLowerCase()))\r\n            {\r\n                currentPlate = tempPlate;\r\n            }\r\n        }\r\n        orderReady.add(currentPlate);\r\n        orderToPrepare.remove(currentPlate);\r\n    }\r\n\r\n    /**\r\n     * Checks if the order is ready.\r\n     * Writes the order to a file and sends it for payment.\r\n     * @param restaurant - our restaurant\r\n     * @return true if order is ready, false otherwise\r\n     */\r\n    //TODO risolvere la scrittura del file\r\n    public boolean checkPreparedOrder(Restaurant restaurant){\r\n        if (orderToPrepare.isEmpty()){\r\n            restaurant.addPaymentDict(super.getServedTable(), orderReady);\r\n            try {\r\n                File inputFile = new File(cookedDirectory);\r\n                FileWriter fileWriter = new FileWriter(inputFile);\r\n                if (!inputFile.exists()) {\r\n                    boolean created = inputFile.createNewFile();\r\n                    fileWriter.write(allOrders);\r\n                }\r\n                else {\r\n                    fileWriter.append(allOrders);\r\n                }\r\n                fileWriter.flush();\r\n                fileWriter.close();\r\n                allOrders = \"\";\r\n            }\r\n            catch (IOException ex){\r\n                System.out.println(ex.getMessage());\r\n            }\r\n            orderReady = new ArrayList<>();\r\n            return true;\r\n        }\r\n        else{\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public ArrayList<Plate> getOrderToPrepare() {\r\n        return orderToPrepare;\r\n    }\r\n\r\n    public ArrayList<Plate> getOrderReady() {\r\n        return orderReady;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Cook.java b/src/Cook.java
+--- a/src/Cook.java	(revision 1ddc846798824a3a7938c4211514e40e2f3d9f81)
++++ b/src/Cook.java	(date 1628766485651)
+@@ -1,5 +1,6 @@
+ import java.awt.desktop.SystemSleepEvent;
+ import java.io.File;
++import java.io.FileNotFoundException;
+ import java.io.FileWriter;
+ import java.io.IOException;
+ import java.util.ArrayList;
+@@ -84,10 +85,10 @@
+      * @param restaurant - our restaurant
+      * @return true if order is ready, false otherwise
+      */
+-    //TODO risolvere la scrittura del file
++    //TODO: risolvere la scrittura del file
+     public boolean checkPreparedOrder(Restaurant restaurant){
+         if (orderToPrepare.isEmpty()){
+-            restaurant.addPaymentDict(super.getServedTable(), orderReady);
++            throw new FileNotFoundException();
+             try {
+                 File inputFile = new File(cookedDirectory);
+                 FileWriter fileWriter = new FileWriter(inputFile);
