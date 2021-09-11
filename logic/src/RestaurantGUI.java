@@ -5,7 +5,12 @@ import javax.swing.*;
  * Time: 19:59
  * Project: Restourant-java-prjk
  */
-public class RestaurantGUI {
+public class RestaurantGUI extends JFrame {
+    private JPanel panel1, panel2;
     private JButton startButton;
-    private JPanel panel1;
+    private JButton waiterButton, chefButton, cookButton, cashierButton;
+
+    public RestaurantGUI(){
+
+    }
 }

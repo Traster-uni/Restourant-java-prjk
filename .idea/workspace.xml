@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho cambiato le dimensioni del pulsante startButtom">
-      <change afterPath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/startPanel.form" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="mainMenu added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/mainMenu.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/mainMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/start.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/start.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/chefPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/chefPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/startPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/startPanel.form" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -324,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631283585815</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="mainMenu added">
+      <created>1631296925939</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1631296925939</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -378,7 +382,8 @@
     <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
     <MESSAGE value="removed fxmloader" />
     <MESSAGE value="basic jSwing module" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic jSwing module" />
+    <MESSAGE value="mainMenu added" />
+    <option name="LAST_COMMIT_MESSAGE" value="mainMenu added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
