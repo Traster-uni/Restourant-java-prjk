@@ -4,7 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="readded old data that went lost wile changing branches" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="readded old data that went lost wile changing branches">
+      <change afterPath="$PROJECT_DIR$/logic/src/mainMenuPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/logic/src/mainMenuPanelOld.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/.idea/shelf/Uncommitted_changes_before_Update_at_12_08_2021_13_21_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/.idea/shelf/Uncommitted_changes_before_Update_at_12_08_2021_13_21__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/OrderTester.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/mainTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/chefPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/chefPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/startPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/startPanel.form" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,9 +45,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/logic/test/ChefTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1vdPo2FplB15wHivhAszTXh8D30" />
@@ -52,7 +66,9 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="277" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/javafx-sdk-11.0.2/lib" />
@@ -70,16 +86,9 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk\logic" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.start">
-    <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChefTest" />
-      <module name="Restourant-java-prjk" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FrameTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FrameTests" />
+  <component name="RunManager" selected="Application.Frame">
+    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Frame" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,6 +108,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RestaurantGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RestaurantGUI" />
+      <module name="Restourant-java-prjk" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RestaurantTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RestaurantTester" />
       <module name="Restourant-java-prjk" />
@@ -114,19 +130,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ChefTest" />
-      <item itemvalue="Application.FrameTests" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.RestaurantTester" />
       <item itemvalue="Application.start" />
+      <item itemvalue="Application.RestaurantGUI" />
+      <item itemvalue="Application.Frame" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Frame" />
+        <item itemvalue="Application.RestaurantGUI" />
         <item itemvalue="Application.start" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.RestaurantTester" />
-        <item itemvalue="Application.FrameTests" />
-        <item itemvalue="Application.ChefTest" />
       </list>
     </recent_temporary>
   </component>
