@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="deprecated main in chefpanel">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="rows form 56 to 63, added example for testing purpose.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Plate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -357,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631694728694</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="rows form 56 to 63, added example for testing purpose.">
+      <created>1631698975081</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1631698975081</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -388,7 +393,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class." />
     <MESSAGE value="corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class." />
     <MESSAGE value="addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
     <MESSAGE value="added Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
@@ -413,7 +417,8 @@
     <MESSAGE value="deleted redacted files" />
     <MESSAGE value="Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto)." />
     <MESSAGE value="deprecated main in chefpanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="deprecated main in chefpanel" />
+    <MESSAGE value="rows form 56 to 63, added example for testing purpose." />
+    <option name="LAST_COMMIT_MESSAGE" value="rows form 56 to 63, added example for testing purpose." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

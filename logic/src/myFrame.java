@@ -34,7 +34,7 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(mainMenuPanel);
-                restaurant = new Restaurant();
+//                restaurant = new Restaurant();
             }
         });
         exitButtonStart.addActionListener(new ActionListener() {
@@ -59,8 +59,10 @@ public class myFrame extends JFrame{
                 ArrayList<Plate> array2 = new ArrayList<>();
                 array1.addAll(dishDummy1);
                 array2.addAll(dishDummy2);
+                restaurant.addArrayPlates(new ArrayList<Plate>());
                 restaurant.addArrayPlates(array1);
                 restaurant.addArrayPlates(array2);
+                restaurant.addArrayPlates(new ArrayList<Plate>());
                 //test
                 Waiter waiter1 = new Waiter();
                 restaurant.addEmployee(waiter1);
