@@ -12,9 +12,8 @@ import java.awt.event.ActionListener;
 public class ChefPanel extends myFrame {
     final int FRAME_WIDTH = 985;
     private Restaurant restaurant;
-    private JPanel topPanel;
-    private JPanel midPanel;
-    private JPanel botPanel;
+    private JPanel topPanel, midPanel, botPanel;
+    private JPanel overMidPanel;
 
     public void createChefPanel() {
         chefPanel = new JPanel();
@@ -28,9 +27,14 @@ public class ChefPanel extends myFrame {
         chefPanel.add(midPanel);
         applyMidPanelContent();
 
+        overMidPanel = new JPanel();
+        midPanel.add(overMidPanel);
+        applyOverMidPanelContent();
+
         botPanel = new JPanel();
         chefPanel.add(botPanel);
         applyBotPanelContent();
+
     }
 
     public void applyTopPanelContent() {
@@ -81,20 +85,20 @@ public class ChefPanel extends myFrame {
 //        }
     }
 
-    public void textFieldFlowSetup(){
-        JPanel p = new JPanel();
+    public void applyOverMidPanelContent(){
+        overMidPanel.setBackground(Color.BLACK);
+        overMidPanel.add(new JTextField());
+        overMidPanel.add(new JLabel("Category: "));
+        overMidPanel.add(new JTextField());
+        overMidPanel.add(new JLabel("Price: "));
+        overMidPanel.add(new JTextField());
 
-        JLabel categoryL = new JLabel("Category: ");
-        JTextField categoryTF = new JTextField();
-        JLabel priceL = new JLabel("Price: ");
-        JTextField priceTF = new JTextField();
+        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+        overMidPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
 
-        p.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
-        p.setLayout(new FlowLayout(FlowLayout.LEADING));
-
-        p.add(new JTextField());
-        p.add(new JLabel());
-
+        overMidPanel.setBounds(0,60,100,20);
+        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+        overMidPanel.setVisible(true);
 
     }
 

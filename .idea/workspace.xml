@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto).">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="deprecated main in chefpanel">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Plate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +350,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631694610233</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="deprecated main in chefpanel">
+      <created>1631694728694</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1631694728694</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -378,7 +388,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added a category argument in the Plate class, added the related JAVADOC.&#10;Corrected the Dictionaries included in the Restourant class, added the related JAVADOC, added 2 new set methods." />
     <MESSAGE value="added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class." />
     <MESSAGE value="corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class." />
     <MESSAGE value="addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
@@ -403,7 +412,8 @@
     <MESSAGE value="readded old data that went lost wile changing branches" />
     <MESSAGE value="deleted redacted files" />
     <MESSAGE value="Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto)." />
+    <MESSAGE value="deprecated main in chefpanel" />
+    <option name="LAST_COMMIT_MESSAGE" value="deprecated main in chefpanel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

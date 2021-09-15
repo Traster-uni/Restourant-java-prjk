@@ -45,6 +45,10 @@ public class Plate {
         return this.name;
     }
 
+    /**
+     * Returns the category of the dish in question.
+     * @return
+     */
     public Integer getCategory() {
         return category;
     }

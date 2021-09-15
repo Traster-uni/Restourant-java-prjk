@@ -1,10 +1,10 @@
-import org.intellij.lang.annotations.Flow;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 //TODO: SPOSTARE LE CLASSI RELATIVE ALLA GRAFICA IN UNA CARTELLA APPOSITA.
 
@@ -34,7 +34,7 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(mainMenuPanel);
-//                restaurant = new Restaurant();
+                restaurant = new Restaurant();
             }
         });
         exitButtonStart.addActionListener(new ActionListener() {
@@ -53,11 +53,14 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //test purpose
-                ArrayList<Plate> dummyPlate = new ArrayList<>();
-                dummyPlate.add(new Plate("Pizza", 1, 5));
-                dummyPlate.add(new Plate("Maccheroni", 1, 7));
-                dummyPlate.add(new Plate("Fiorentina", 2, 20));
-                restaurant.addArrayPlates(dummyPlate);
+                List<Plate> dishDummy1 = Arrays.asList(new Plate("Carbonara", 2,8.00), new Plate("Amatriciana",2,10.00));
+                List<Plate> dishDummy2 = Arrays.asList((new Plate("Firoentina", 3, 25.00), new Plate("Stufato", 3, 25.00));
+                ArrayList<Plate> array1 = new ArrayList<>();
+                ArrayList<Plate> array2 = new ArrayList<>();
+                array1.addAll(dishDummy1);
+                array2.addAll(dishDummy2);
+                restaurant.addArrayPlates(array1);
+                restaurant.addArrayPlates(array2);
                 //test
                 Waiter waiter1 = new Waiter();
                 restaurant.addEmployee(waiter1);
