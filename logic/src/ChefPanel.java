@@ -87,7 +87,7 @@ public class ChefPanel extends myFrame {
 
     public void textFieldFlowSetup(){
         JPanel p = new JPanel();
-        JTextField namePlateTF = ;
+
         JLabel categoryL = new JLabel("Category: ");
         JTextField categoryTF = new JTextField();
         JLabel priceL = new JLabel("Price: ");
