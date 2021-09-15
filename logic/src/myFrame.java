@@ -53,16 +53,16 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 //test purpose
-                List<Plate> dishDummy1 = Arrays.asList(new Plate("Carbonara", 2,8.00), new Plate("Amatriciana",2,10.00));
-                List<Plate> dishDummy2 = Arrays.asList((new Plate("Firoentina", 3, 25.00), new Plate("Stufato", 3, 25.00));
-                ArrayList<Plate> array1 = new ArrayList<>();
-                ArrayList<Plate> array2 = new ArrayList<>();
-                array1.addAll(dishDummy1);
-                array2.addAll(dishDummy2);
-                restaurant.addArrayPlates(new ArrayList<Plate>());
-                restaurant.addArrayPlates(array1);
-                restaurant.addArrayPlates(array2);
-                restaurant.addArrayPlates(new ArrayList<Plate>());
+//                List<Plate> dishDummy1 = Arrays.asList(new Plate("Carbonara", 2,8.00), new Plate("Amatriciana",2,10.00));
+//                List<Plate> dishDummy2 = Arrays.asList((new Plate("Firoentina", 3, 25.00), new Plate("Stufato", 3, 25.00));
+//                ArrayList<Plate> array1 = new ArrayList<>();
+//                ArrayList<Plate> array2 = new ArrayList<>();
+//                array1.addAll(dishDummy1);
+//                array2.addAll(dishDummy2);
+//                restaurant.addArrayPlates(new ArrayList<Plate>());
+//                restaurant.addArrayPlates(array1);
+//                restaurant.addArrayPlates(array2);
+//                restaurant.addArrayPlates(new ArrayList<Plate>());
                 //test
                 Waiter waiter1 = new Waiter();
                 restaurant.addEmployee(waiter1);

@@ -12,8 +12,7 @@ import java.awt.event.ActionListener;
 public class ChefPanel extends myFrame {
     final int FRAME_WIDTH = 985;
     private Restaurant restaurant;
-    private JPanel topPanel, midPanel, botPanel;
-    private JPanel overMidPanel;
+    private JPanel topPanel, midPanel1, midPanel2, botPanel;
 
     public void createChefPanel() {
         chefPanel = new JPanel();
@@ -23,13 +22,13 @@ public class ChefPanel extends myFrame {
         chefPanel.add(topPanel);
         applyTopPanelContent();
 
-        midPanel = new JPanel();
-        chefPanel.add(midPanel);
-        applyMidPanelContent();
+        midPanel1 = new JPanel();
+        chefPanel.add(midPanel1);
+        applyMidPanel1Content();
 
-        overMidPanel = new JPanel();
-        midPanel.add(overMidPanel);
-        applyOverMidPanelContent();
+        midPanel2 = new JPanel();
+        chefPanel.add(midPanel2);
+        applyMidPanel2Content();
 
         botPanel = new JPanel();
         chefPanel.add(botPanel);
@@ -38,73 +37,108 @@ public class ChefPanel extends myFrame {
     }
 
     public void applyTopPanelContent() {
-        topPanel.setBounds(0, 0, FRAME_WIDTH, 60);
+        topPanel.setBounds(0, 0, FRAME_WIDTH, 90);
         //uncomment to see the panel
-        topPanel.setBackground(Color.GREEN);
+//        topPanel.setBackground(Color.GREEN);
         //panel borders and layout
-        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         topPanel.setLayout(new BorderLayout(5, 5));
         //panel components
         JLabel frameTitle = new JLabel("Chef Control Panel");
-        JLabel textFieldLabel = new JLabel("Table Number: ");
-        JTextField textFieldTop = new JTextField(4);
+        frameTitle.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        JLabel textFieldLabel = new JLabel("Number of tables: ");
+        JTextField textFieldTop = new JTextField();
         JButton enterTextButton = new JButton("OK");
         topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
         topPanel.add(textFieldLabel, BorderLayout.WEST);
         topPanel.add(textFieldTop, BorderLayout.CENTER);
         topPanel.add(enterTextButton, BorderLayout.EAST);
+
+        topPanel.add(new JLabel("Add entries here: "), BorderLayout.SOUTH);
     }
 
-    public void applyMidPanelContent(){
-        midPanel.setBounds(0, 60, FRAME_WIDTH, 500);
+    public void applyMidPanel1Content() {
+        midPanel1.setBounds(0, 90, FRAME_WIDTH, 35);
         //uncomment to see the panel
-        midPanel.setBackground(Color.RED);
+//        midPanel1.setBackground(Color.BLACK);
         //panel borders and layout
-        midPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
-        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));
+        midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+        midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));
 
         //panel components
-        JLabel writeLabel = new JLabel("Write the menu here: ");
-        writeLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+        JTextField nameTextField = new JTextField();
+        nameTextField.setColumns(20);
+        JTextField categoryTextField = new JTextField();
+        categoryTextField.setColumns(4);
+        JTextField priceTextField = new JTextField();
+        priceTextField.setColumns(6);
+        JButton addButton = new JButton("ADD");
+        JButton deleteButton = new JButton("DELETE");
+        midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        JLabel readLabel = new JLabel("Menu entries: ");
+        midPanel1.add(new JLabel("Name: "));
+        midPanel1.add(nameTextField);
+        midPanel1.add(new JLabel("Category: "));
+        midPanel1.add(categoryTextField);
+        midPanel1.add(new JLabel("Price: "));
+        midPanel1.add(priceTextField);
+        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(316, 2), new Dimension(316, 2)));
+        midPanel1.add(addButton);
+        midPanel1.add(deleteButton);
+    }
+
+    public void applyMidPanel2Content() {
+        midPanel2.setBounds(0, 125, FRAME_WIDTH, 300);
+        //uncomment to see the panel
+//        midPanel2.setBackground(Color.RED);
+        //panel borders and layout
+        midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        midPanel2.setLayout(new BorderLayout(5,5));
+
+        //panel components
+        JLabel readLabel = new JLabel("Menu content: ");
         readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
 
-        JScrollPane displayMenu = new JScrollPane();
+        JTextArea textArea = new JTextArea();
+        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
+        textArea.setEditable(false);
+
+        JScrollPane displayMenu = new JScrollPane(textArea);
+        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
 
-
-        midPanel.add(writeLabel);
-        midPanel.add(readLabel);
-        midPanel.add(displayMenu);
-
-
-//        public void displayAll() {
-//            JOptionPane.showMessageDialog(null,
-//                    new JScrollPane(new JList(cards.toArray())));
-//        }
+        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
+        midPanel2.add(displayMenu, BorderLayout.CENTER);
     }
 
-    public void applyOverMidPanelContent(){
-        overMidPanel.setBackground(Color.BLACK);
-        overMidPanel.add(new JTextField());
-        overMidPanel.add(new JLabel("Category: "));
-        overMidPanel.add(new JTextField());
-        overMidPanel.add(new JLabel("Price: "));
-        overMidPanel.add(new JTextField());
+    public void applyBotPanelContent() {
+        botPanel.setBounds(0, 425, FRAME_WIDTH, 40);
+        //uncomment to see the panel
+//        botPanel.setBackground(Color.BLUE);
+        //panel borders and layout
+        botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+        botPanel.setLayout(new BorderLayout(5,5));
 
-        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
-        overMidPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        //panel components
+        JLabel directoryLabel = new JLabel("File menu location: ");
+        JTextField directoryTextField = new JTextField();
+        JButton updateButton = new JButton("UPDATE");
 
-        overMidPanel.setBounds(0,60,100,20);
-        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
-        overMidPanel.setVisible(true);
-
-    }
-
-    public void applyBotPanelContent(){
-        botPanel.setBounds(0, 560, FRAME_WIDTH, 130);
-        botPanel.setBackground(Color.BLUE);
-
+        botPanel.add(directoryLabel, BorderLayout.WEST);
+        botPanel.add(directoryTextField, BorderLayout.CENTER);
+        botPanel.add(updateButton, BorderLayout.EAST);
     }
 }
+// DISPLAY THE ARRAY
+// https://stackoverflow.com/questions/30222157/displaying-arrayliststring-in-jtextarea
+//    JButton btnNewButton_1 = new JButton("Coordinate Anomalies");
+//    btnNewButton_1.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent arg0) {
+//                ArrayList<String> anomalies = vessels.coordinateAnomaly();
+//                JTextArea textArea = new JTextArea();
+//                textArea.setText(anomalies);
+//                textArea.setBounds(10, 79, 172, 339);
+//                frame.getContentPane().add(textArea);
+//            }
+//        });
+//}
