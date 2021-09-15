@@ -16,10 +16,6 @@ public class ChefPanel extends myFrame {
     private JPanel midPanel;
     private JPanel botPanel;
 
-    public static void main(String[] args) {
-        new myFrame();
-    }
-
     public void createChefPanel() {
         chefPanel = new JPanel();
         chefPanel.setLayout(null);
@@ -97,6 +93,7 @@ public class ChefPanel extends myFrame {
         p.setLayout(new FlowLayout(FlowLayout.LEADING));
 
         p.add(new JTextField());
+        p.add(new JLabel());
 
 
     }
