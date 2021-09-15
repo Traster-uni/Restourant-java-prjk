@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="readded old data that went lost wile changing branches">
-      <change afterPath="$PROJECT_DIR$/logic/src/mainMenuPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/mainMenuPanelOld.form" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="deleted redacted files">
+      <change afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/.idea/shelf/Uncommitted_changes_before_Update_at_12_08_2021_13_21_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/.idea/shelf/Uncommitted_changes_before_Update_at_12_08_2021_13_21__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/OrderTester.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/mainTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Frame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/RestaurantGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/chefPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/chefPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/mainMenuPanel.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/startPanel.form" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/startPanel.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestourantFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/test/RestourantFrame.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/test/RestourantFrame.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,9 +40,9 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/logic/test/ChefTest.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1vdPo2FplB15wHivhAszTXh8D30" />
@@ -66,6 +61,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="277" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
@@ -79,31 +75,24 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk\old\src" />
       <recent name="C:\Users\baran\OneDrive\Desktop\eclipse-workspace\Restourant-java-prjk\graphics\src" />
       <recent name="C:\Users\baran\OneDrive\Desktop\eclipse-workspace\Restourant-java-prjk\graphics\src\sample" />
       <recent name="C:\Users\baran\OneDrive\Desktop\eclipse-workspace\Restourant-java-prjk\graphics" />
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk" />
-      <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk\logic" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Frame">
-    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Frame" />
+  <component name="RunManager" selected="Application.ChefPanel">
+    <configuration name="ChefPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChefPanel" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="graphics" />
-      <option name="VM_PARAMETERS" value="--module-path C:\Users\baran\OneDrive\Desktop\eclipse-workspace\Restourant-java-prjk\javafx-sdk-11.0.2\lib --add-modules javafx.controls,javafx.fxml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value=".*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Frame" />
+      <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,34 +104,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RestaurantTester" />
+    <configuration name="myFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="myFrame" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="start" />
+    <configuration name="simpleChefPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="simpleChefPanel" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="Application.RestaurantTester" />
-      <item itemvalue="Application.start" />
       <item itemvalue="Application.RestaurantGUI" />
       <item itemvalue="Application.Frame" />
+      <item itemvalue="Application.simpleChefPanel" />
+      <item itemvalue="Application.myFrame" />
+      <item itemvalue="Application.ChefPanel" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChefPanel" />
+        <item itemvalue="Application.simpleChefPanel" />
+        <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.Frame" />
         <item itemvalue="Application.RestaurantGUI" />
-        <item itemvalue="Application.start" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.RestaurantTester" />
       </list>
     </recent_temporary>
   </component>
@@ -344,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631343579867</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="deleted redacted files">
+      <created>1631432568873</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1631432568873</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -375,7 +371,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="modified Cheff's class and added a besic implementation of the Restaurant class" />
     <MESSAGE value="added getter method to Restourant class, corrected a typo in chefs calass" />
     <MESSAGE value="Added a category argument in the Plate class, added the related JAVADOC.&#10;Corrected the Dictionaries included in the Restourant class, added the related JAVADOC, added 2 new set methods." />
     <MESSAGE value="added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class." />
@@ -400,7 +395,8 @@
     <MESSAGE value="basic jSwing module" />
     <MESSAGE value="mainMenu added" />
     <MESSAGE value="readded old data that went lost wile changing branches" />
-    <option name="LAST_COMMIT_MESSAGE" value="readded old data that went lost wile changing branches" />
+    <MESSAGE value="deleted redacted files" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted redacted files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

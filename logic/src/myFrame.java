@@ -1,30 +1,38 @@
+import org.intellij.lang.annotations.Flow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class Frame extends JFrame{
-    private JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, cookPanel, cashierPanel;
-    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;
+public class myFrame extends JFrame{
+    protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, cookPanel, cashierPanel;
+    protected JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;
+    protected Restaurant restaurant;
 
 
-    public Frame(){
+    public myFrame(){
         exitButtonMenu = new JButton();
         exitButtonMenu.setText("EXIT");
-        exitButtonMenu.setBounds(849, 699, 100, 30);
+        exitButtonMenu.setBounds(860, 700, 100, 30);
+
         createStartPanel();
         createMainMenuPanel();
         createChefPanel();
+
         chefPanel.add(exitButtonMenu);
         setSize(1000, 800);
         setTitle("Restaurant");
         getContentPane().add(startPanel);
         setVisible(true);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(mainMenuPanel);
+//                restaurant = new Restaurant();
             }
         });
         exitButtonStart.addActionListener(new ActionListener() {
@@ -37,6 +45,20 @@ public class Frame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(chefPanel);
+            }
+        });
+        waiterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //test purpose
+                ArrayList<Plate> dummyPlate = new ArrayList<>();
+                dummyPlate.add(new Plate("Pizza", 1, 5));
+                dummyPlate.add(new Plate("Maccheroni", 1, 7));
+                dummyPlate.add(new Plate("Fiorentina", 2, 20));
+                restaurant.addArrayPlates(dummyPlate);
+                //test
+                Waiter waiter1 = new Waiter();
+                restaurant.addEmployee(waiter1);
             }
         });
         exitButtonMenu.addActionListener(new ActionListener() {
@@ -72,7 +94,7 @@ public class Frame extends JFrame{
         cashierButton.setText("CASHIER");
         exitButtonStart = new JButton();
         exitButtonStart.setText("EXIT");
-        exitButtonStart.setBounds(849, 699, 100, 30);
+        exitButtonStart.setBounds(860, 700, 100, 30);
         mainMenuPanel.add(chefButton);
         mainMenuPanel.add(waiterButton);
         mainMenuPanel.add(cookButton);
@@ -81,8 +103,8 @@ public class Frame extends JFrame{
     }
 
     public void createChefPanel(){
-        chefPanel = new JPanel(null);
-
+        //editing
+        new ChefPanel();
     }
 
     public void switchPanel(JPanel panelToSwitch){
@@ -93,7 +115,7 @@ public class Frame extends JFrame{
     }
 
     public static void main(String[] args) {
-        new Frame();
+        new myFrame();
     }
 
 }

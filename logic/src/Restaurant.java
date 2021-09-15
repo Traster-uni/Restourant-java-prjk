@@ -131,10 +131,14 @@ public class Restaurant {
         this.orderDict.get(tableNumber).add(newOrder);
     }
 
+    //test methods
+    public void addArrayPlates(ArrayList<Plate> pArray){
+        menuArray.add(pArray);
+    }
     /**
      * Adds an evaded order to the to-be-Payed Dictionary.
      * @param tablesNumbs - the number of the tables that refers to the order.
-     * @param tobePayedArray - the Array of payable orders evaded by the kitchen.
+     * @param tobePayedOrder - the Array of payable orders evaded by the kitchen.
      */
     public void addPaymentDict(Integer tablesNumbs, Order<Plate> tobePayedOrder){
         this.payableDict.get(tablesNumbs).add(tobePayedOrder);
