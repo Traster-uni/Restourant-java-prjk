@@ -29,10 +29,10 @@ import java.util.HashMap;
  */
 
 public class Restaurant {
-    protected Integer tablesNumbs;
-    protected Chef chef;
-    protected ArrayList<Employee> employeeArrayList;
-    protected ArrayList<ArrayList<Plate>> menuArray;
+    private Integer tablesNumbs;
+    private Chef chef;
+    private ArrayList<Employee> employeeArrayList;
+    private ArrayList<ArrayList<Plate>> menuArray;
     protected HashMap< Integer, ArrayList<Order<Plate>> > orderDict;
     protected HashMap< Integer, ArrayList<Order<Plate>> > payableDict;
 
@@ -43,10 +43,6 @@ public class Restaurant {
         menuArray = new ArrayList<>();
         orderDict = new HashMap<>();
         payableDict = new HashMap<>();
-    }
-
-    public void setTablesNum(Integer n){
-        this.tablesNumbs = n;
     }
 
     /**
@@ -101,18 +97,18 @@ public class Restaurant {
     public void loadMenuFromChef(){
         this.menuArray = chef.getBufferPlate();
     }
-
-    /**
-     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
-     * @param tablesNumbs - number of tables present in the Restaurant
-     */
-    public void setTablesNumbs(Integer tablesNumbs) {
-        this.tablesNumbs = tablesNumbs;
-        for(Integer i = 1; i <= tablesNumbs; i++) {
-            orderDict.put(i, new ArrayList<>());
-            payableDict.put(i, new ArrayList<>());
-        }
-    }
+//
+//    /**
+//     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
+//     * @param tablesNumbs - number of tables present in the Restaurant
+//     */
+//    public void setTablesNumber(Integer tablesNumbs) {
+//        this.tablesNumbs = tablesNumbs;
+//        for(Integer i = 1; i <= tablesNumbs; i++) {
+//            orderDict.put(i, new ArrayList<>());
+//            payableDict.put(i, new ArrayList<>());
+//        }
+//    }
 
     /**
      * Adds to the array of Employees a new Employee instance

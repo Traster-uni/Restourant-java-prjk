@@ -37,7 +37,11 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(mainMenuPanel);
-//                restaurant = new Restaurant();
+                //testing
+                restaurant = new Restaurant();
+                restaurant.getChef().setTablesNumber(4);
+
+                //
             }
         });
         exitButtonStart.addActionListener(new ActionListener() {
@@ -50,6 +54,9 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(chefPanel);
+                Chef chef = restaurant.getChef();
+                chef.addNewDish("Carbonara",2,9.0);
+                chef.addNewDish("Sorbetto", 4, 4.0);
             }
         });
         waiterButton.addActionListener(new ActionListener() {

@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Layout of the Chef panel completed, lacks implementation of action listeners">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Heavly modified the ChefPanel content, ActionListeners are work-in-progress">
+      <change afterPath="$PROJECT_DIR$/logic/src/FormattedSample.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Plate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/test/RestaurantTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestaurantTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,15 +91,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Frame" />
+    <configuration name="FormattedSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FormattedSample" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RestaurantGUI" />
+    <configuration name="Frame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Frame" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,19 +120,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.RestaurantGUI" />
       <item itemvalue="Application.Frame" />
       <item itemvalue="Application.simpleChefPanel" />
       <item itemvalue="Application.myFrame" />
       <item itemvalue="Application.ChefPanel" />
+      <item itemvalue="Application.FormattedSample" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ChefPanel" />
+        <item itemvalue="Application.FormattedSample" />
         <item itemvalue="Application.simpleChefPanel" />
         <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.Frame" />
-        <item itemvalue="Application.RestaurantGUI" />
       </list>
     </recent_temporary>
   </component>
@@ -378,7 +383,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631728559121</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Heavly modified the ChefPanel content, ActionListeners are work-in-progress">
+      <created>1631864013935</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1631864013935</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -409,7 +421,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="added Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
     <MESSAGE value="Adjusted the Chef class methods with simple correction for some functions, more test have been conducted. chefTest.csv debug file added." />
     <MESSAGE value="Added the deletePayedOrder Method to the Resta" />
     <MESSAGE value="Added the deletePayedOrder Method to the Restaurant.java class. Adjusted some typos in the javadoc" />
@@ -434,7 +445,8 @@
     <MESSAGE value="rows form 56 to 63, added example for testing purpose." />
     <MESSAGE value="corrected error in test case" />
     <MESSAGE value="Layout of the Chef panel completed, lacks implementation of action listeners" />
-    <option name="LAST_COMMIT_MESSAGE" value="Layout of the Chef panel completed, lacks implementation of action listeners" />
+    <MESSAGE value="Heavly modified the ChefPanel content, ActionListeners are work-in-progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Heavly modified the ChefPanel content, ActionListeners are work-in-progress" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

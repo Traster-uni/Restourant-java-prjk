@@ -25,7 +25,7 @@ import java.util.Scanner;
 //      protected writeMenu( ): scrive su filepath i piatti inseriti in bufferPlate indicizzando gli inserimenti.
 //      protected readMenu( ): legge il file e compila bufferPlate per una eventuale modifica del file del menu.
 
-public class Chef {
+public class Chef extends Restaurant{
     private int categoriesNumbs;
     private ArrayList<ArrayList<Plate>> bufferPlate;
     private String menuDirectory;
@@ -51,8 +51,17 @@ public class Chef {
         this.menuDirectory = directory;
     }
 
-    protected void setNumberOfTables(Integer quantity){
-        setNumberOfTables(quantity);
+
+    /**
+     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
+     * @param tablesNumbs - number of tables present in the Restaurant
+     */
+    protected void setTablesNumber(Integer tablesNumbs) {
+        setTablesNumber(tablesNumbs);
+        for(Integer i = 1; i <= tablesNumbs; i++) {
+            orderDict.put(i, new ArrayList<>());
+            payableDict.put(i, new ArrayList<>());
+        }
     }
     /**
      *  Sets the number of type of dishes that the restaurant will be serving

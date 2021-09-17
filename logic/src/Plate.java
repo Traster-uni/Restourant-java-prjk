@@ -75,7 +75,7 @@ public class Plate {
 
     @Override
     public String toString() {
-        return name + ";" + category + ";" + prize + ";";
+        return name + ";" + category + ";" + prize + ";\n";
 
     }
 

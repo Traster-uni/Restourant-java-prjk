@@ -11,7 +11,7 @@ public class RestaurantTester {
         Restaurant DaGino = new Restaurant();
         Chef ginoChef = DaGino.getChef();
         int tableNum = 5;
-        DaGino.setTablesNumbs(tableNum);
+
 
         System.out.println("Welcome to Restourant " );
 //        System.out.println("With 5 star micheline chef "+ginoChef.getName());

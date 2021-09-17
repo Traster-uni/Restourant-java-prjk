@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 /**
  * Created by Tommaso M. Lopedote on 12/09/2021
@@ -37,17 +39,6 @@ public class ChefPanel extends myFrame {
         chefPanel.add(botPanel);
         applyBotPanelContent();
 
-//        NumberFormatter onlyFewNumbersTextField =
-//                new NumberFormatter() {
-//            public Integer StringToValue(Object o) throws ParseException {
-//                Number number = (Number) o;
-//                if (number != null){
-//                    int i = number.intValue();
-//                    Integer numberInt = i;
-//                }
-//                return numberInt;
-//            }
-//        }
 
     }
 
@@ -62,8 +53,28 @@ public class ChefPanel extends myFrame {
         JLabel frameTitle = new JLabel("Chef Control Panel");
         frameTitle.setFont(new Font("Comic Sans", Font.BOLD, 20));
         JLabel textFieldLabel = new JLabel("Number of tables: ");
-        JFormattedTextField textFieldTop = new JFormattedTextField(); //onlyFewNumbersTextField
+
+        NumberFormat integerFormatter = NumberFormat.getIntegerInstance();
+        integerFormatter.setMaximumFractionDigits(0);
+        JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);
+        textFieldTop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(",", ""));
+
+                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
+            }
+        });
+
         JButton enterTextButton = new JButton("OK");
+        enterTextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+//                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
+                
+            }
+        });
+
         topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
         topPanel.add(textFieldLabel, BorderLayout.WEST);
         topPanel.add(textFieldTop, BorderLayout.CENTER);
@@ -117,8 +128,13 @@ public class ChefPanel extends myFrame {
         readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
 
         JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
         textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
         textArea.setEditable(false);
+//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
+//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
+//            textArea.append(restaurant.getMenuArray().get(i).toString());
+//        }
 
         JScrollPane displayMenu = new JScrollPane(textArea);
         displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
