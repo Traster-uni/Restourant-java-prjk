@@ -1,8 +1,11 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 
 /**
  * Created by Tommaso M. Lopedote on 12/09/2021
@@ -34,6 +37,18 @@ public class ChefPanel extends myFrame {
         chefPanel.add(botPanel);
         applyBotPanelContent();
 
+//        NumberFormatter onlyFewNumbersTextField =
+//                new NumberFormatter() {
+//            public Integer StringToValue(Object o) throws ParseException {
+//                Number number = (Number) o;
+//                if (number != null){
+//                    int i = number.intValue();
+//                    Integer numberInt = i;
+//                }
+//                return numberInt;
+//            }
+//        }
+
     }
 
     public void applyTopPanelContent() {
@@ -47,7 +62,7 @@ public class ChefPanel extends myFrame {
         JLabel frameTitle = new JLabel("Chef Control Panel");
         frameTitle.setFont(new Font("Comic Sans", Font.BOLD, 20));
         JLabel textFieldLabel = new JLabel("Number of tables: ");
-        JTextField textFieldTop = new JTextField();
+        JFormattedTextField textFieldTop = new JFormattedTextField(); //onlyFewNumbersTextField
         JButton enterTextButton = new JButton("OK");
         topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
         topPanel.add(textFieldLabel, BorderLayout.WEST);
@@ -58,7 +73,7 @@ public class ChefPanel extends myFrame {
     }
 
     public void applyMidPanel1Content() {
-        midPanel1.setBounds(0, 90, FRAME_WIDTH, 35);
+        midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);
         //uncomment to see the panel
 //        midPanel1.setBackground(Color.BLACK);
         //panel borders and layout
@@ -68,27 +83,29 @@ public class ChefPanel extends myFrame {
         //panel components
         JTextField nameTextField = new JTextField();
         nameTextField.setColumns(20);
-        JTextField categoryTextField = new JTextField();
+        JFormattedTextField categoryTextField = new JFormattedTextField(); //onlyFewNumbersTextField
         categoryTextField.setColumns(4);
-        JTextField priceTextField = new JTextField();
+        JFormattedTextField priceTextField = new JFormattedTextField(new NumberFormatter());
         priceTextField.setColumns(6);
         JButton addButton = new JButton("ADD");
         JButton deleteButton = new JButton("DELETE");
         midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        midPanel1.add(new JLabel("Name: "));
+        midPanel1.add(new JLabel("Dish's name: "));
         midPanel1.add(nameTextField);
         midPanel1.add(new JLabel("Category: "));
         midPanel1.add(categoryTextField);
         midPanel1.add(new JLabel("Price: "));
         midPanel1.add(priceTextField);
-        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(316, 2), new Dimension(316, 2)));
+        //buttons and spacers
+        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));
         midPanel1.add(addButton);
+        midPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));
         midPanel1.add(deleteButton);
     }
 
     public void applyMidPanel2Content() {
-        midPanel2.setBounds(0, 125, FRAME_WIDTH, 300);
+        midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);
         //uncomment to see the panel
 //        midPanel2.setBackground(Color.RED);
         //panel borders and layout
@@ -112,7 +129,7 @@ public class ChefPanel extends myFrame {
     }
 
     public void applyBotPanelContent() {
-        botPanel.setBounds(0, 425, FRAME_WIDTH, 40);
+        botPanel.setBounds(0, 455, FRAME_WIDTH, 40);
         //uncomment to see the panel
 //        botPanel.setBackground(Color.BLUE);
         //panel borders and layout

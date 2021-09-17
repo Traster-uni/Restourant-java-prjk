@@ -16,20 +16,23 @@ public class myFrame extends JFrame{
 
     public myFrame(){
         exitButtonMenu = new JButton();
-        exitButtonMenu.setText("EXIT");
+        exitButtonMenu.setText("BACK");
         exitButtonMenu.setBounds(860, 700, 100, 30);
 
         createStartPanel();
-        createMainMenuPanel();
-        createChefPanel();
 
+        createMainMenuPanel();
+
+        createChefPanel();
         chefPanel.add(exitButtonMenu);
+
         setSize(1000, 800);
         setTitle("Restaurant");
         getContentPane().add(startPanel);
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,8 +67,8 @@ public class myFrame extends JFrame{
 //                restaurant.addArrayPlates(array2);
 //                restaurant.addArrayPlates(new ArrayList<Plate>());
                 //test
-                Waiter waiter1 = new Waiter();
-                restaurant.addEmployee(waiter1);
+//                Waiter waiter1 = new Waiter();
+//                restaurant.addEmployee(waiter1);
             }
         });
         exitButtonMenu.addActionListener(new ActionListener() {
@@ -87,21 +90,29 @@ public class myFrame extends JFrame{
 
     public void createMainMenuPanel() {
         mainMenuPanel = new JPanel(null);
+
         chefButton = new JButton();
         chefButton.setBounds(99, 200, 300, 90);
         chefButton.setText("CHEF");
+        chefButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+
         waiterButton = new JButton();
         waiterButton.setBounds(599, 200, 300, 90);
         waiterButton.setText("WAITER");
+
         cookButton = new JButton();
         cookButton.setBounds(599, 500, 300, 90);
         cookButton.setText("COOK");
+
         cashierButton = new JButton();
         cashierButton.setBounds(99, 500, 300, 90);
         cashierButton.setText("CASHIER");
+
         exitButtonStart = new JButton();
-        exitButtonStart.setText("EXIT");
+        exitButtonStart.setText("BACK");
         exitButtonStart.setBounds(860, 700, 100, 30);
+
+        mainMenuPanel.add(Box.createVerticalGlue());
         mainMenuPanel.add(chefButton);
         mainMenuPanel.add(waiterButton);
         mainMenuPanel.add(cookButton);

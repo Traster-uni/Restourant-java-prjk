@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="corrected error in test case">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Layout of the Chef panel completed, lacks implementation of action listeners">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Plate.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Plate.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
     </list>
@@ -60,7 +59,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="277" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="475" />
     <property name="codeWithMe.voiceChat.enabledByDefault" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/javafx-sdk-11.0.2/lib" />
@@ -371,7 +371,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631700354008</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Layout of the Chef panel completed, lacks implementation of action listeners">
+      <created>1631728559121</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1631728559121</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -402,7 +409,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
     <MESSAGE value="added Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
     <MESSAGE value="Adjusted the Chef class methods with simple correction for some functions, more test have been conducted. chefTest.csv debug file added." />
     <MESSAGE value="Added the deletePayedOrder Method to the Resta" />
@@ -427,7 +433,8 @@
     <MESSAGE value="deprecated main in chefpanel" />
     <MESSAGE value="rows form 56 to 63, added example for testing purpose." />
     <MESSAGE value="corrected error in test case" />
-    <option name="LAST_COMMIT_MESSAGE" value="corrected error in test case" />
+    <MESSAGE value="Layout of the Chef panel completed, lacks implementation of action listeners" />
+    <option name="LAST_COMMIT_MESSAGE" value="Layout of the Chef panel completed, lacks implementation of action listeners" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
