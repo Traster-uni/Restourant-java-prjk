@@ -39,13 +39,12 @@ public class ChefPanel extends myFrame {
         chefPanel.add(botPanel);
         applyBotPanelContent();
 
-
     }
 
     public void applyTopPanelContent() {
         topPanel.setBounds(0, 0, FRAME_WIDTH, 90);
         //uncomment to see the panel
-//        topPanel.setBackground(Color.GREEN);
+        topPanel.setBackground(Color.GREEN);
         //panel borders and layout
         topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
         topPanel.setLayout(new BorderLayout(5, 5));
@@ -57,6 +56,7 @@ public class ChefPanel extends myFrame {
         NumberFormat integerFormatter = NumberFormat.getIntegerInstance();
         integerFormatter.setMaximumFractionDigits(0);
         JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);
+        textFieldTop.setText("");   // when one clicks on ok or just presses enter the text turns back to blank
         textFieldTop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -86,7 +86,7 @@ public class ChefPanel extends myFrame {
     public void applyMidPanel1Content() {
         midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);
         //uncomment to see the panel
-//        midPanel1.setBackground(Color.BLACK);
+        midPanel1.setBackground(Color.BLACK);
         //panel borders and layout
         midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
         midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -118,7 +118,7 @@ public class ChefPanel extends myFrame {
     public void applyMidPanel2Content() {
         midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);
         //uncomment to see the panel
-//        midPanel2.setBackground(Color.RED);
+        midPanel2.setBackground(Color.RED);
         //panel borders and layout
         midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         midPanel2.setLayout(new BorderLayout(5,5));
@@ -131,10 +131,10 @@ public class ChefPanel extends myFrame {
         textArea.setEditable(false);
         textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
         textArea.setEditable(false);
-//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
-//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
-//            textArea.append(restaurant.getMenuArray().get(i).toString());
-//        }
+        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
+            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
+            textArea.append(restaurant.getMenuArray().get(i).toString());
+        }
 
         JScrollPane displayMenu = new JScrollPane(textArea);
         displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
@@ -147,7 +147,7 @@ public class ChefPanel extends myFrame {
     public void applyBotPanelContent() {
         botPanel.setBounds(0, 455, FRAME_WIDTH, 40);
         //uncomment to see the panel
-//        botPanel.setBackground(Color.BLUE);
+        botPanel.setBackground(Color.BLUE);
         //panel borders and layout
         botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
         botPanel.setLayout(new BorderLayout(5,5));

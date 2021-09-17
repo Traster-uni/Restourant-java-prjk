@@ -38,7 +38,7 @@ public class Restaurant {
 
     public Restaurant(){
         this.tablesNumbs = 0;
-        this.chef = new Chef();
+        this.chef = null;
         employeeArrayList = new ArrayList<>();
         menuArray = new ArrayList<>();
         orderDict = new HashMap<>();
@@ -110,6 +110,13 @@ public class Restaurant {
 //        }
 //    }
 
+    public void setTablesAttribute(int tablesAttribute){
+        this.tablesNumbs = tablesAttribute;
+    }
+
+    public void addChef(Chef newChef){
+        this.chef = newChef;
+    }
     /**
      * Adds to the array of Employees a new Employee instance
      * @param newEmployee - a new Employee instance

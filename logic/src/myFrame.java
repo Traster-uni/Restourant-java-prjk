@@ -39,7 +39,7 @@ public class myFrame extends JFrame{
                 switchPanel(mainMenuPanel);
                 //testing
                 restaurant = new Restaurant();
-                restaurant.getChef().setTablesNumber(4);
+//                restaurant.getChef().setTablesNumber(4);
 
                 //
             }

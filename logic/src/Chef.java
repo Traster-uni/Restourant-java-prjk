@@ -56,9 +56,9 @@ public class Chef extends Restaurant{
      * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
      * @param tablesNumbs - number of tables present in the Restaurant
      */
-    protected void setTablesNumber(Integer tablesNumbs) {
-        setTablesNumber(tablesNumbs);
-        for(Integer i = 1; i <= tablesNumbs; i++) {
+    protected void setTablesLists(Integer tablesNumbs) {
+        setTablesAttribute(tablesNumbs);
+        for(int i = 0; i < tablesNumbs; i++) {
             orderDict.put(i, new ArrayList<>());
             payableDict.put(i, new ArrayList<>());
         }
