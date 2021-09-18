@@ -42,7 +42,7 @@ public class Plate {
      * @return name
      */
     public String getName(){
-        return this.name;
+        return name;
     }
 
     /**

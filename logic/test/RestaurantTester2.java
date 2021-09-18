@@ -7,8 +7,8 @@ public class RestaurantTester2 {
     public static void main(String[] args) {
         Restaurant restaurant = new Restaurant();
         Chef chef = new Chef();
-        restaurant.addChef(chef);
-        restaurant.getChef().setTablesLists(3);
+        restaurant.setChef(chef);
+        restaurant.getChef().setTablesLists(5);
     }
 
 }

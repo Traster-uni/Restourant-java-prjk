@@ -1,16 +1,24 @@
 import javax.swing.*;
+import javax.swing.text.Document;
+import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 //TODO: SPOSTARE LE CLASSI RELATIVE ALLA GRAFICA IN UNA CARTELLA APPOSITA.
 
 public class myFrame extends JFrame{
+    final int FRAME_WIDTH = 985;
     protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, cookPanel, cashierPanel;
     protected JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;
+    protected JPanel topPanel, midPanel1, midPanel2, botPanel;
     protected Restaurant restaurant;
 
 
@@ -37,11 +45,6 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(mainMenuPanel);
-                //testing
-                restaurant = new Restaurant();
-//                restaurant.getChef().setTablesNumber(4);
-
-                //
             }
         });
         exitButtonStart.addActionListener(new ActionListener() {
@@ -54,9 +57,6 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 switchPanel(chefPanel);
-                Chef chef = restaurant.getChef();
-                chef.addNewDish("Carbonara",2,9.0);
-                chef.addNewDish("Sorbetto", 4, 4.0);
             }
         });
         waiterButton.addActionListener(new ActionListener() {
@@ -88,6 +88,7 @@ public class myFrame extends JFrame{
     }
 
     public void createStartPanel(){
+        restaurant = new Restaurant();
         startPanel = new JPanel(new GridBagLayout());
         startButton = new JButton();
         startButton.setPreferredSize(new Dimension(200, 60));
@@ -128,9 +129,192 @@ public class myFrame extends JFrame{
     }
 
     public void createChefPanel(){
+        Chef chef = new Chef(4);
+        restaurant.setChef(chef);
+        chef.addNewDish("Carbonara", 2, 10.00);
+        chef.addNewDish("Torta", 4, 25.00);
         //editing
-        new ChefPanel();
+        chefPanel = new JPanel();
+        chefPanel.setLayout(null);
+
+        JPanel topPanel = new JPanel();
+        //uncomment to see the panel
+//        topPanel.setBackground(Color.GREEN);
+        chefPanel.add(topPanel);
+
+        JPanel midPanel1 = new JPanel();
+        //uncomment to see the panel
+//        midPanel1.setBackground(Color.BLACK);
+        chefPanel.add(midPanel1);
+
+        JPanel midPanel2 = new JPanel();
+        //uncomment to see the panel
+//        midPanel2.setBackground(Color.RED);
+        chefPanel.add(midPanel2);
+
+        JPanel botPanel = new JPanel();
+        //uncomment to see the panel
+//        botPanel.setBackground(Color.BLUE);
+        chefPanel.add(botPanel);
+
+        //--------------------------------
+        //--------topPanel
+        //--------------------------------
+        topPanel.setBounds(0, 0, FRAME_WIDTH, 90);
+        //panel borders and layout
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        topPanel.setLayout(new BorderLayout(5, 5));
+        //panel components
+        JLabel frameTitle = new JLabel("Chef Control Panel");
+        frameTitle.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        JLabel textFieldLabel = new JLabel("Number of tables: ");
+        //formatter
+        NumberFormat integerFormatter = NumberFormat.getIntegerInstance();
+        integerFormatter.setMaximumFractionDigits(0);
+        integerFormatter.setParseIntegerOnly(true);
+        //Formattedtextfield
+        JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);
+        textFieldTop.setText("");
+        textFieldTop.setFocusLostBehavior(JFormattedTextField.COMMIT);
+
+        textFieldTop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) throws NumberFormatException {
+                //TODO: long numbers throws NumberFormatException
+//                try (Integer.parseInt(textFieldTop.getText().replaceAll(",", "."))){
+//                    Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(",", "."));
+//                    JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
+//                    textFieldTop.setText("");
+//                }catch (NumberFormatException ne){
+//                    JOptionPane.showMessageDialog(topPanel,"Number too long");
+//                }
+                Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(",", "."));
+                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
+            }
+        });
+
+        JButton enterTextButton = new JButton("OK");
+        enterTextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //checks for valid input from textfield
+                boolean editValid = textFieldTop.isEditValid();
+                if (editValid) {
+                    Integer intInputValue = Integer.parseInt(textFieldTop.getText());
+                    JOptionPane.showMessageDialog(topPanel, intInputValue);
+                }else{
+                    JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
+                }
+            }
+        });
+
+        topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
+        topPanel.add(textFieldLabel, BorderLayout.WEST);
+        topPanel.add(textFieldTop, BorderLayout.CENTER);
+        topPanel.add(enterTextButton, BorderLayout.EAST);
+        topPanel.add(new JLabel("Add entries here: "), BorderLayout.SOUTH);
+
+
+        //--------------------------------
+        //--------midPanel1---------------
+        //--------------------------------
+        midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);
+        //panel borders and layout
+        midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+        midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));
+
+        //panel components
+        JTextField nameTextField = new JTextField();
+        nameTextField.setColumns(20);
+        JFormattedTextField categoryTextField = new JFormattedTextField(integerFormatter);
+
+        categoryTextField.setColumns(4);
+
+        NumberFormat floatFormatter = new DecimalFormat("##0.##");
+        floatFormatter.setMaximumFractionDigits(2);
+        JFormattedTextField priceTextField = new JFormattedTextField(floatFormatter);
+        ActionListener menuEntryFilds = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    String dishName = nameTextField.getText();
+                    Integer category = Integer.parseInt(textFieldTop.getText().replaceAll(",", "."));
+                    Double price = (Double) priceTextField.getValue();
+                    chef.addNewDish(dishName,category,price);
+            }
+        };
+        nameTextField.addActionListener(menuEntryFilds);
+        categoryTextField.addActionListener(menuEntryFilds);
+        priceTextField.addActionListener(menuEntryFilds);
+
+
+        priceTextField.setColumns(6);
+        JButton addButton = new JButton("ADD");
+        JButton deleteButton = new JButton("DELETE");
+        midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+
+        midPanel1.add(new JLabel("Dish's name: "));
+        midPanel1.add(nameTextField);
+        midPanel1.add(new JLabel("Category: "));
+        midPanel1.add(categoryTextField);
+        midPanel1.add(new JLabel("Price: "));
+        midPanel1.add(priceTextField);
+        //buttons and spacers
+        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));
+        midPanel1.add(addButton);
+        midPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));
+        midPanel1.add(deleteButton);
+
+
+        //-----------------------------
+        //-------midPanel2
+        //-----------------------------
+        midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);
+        //panel borders and layout
+        midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        midPanel2.setLayout(new BorderLayout(5,5));
+
+        //panel components
+        JLabel readLabel = new JLabel("Menu content: ");
+        readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+
+        JTextArea textArea = new JTextArea();
+        textArea.setEditable(false);
+        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
+        textArea.setEditable(false);
+        textArea.append("hi!");
+
+        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
+            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
+            textArea.append(restaurant.getMenuArray().get(i).toString());
+
+        }
+
+        JScrollPane displayMenu = new JScrollPane(textArea);
+        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
+
+        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
+        midPanel2.add(displayMenu, BorderLayout.CENTER);
+
+
+        //-----------------------------
+        //-------botPanel
+        //-----------------------------
+        botPanel.setBounds(0, 455, FRAME_WIDTH, 40);
+        //panel borders and layout
+        botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+        botPanel.setLayout(new BorderLayout(5,5));
+
+        //panel components
+        JLabel directoryLabel = new JLabel("File menu location: ");
+        JTextField directoryTextField = new JTextField();
+        JButton updateButton = new JButton("UPDATE");
+
+        botPanel.add(directoryLabel, BorderLayout.WEST);
+        botPanel.add(directoryTextField, BorderLayout.CENTER);
+        botPanel.add(updateButton, BorderLayout.EAST);
     }
+
 
     public void switchPanel(JPanel panelToSwitch){
         getContentPane().removeAll();

@@ -114,7 +114,7 @@ public class Restaurant {
         this.tablesNumbs = tablesAttribute;
     }
 
-    public void addChef(Chef newChef){
+    public void setChef(Chef newChef){
         this.chef = newChef;
     }
     /**

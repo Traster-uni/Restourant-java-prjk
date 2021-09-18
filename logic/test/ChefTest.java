@@ -6,7 +6,7 @@
 public class ChefTest {
     public static void main(String[] args){
         String directory = "C:\\Users\\trast\\Desktop\\Università\\GitHub\\Restourant-java-prjk\\testChef.csv";
-        Chef chefCapo = new Chef("Augusto");
+        Chef chefCapo = new Chef();
         chefCapo.setMenuDirectory(directory);
         chefCapo.setNumberOfCategories(4);
         System.out.println("adds new dish, Crudité, 1 = Appetizers, 5 euro");

@@ -36,10 +36,21 @@ public class Chef extends Restaurant{
         menuDirectory = "";
     }
 
-    public Chef(String newName) {
-        categoriesNumbs = 0;
+    public Chef(Integer categories) {
+        categoriesNumbs = categories;
         bufferPlate = new ArrayList<>();
+        for (int i = 0; i < categories; i++){
+            bufferPlate.add(new ArrayList<Plate>());
+        }
         menuDirectory = "";
+    }
+
+    public Chef(Integer categories, String directory) {
+        categoriesNumbs = categories;
+        for (int i = 0; i < categories; i++) {
+            bufferPlate.add(new ArrayList<Plate>());
+        }
+        menuDirectory = directory;
     }
 
 
