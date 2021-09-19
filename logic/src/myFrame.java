@@ -1,16 +1,11 @@
 import javax.swing.*;
-import javax.swing.text.Document;
-import javax.swing.text.NumberFormatter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
+import java.util.Locale;
+
 
 //TODO: SPOSTARE LE CLASSI RELATIVE ALLA GRAFICA IN UNA CARTELLA APPOSITA.
 
@@ -172,7 +167,7 @@ public class myFrame extends JFrame{
         NumberFormat integerFormatter = NumberFormat.getIntegerInstance();
         integerFormatter.setMaximumFractionDigits(0);
         integerFormatter.setParseIntegerOnly(true);
-        //Formattedtextfield
+        //Formatted text field
         JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);
         textFieldTop.setText("");
         textFieldTop.setFocusLostBehavior(JFormattedTextField.COMMIT);
@@ -180,16 +175,9 @@ public class myFrame extends JFrame{
         textFieldTop.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) throws NumberFormatException {
-                //TODO: long numbers throws NumberFormatException
-//                try (Integer.parseInt(textFieldTop.getText().replaceAll(",", "."))){
-//                    Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(",", "."));
-//                    JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
-//                    textFieldTop.setText("");
-//                }catch (NumberFormatException ne){
-//                    JOptionPane.showMessageDialog(topPanel,"Number too long");
-//                }
-                Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(",", "."));
+                Integer intInputValue = Integer.parseInt(textFieldTop.getText());
                 JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
+
             }
         });
 
@@ -229,27 +217,39 @@ public class myFrame extends JFrame{
         JFormattedTextField categoryTextField = new JFormattedTextField(integerFormatter);
 
         categoryTextField.setColumns(4);
+        //component for JList
+        DefaultListModel<Plate> menuListModel = new DefaultListModel<>();
 
-        NumberFormat floatFormatter = new DecimalFormat("##0.##");
-        floatFormatter.setMaximumFractionDigits(2);
-        JFormattedTextField priceTextField = new JFormattedTextField(floatFormatter);
-        ActionListener menuEntryFilds = new ActionListener() {
+        JFormattedTextField priceTextField = new JFormattedTextField(new DecimalFormat("##0.00"));
+        ActionListener menuEntryField = new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                    String dishName = nameTextField.getText();
-                    Integer category = Integer.parseInt(textFieldTop.getText().replaceAll(",", "."));
-                    Double price = (Double) priceTextField.getValue();
-                    chef.addNewDish(dishName,category,price);
+            public void actionPerformed(ActionEvent e) throws PlateAlreadyExistException {
+                String dishName = nameTextField.getText();
+                Integer category = Integer.parseInt( categoryTextField.getText() );
+                Double price = Double.parseDouble( priceTextField.getText().replaceAll(",",".") );
+
+//                try( chef.addNewDish(dishName, category, price) ){
+                    menuListModel.addElement(new Plate(dishName, category, price));
+                    chef.addNewDish(dishName, category, price);
+//                } catch (PlateAlreadyExistException pe ){
+//                   pe.printStackTrace();
+//                } finally {
+//                    JOptionPane.showMessageDialog(midPanel1,  " The dish you entered already exist, please state a new entry");
+//                }
+
+
             }
         };
-        nameTextField.addActionListener(menuEntryFilds);
-        categoryTextField.addActionListener(menuEntryFilds);
-        priceTextField.addActionListener(menuEntryFilds);
+
+        nameTextField.addActionListener(menuEntryField);
+        categoryTextField.addActionListener(menuEntryField);
+        priceTextField.addActionListener(menuEntryField);
 
 
         priceTextField.setColumns(6);
         JButton addButton = new JButton("ADD");
         JButton deleteButton = new JButton("DELETE");
+        addButton.addActionListener(menuEntryField);
         midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
         midPanel1.add(new JLabel("Dish's name: "));
@@ -277,18 +277,8 @@ public class myFrame extends JFrame{
         JLabel readLabel = new JLabel("Menu content: ");
         readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
 
-        JTextArea textArea = new JTextArea();
-        textArea.setEditable(false);
-        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
-        textArea.setEditable(false);
-        textArea.append("hi!");
-
-        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
-            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
-            textArea.append(restaurant.getMenuArray().get(i).toString());
-
-        }
-
+        JList<Plate> textArea = new JList<>(menuListModel);
+        textArea.setCellRenderer(new PlateDisplay());
         JScrollPane displayMenu = new JScrollPane(textArea);
         displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);

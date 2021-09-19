@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior.">
-      <change afterPath="$PROJECT_DIR$/logic/src/ColorRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/logic/src/PlateDisplay.java" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Plate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/PlateDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/PlateDisplay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/test/ChefTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/ChefTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/test/RestaurantTester2.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestaurantTester2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -408,7 +399,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631896957091</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist">
+      <created>1631984451145</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1631984451146</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -439,7 +437,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added the deletePayedOrder Method to the Resta" />
     <MESSAGE value="Added the deletePayedOrder Method to the Restaurant.java class. Adjusted some typos in the javadoc" />
     <MESSAGE value="Adjusted the chef class, added the Restourant tester, added the equals to method to Plate class obj" />
     <MESSAGE value="Modified the Type of menuArray of Restourant Class," />
@@ -464,7 +461,8 @@
     <MESSAGE value="Heavly modified the ChefPanel content, ActionListeners are work-in-progress" />
     <MESSAGE value="." />
     <MESSAGE value="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior." />
+    <MESSAGE value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
+    <option name="LAST_COMMIT_MESSAGE" value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
