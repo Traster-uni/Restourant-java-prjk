@@ -22,13 +22,13 @@ public class ChefTest{
         System.out.println("adds new dish, Crostino, 1 = Appetizers, 4 euro");
         chefCapo.addNewDish("Crostino", 1, 4.0);
 
-        chefCapo.writeMenu();
+//        chefCapo.writeMenu();
         System.out.println(chefCapo.getBufferPlate());
         System.out.println("#########################");
         System.out.println("flush buffer plate");
         chefCapo.clearBufferPlate();
         System.out.println("chef instance reads menu.csv");
-        chefCapo.readMenu();
+//        chefCapo.readMenu();
         System.out.println(chefCapo.getBufferPlate());
 
     }

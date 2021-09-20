@@ -17,7 +17,7 @@ public class PlateDisplay extends JLabel implements ListCellRenderer<Plate> {
             setForeground(list.getForeground());
         }
         setFont(new Font("Comic Sans", Font.PLAIN, 20));
-        setText(plate.getName() + " " + plate.getPrize());
+        setText(plate.getName() + " " + plate.getPrize() + " Euro" );
         return this;
     }
 }

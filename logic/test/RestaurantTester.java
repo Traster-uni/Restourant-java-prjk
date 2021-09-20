@@ -35,12 +35,12 @@ public class RestaurantTester {
             p.printStackTrace();
         }
 
-        ginoChef.writeMenu();
+//        ginoChef.writeMenu();
 //        System.out.println(ginoChef.getName()+" ha scritto il menu");
         System.out.println(ginoChef.getBufferPlate());
         ginoChef.clearBufferPlate();
         System.out.println("Gino wiped the array");
-        ginoChef.readMenu();
+//        ginoChef.readMenu();
         System.out.println("Gino has read the menu");
         System.out.println(ginoChef.getBufferPlate());
         DaGino.loadMenuFromChef();

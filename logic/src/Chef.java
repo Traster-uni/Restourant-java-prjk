@@ -5,6 +5,7 @@
  */
 
 
+import javax.swing.table.TableRowSorter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -134,19 +135,23 @@ public class Chef extends Restaurant{
         return new Plate();
     }
 
-    protected void changeDish(String dishName, Integer category, Double prize) {
-        Plate modifyDish = new Plate(dishName, category, prize);
-        if (bufferPlate.get(category - 1).contains(modifyDish)) {
-            int m = bufferPlate.get(category - 1).indexOf(modifyDish);
-            bufferPlate.get(category - 1).set(m, modifyDish);
+    protected boolean removeDish(String dishName, Integer category) {
+        ArrayList<Plate> categoryArray = bufferPlate.get(category - 1);
+        for (Plate plate : categoryArray) {
+            if (plate.getName().equals(dishName)) {
+                int index = categoryArray.indexOf(plate);
+                categoryArray.remove(index);
+                return true;
+            }
         }
+        return false;
     }
 
     /**
      * Writes the menu.csv file using the instances of plates inserted by the chef.
      * If the file is not existent, creates a new file and compiles it.
      */
-    protected void writeMenu() {
+    protected void writeMenu() throws IOException {
         try {
             File inputFile = new File(menuDirectory);
             FileWriter csvWriter = new FileWriter(inputFile);
@@ -171,18 +176,17 @@ public class Chef extends Restaurant{
             }
             csvWriter.flush();
             csvWriter.close();
-        }catch (IOException e) {
+        } catch (IOException e) {
                 System.out.println("AN ERROR OCCURRED WHILE TRYING TO WRITE ON THE DIRECTORY");
                 e.printStackTrace();
-
-            }
+        }
     }
 
     /**
      * Reads the file given by the directory statement. Populate the bufferArray attribute with instances of Plates for
      * further modification by the user.
      */
-    public void readMenu() {
+    public void readMenu() throws IOException{
         try {
             File inputFile = new File(menuDirectory);
             Scanner csvReader = new Scanner(inputFile);

@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -126,11 +128,10 @@ public class myFrame extends JFrame{
     }
 
     public void createChefPanel(){
+        //logic
         Chef chef = new Chef(4);
         restaurant.setChef(chef);
-        chef.addNewDish("Carbonara", 2, 10.00);
-        chef.addNewDish("Torta", 4, 25.00);
-        //editing
+        //graphic
         chefPanel = new JPanel();
         chefPanel.setLayout(null);
 
@@ -174,29 +175,26 @@ public class myFrame extends JFrame{
         textFieldTop.setText("");
         textFieldTop.setFocusLostBehavior(JFormattedTextField.COMMIT);
 
-        textFieldTop.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) throws NumberFormatException {
-                Integer intInputValue = Integer.parseInt(textFieldTop.getText());
-                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());
+        JButton enterTextButton = new JButton("ENTER");
 
-            }
-        });
-
-        JButton enterTextButton = new JButton("OK");
-        enterTextButton.addActionListener(new ActionListener() {
+        ActionListener numberOfTablesListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //checks for valid input from textfield
                 boolean editValid = textFieldTop.isEditValid();
                 if (editValid) {
                     Integer intInputValue = Integer.parseInt(textFieldTop.getText());
-                    JOptionPane.showMessageDialog(topPanel, intInputValue);
+                    chef.setTablesLists(intInputValue);
+                    chef.setTablesAttribute(intInputValue);
+                    JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
                 }else{
                     JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
                 }
             }
-        });
+        };
+
+        textFieldTop.addActionListener(numberOfTablesListener);
+        enterTextButton.addActionListener(numberOfTablesListener);
 
         topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
         topPanel.add(textFieldLabel, BorderLayout.WEST);
@@ -272,7 +270,27 @@ public class myFrame extends JFrame{
 
         JList<Plate> textArea = new JList<>(menuListModel);
         textArea.setCellRenderer(new PlateDisplay());
+        textArea.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
+
         JScrollPane displayMenu = new JScrollPane(textArea);
+        displayMenu.setEnabled(true);
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //removed from JList
+                String name = textArea.getSelectedValue().getName();
+                Integer cat = textArea.getSelectedValue().getCategory();
+                menuListModel.removeElement(textArea.getSelectedValue());
+                //removed from bufferPlate
+                if (chef.removeDish(name,cat)) {
+                    JOptionPane.showMessageDialog(deleteButton, "Plate deleted");
+                } else {
+                    JOptionPane.showMessageDialog(deleteButton, "Plate was not deleted");
+                }
+            }
+        });
+
         displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
 
@@ -309,10 +327,16 @@ public class myFrame extends JFrame{
         readButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                chef.readMenu();
-                for (int i = 0; i < chef.getBufferPlate().size(); i++) {
-                    for (int j = 0; j < chef.getBufferPlate().get(i).size(); j++)
-                    menuListModel.addElement(chef.getBufferPlate().get(i).get(j));
+                try {
+                    chef.readMenu();
+                    JOptionPane.showMessageDialog(writeButton, "Menu recovered");
+                    for (int i = 0; i < chef.getBufferPlate().size(); i++) {
+                        for (int j = 0; j < chef.getBufferPlate().get(i).size(); j++)
+                            menuListModel.addElement(chef.getBufferPlate().get(i).get(j));
+                    }
+                } catch (IOException e2){
+                    e2.printStackTrace();
+                    JOptionPane.showMessageDialog(writeButton, "Reading the file is impossible, check for extension in the name.");
                 }
             }
         });
@@ -320,7 +344,13 @@ public class myFrame extends JFrame{
         writeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                chef.writeMenu();
+                try{
+                    chef.writeMenu();
+                    JOptionPane.showMessageDialog(botPanel, "CSV file written");
+                }catch (IOException e1){
+                    e1.printStackTrace();
+                    JOptionPane.showMessageDialog(botPanel, "An error as occurred and the CSV file has not been written");
+                }
             }
         });
         directoryTextField.addActionListener(directoryActionListener);
