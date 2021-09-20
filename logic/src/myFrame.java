@@ -186,6 +186,7 @@ public class myFrame extends JFrame{
                     Integer intInputValue = Integer.parseInt(textFieldTop.getText());
                     chef.setTablesLists(intInputValue);
                     chef.setTablesAttribute(intInputValue);
+                    restaurant.setTablesAttribute(intInputValue);
                     JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
                 }else{
                     JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
@@ -301,7 +302,7 @@ public class myFrame extends JFrame{
         //-----------------------------
         //-------botPanel
         //-----------------------------
-        botPanel.setBounds(0, 455, FRAME_WIDTH, 80);
+        botPanel.setBounds(0, 460, FRAME_WIDTH, 100);
         //uncomment to see the panel
 //        botPanel.setBackground(Color.BLUE);
         //panel borders and layout
@@ -311,10 +312,11 @@ public class myFrame extends JFrame{
         //panel components
         JLabel directoryLabel = new JLabel("File menu location: ");
         JTextField directoryTextField = new JTextField();
-        directoryTextField.setColumns(65);
-        JButton updateButton = new JButton("UPDATE");
+        directoryTextField.setColumns(60);
+        JButton updateButton = new JButton("UPDATE DIRECTORY");
         JButton readButton = new JButton("READ");
         JButton writeButton = new JButton("WRITE");
+        JButton dataRestaurantButton = new JButton("UPDATE RESTAURANT");
 
         ActionListener directoryActionListener = new ActionListener() {
             @Override
@@ -323,6 +325,8 @@ public class myFrame extends JFrame{
                 chef.setMenuDirectory(directory);
             }
         };
+        directoryTextField.addActionListener(directoryActionListener);
+        updateButton.addActionListener(directoryActionListener);
 
         readButton.addActionListener(new ActionListener() {
             @Override
@@ -353,16 +357,22 @@ public class myFrame extends JFrame{
                 }
             }
         });
-        directoryTextField.addActionListener(directoryActionListener);
-        updateButton.addActionListener(directoryActionListener);
+
+        dataRestaurantButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                restaurant.loadMenuFromChef();
+                JOptionPane.showMessageDialog(botPanel, "Restaurant Array updated");
+            }
+        });
 
         botPanel.add(directoryLabel);
         botPanel.add(directoryTextField);
         botPanel.add(updateButton);
         botPanel.add(readButton);
         botPanel.add(writeButton);
-        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(800,2),new Dimension(800,2)));
-        botPanel.add()
+        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(620,2),new Dimension(620,2)));
+        botPanel.add(dataRestaurantButton);
     }
 
 

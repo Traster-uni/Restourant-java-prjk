@@ -77,6 +77,10 @@ public class Restaurant {
         return menuArray;
     }
 
+    public Integer getNumberOfTables(){
+        return tablesNumbs;
+    }
+
     /**
      * Returns a collection of table's numbers and Arrays of Array of dishes.
      * @return OrderDictionary
@@ -97,18 +101,6 @@ public class Restaurant {
     public void loadMenuFromChef(){
         this.menuArray = chef.getBufferPlate();
     }
-//
-//    /**
-//     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
-//     * @param tablesNumbs - number of tables present in the Restaurant
-//     */
-//    public void setTablesNumber(Integer tablesNumbs) {
-//        this.tablesNumbs = tablesNumbs;
-//        for(Integer i = 1; i <= tablesNumbs; i++) {
-//            orderDict.put(i, new ArrayList<>());
-//            payableDict.put(i, new ArrayList<>());
-//        }
-//    }
 
     public void setTablesAttribute(int tablesAttribute){
         this.tablesNumbs = tablesAttribute;

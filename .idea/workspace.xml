@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}">
-      <change afterPath="$PROJECT_DIR$/MenuTrueTest1.csv" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestaurantTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestaurantTester.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/PlateDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/PlateDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/test/ChefTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/ChefTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/test/RestaurantTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestaurantTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -434,7 +427,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632135341856</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class">
+      <created>1632154368767</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1632154368767</updated>
+    </task>
+    <task id="LOCAL-00043" summary="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class">
+      <created>1632154531401</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1632154531401</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -465,7 +472,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class." />
     <MESSAGE value="simple change line 158 Restourant" />
     <MESSAGE value="Added the container class Order with a status attribute to be applied to the object in the moment of creation, the modifier classes of the project must be modified accordingly." />
     <MESSAGE value="Modified Order.java to behave like an ArrayList but with a String attribute attached to it" />
@@ -490,7 +496,8 @@
     <MESSAGE value="Resolved strange behaviors of the chefs textFields" />
     <MESSAGE value="Solved various issues with the writer and read method in the class chef. Added Various tester for those method." />
     <MESSAGE value="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}" />
-    <option name="LAST_COMMIT_MESSAGE" value="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}" />
+    <MESSAGE value="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class" />
+    <option name="LAST_COMMIT_MESSAGE" value="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
