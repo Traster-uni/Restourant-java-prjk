@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -227,16 +228,14 @@ public class myFrame extends JFrame{
                 String dishName = nameTextField.getText();
                 Integer category = Integer.parseInt( categoryTextField.getText() );
                 Double price = Double.parseDouble( priceTextField.getText().replaceAll(",",".") );
+                    try {
+                        menuListModel.addElement(new Plate(dishName, category, price));
+                        chef.addNewDish(dishName, category, price);
+                    } catch (PlateAlreadyExistException pe) {
 
-//                try( chef.addNewDish(dishName, category, price) ){
-                    menuListModel.addElement(new Plate(dishName, category, price));
-                    chef.addNewDish(dishName, category, price);
-//                } catch (PlateAlreadyExistException pe ){
-//                   pe.printStackTrace();
-//                } finally {
-//                    JOptionPane.showMessageDialog(midPanel1,  " The dish you entered already exist, please state a new entry");
-//                }
+                    }finally {
 
+                    }
 
             }
         };
@@ -299,6 +298,19 @@ public class myFrame extends JFrame{
         JLabel directoryLabel = new JLabel("File menu location: ");
         JTextField directoryTextField = new JTextField();
         JButton updateButton = new JButton("UPDATE");
+
+        ActionListener directoryActionListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String directory = directoryTextField.getText(); //.replaceAll("\\", "\\\\")
+                chef.setMenuDirectory(directory);
+                JOptionPane.showMessageDialog(botPanel, chef.getMenuDirectory());
+
+            }
+        };
+
+        directoryTextField.addActionListener(directoryActionListener);
+        updateButton.addActionListener(directoryActionListener);
 
         botPanel.add(directoryLabel, BorderLayout.WEST);
         botPanel.add(directoryTextField, BorderLayout.CENTER);

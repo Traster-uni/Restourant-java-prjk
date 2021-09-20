@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Resolved strange behaviors of the chefs textFields">
+      <change afterPath="$PROJECT_DIR$/logic/test/ReadMenuTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/PlateDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/PlateDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/menu.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/test/ChefTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/ChefTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/testChef.csv" beforeDir="false" afterPath="$PROJECT_DIR$/menutest1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurantHistory.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +75,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propGUI" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -78,7 +86,7 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.myFrame">
+  <component name="RunManager" selected="Application.ChefTest">
     <configuration name="ChefPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChefPanel" />
       <module name="Restourant-java-prjk" />
@@ -86,15 +94,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FormattedSample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="FormattedSample" />
+    <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChefTest" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantTester" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RestaurantTester" />
+    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -116,18 +124,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.ChefPanel" />
-      <item itemvalue="Application.FormattedSample" />
-      <item itemvalue="Application.RestaurantTester" />
       <item itemvalue="Application.RestaurantTester2" />
       <item itemvalue="Application.myFrame" />
+      <item itemvalue="Application.ChefTest" />
+      <item itemvalue="Application.ReadMenuTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChefTest" />
+        <item itemvalue="Application.ReadMenuTest" />
         <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.RestaurantTester2" />
         <item itemvalue="Application.ChefPanel" />
-        <item itemvalue="Application.RestaurantTester" />
-        <item itemvalue="Application.FormattedSample" />
       </list>
     </recent_temporary>
   </component>
@@ -406,7 +414,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631984451146</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Resolved strange behaviors of the chefs textFields">
+      <created>1632073500150</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1632073500150</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -437,7 +452,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added the deletePayedOrder Method to the Restaurant.java class. Adjusted some typos in the javadoc" />
     <MESSAGE value="Adjusted the chef class, added the Restourant tester, added the equals to method to Plate class obj" />
     <MESSAGE value="Modified the Type of menuArray of Restourant Class," />
     <MESSAGE value="Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class." />
@@ -462,7 +476,8 @@
     <MESSAGE value="." />
     <MESSAGE value="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior." />
     <MESSAGE value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
-    <option name="LAST_COMMIT_MESSAGE" value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
+    <MESSAGE value="Resolved strange behaviors of the chefs textFields" />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolved strange behaviors of the chefs textFields" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

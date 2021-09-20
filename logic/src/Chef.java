@@ -6,6 +6,7 @@
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -115,7 +116,7 @@ public class Chef extends Restaurant{
     }
 
     /**
-     * Return the Dish given the name and the category.
+     * Finds a dish with the given dishName in the given category
      *
      * @param dishName String - the name of the dish.
      * @param category Integer - the category of the dish needed to find the desired Dish.
@@ -149,35 +150,32 @@ public class Chef extends Restaurant{
         try {
             File inputFile = new File(menuDirectory);
             FileWriter csvWriter = new FileWriter(inputFile);
-            for (int i = 0; i < bufferPlate.size(); i++) {
-                ArrayList<Plate> categoryArray = bufferPlate.get(i);
-                //Valuta se eliminare tale classificazione dal csv
-//                if (i == 0) {
-//                    csvWriter.write("ANTIPASTI: ");
-//                    csvWriter.write("\n");
-//                } else if (i == 1) {
-//                    csvWriter.write("PRIMI: ");
-//                    csvWriter.write("\n");
-//                } else if (i == 2) {
-//                    csvWriter.write("SECONDI: ");
-//                    csvWriter.write("\n");
-//                } else if (i == 3) {
-//                    csvWriter.write("DESSERT: ");
-//                    csvWriter.write("\n");
-//                }
-                int j = 0;
-                while (j < categoryArray.size()) {
-                    csvWriter.write(categoryArray.get(j).toString());
-                    csvWriter.write("\n");
-                    j++;
+
+            if (!inputFile.createNewFile()){
+                for (ArrayList<Plate> categoryArray : bufferPlate) {
+                    int j = 0;
+                    while (j < categoryArray.size()) {
+                        csvWriter.write(categoryArray.get(j).toString());
+                        j++;
+                    }
                 }
+            }else{
+                for (ArrayList<Plate> categoryArray : bufferPlate) {
+                    int j = 0;
+                    while (j < categoryArray.size()) {
+                        csvWriter.write(categoryArray.get(j).toString());
+                        j++;
+                    }
+                }
+
             }
             csvWriter.flush();
             csvWriter.close();
-            } catch (IOException e) {
-                System.out.println("AN ERROR OCCURRED");
+        }catch (IOException e) {
+                System.out.println("AN ERROR OCCURRED WHILE TRYING TO WRITE ON THE DIRECTORY");
                 e.printStackTrace();
-        }
+
+            }
     }
 
     /**
@@ -190,17 +188,14 @@ public class Chef extends Restaurant{
             Scanner csvReader = new Scanner(inputFile);
             csvReader.useLocale(Locale.US);
             csvReader.useDelimiter(";");
-            while (csvReader.hasNext()) {
-                String nameRaed = csvReader.next();
-                Integer categoryRead = csvReader.nextInt();
-                //TODO: Scanner throws exception wile parsing a double, \n symbol may be the problem.
-                Double priceRead = csvReader.nextDouble();
-                csvReader.nextLine();
-                System.out.println("name "+nameRaed);
-                System.out.println("cat "+categoryRead);
-                System.out.println("price "+priceRead);
-
-                bufferPlate.get(categoryRead - 1).add(new Plate(nameRaed, categoryRead, priceRead));
+            if (inputFile.exists()) {
+                while (csvReader.hasNext()) {
+                    String nameRaed = csvReader.next();
+                    Integer categoryRead = csvReader.nextInt();
+                    Double priceRead = csvReader.nextDouble();
+                    csvReader.nextLine();
+                    bufferPlate.get(categoryRead - 1).add(new Plate(nameRaed, categoryRead, priceRead));
+                }
             }
         } catch (IOException e) {
             System.out.println("No file with such name was found");
@@ -217,5 +212,9 @@ public class Chef extends Restaurant{
         for (int i = 0; i < categoriesNumbs; i++) {
             bufferPlate.add(new ArrayList<Plate>());
         }
+    }
+
+    protected String getMenuDirectory() {
+        return menuDirectory;
     }
 }

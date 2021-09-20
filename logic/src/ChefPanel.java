@@ -126,22 +126,22 @@ public class ChefPanel extends myFrame {
         //panel components
         JLabel readLabel = new JLabel("Menu content: ");
         readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
-
-        JTextArea textArea = new JTextArea();
-        textArea.setEditable(false);
-        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
-        textArea.setEditable(false);
-        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
-            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
-            textArea.append(restaurant.getMenuArray().get(i).toString());
-        }
-
-        JScrollPane displayMenu = new JScrollPane(textArea);
-        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
-
-        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
-        midPanel2.add(displayMenu, BorderLayout.CENTER);
+        // redacted
+//        JTextArea textArea = new JTextArea();
+//        textArea.setEditable(false);
+//        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
+//        textArea.setEditable(false);
+//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
+//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
+//            textArea.append(restaurant.getMenuArray().get(i).toString());
+//        }
+//
+//        JScrollPane displayMenu = new JScrollPane(textArea);
+//        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+//        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
+//
+//        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
+//        midPanel2.add(displayMenu, BorderLayout.CENTER);
     }
 
     public void applyBotPanelContent() {
