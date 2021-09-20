@@ -28,7 +28,6 @@ public class ReadMenuTest {
                 while (csvReader.hasNext()) {
                     String nameRaed = csvReader.next();
                     Integer categoryRead = csvReader.nextInt();
-                    //TODO: Scanner throws exception wile parsing a double, \n symbol may be the problem.
                     Double priceRead = csvReader.nextDouble();
                     csvReader.nextLine();
                     arraytry.get(categoryRead - 1).add(new Plate(nameRaed, categoryRead, priceRead));

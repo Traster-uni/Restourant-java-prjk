@@ -178,4 +178,5 @@ public class Restaurant {
     }
 
     //TODO: metodo dedito al confronto dei file csv generati dalle classi Cook e Cashier.
+    //TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.
 }
