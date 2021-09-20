@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Resolved strange behaviors of the chefs textFields">
-      <change afterPath="$PROJECT_DIR$/logic/test/ReadMenuTest.java" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/menu.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Restourant-java-prjk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Restourant-java-prjk.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/ChefTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/ColorRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/FormattedSample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/PlateDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/PlateDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/mainTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/test/ChefTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/ChefTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/testChef.csv" beforeDir="false" afterPath="$PROJECT_DIR$/menutest1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/restaurantHistory.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +83,7 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChefTest">
+  <component name="RunManager" selected="Application.myFrame">
     <configuration name="ChefPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChefPanel" />
       <module name="Restourant-java-prjk" />
@@ -131,9 +128,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.ChefTest" />
         <item itemvalue="Application.ReadMenuTest" />
-        <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.RestaurantTester2" />
         <item itemvalue="Application.ChefPanel" />
       </list>
@@ -421,7 +418,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632073500150</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Solved various issues with the writer and read method in the class chef. Added Various tester for those method.">
+      <created>1632135201129</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1632135201129</updated>
+    </task>
+    <task id="LOCAL-00041" summary="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}">
+      <created>1632135341856</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1632135341856</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -452,8 +463,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adjusted the chef class, added the Restourant tester, added the equals to method to Plate class obj" />
-    <MESSAGE value="Modified the Type of menuArray of Restourant Class," />
     <MESSAGE value="Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class." />
     <MESSAGE value="simple change line 158 Restourant" />
     <MESSAGE value="Added the container class Order with a status attribute to be applied to the object in the moment of creation, the modifier classes of the project must be modified accordingly." />
@@ -477,7 +486,9 @@
     <MESSAGE value="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior." />
     <MESSAGE value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
     <MESSAGE value="Resolved strange behaviors of the chefs textFields" />
-    <option name="LAST_COMMIT_MESSAGE" value="Resolved strange behaviors of the chefs textFields" />
+    <MESSAGE value="Solved various issues with the writer and read method in the class chef. Added Various tester for those method." />
+    <MESSAGE value="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}" />
+    <option name="LAST_COMMIT_MESSAGE" value="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

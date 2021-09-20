@@ -9,6 +9,8 @@
       <sourceFolder url="file://$MODULE_DIR$/logic/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/application/out" />
+      <excludeFolder url="file://$MODULE_DIR$/Samples" />
+      <excludeFolder url="file://$MODULE_DIR$/old" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

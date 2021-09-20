@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 
@@ -220,23 +221,16 @@ public class myFrame extends JFrame{
         categoryTextField.setColumns(4);
         //component for JList
         DefaultListModel<Plate> menuListModel = new DefaultListModel<>();
-
         JFormattedTextField priceTextField = new JFormattedTextField(new DecimalFormat("##0.00"));
+
         ActionListener menuEntryField = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) throws PlateAlreadyExistException {
                 String dishName = nameTextField.getText();
                 Integer category = Integer.parseInt( categoryTextField.getText() );
                 Double price = Double.parseDouble( priceTextField.getText().replaceAll(",",".") );
-                    try {
-                        menuListModel.addElement(new Plate(dishName, category, price));
-                        chef.addNewDish(dishName, category, price);
-                    } catch (PlateAlreadyExistException pe) {
-
-                    }finally {
-
-                    }
-
+                menuListModel.addElement(new Plate(dishName, category, price));
+                chef.addNewDish(dishName, category, price);
             }
         };
 
@@ -289,32 +283,55 @@ public class myFrame extends JFrame{
         //-----------------------------
         //-------botPanel
         //-----------------------------
-        botPanel.setBounds(0, 455, FRAME_WIDTH, 40);
+        botPanel.setBounds(0, 455, FRAME_WIDTH, 80);
+        //uncomment to see the panel
+//        botPanel.setBackground(Color.BLUE);
         //panel borders and layout
         botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
-        botPanel.setLayout(new BorderLayout(5,5));
+        botPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
 
         //panel components
         JLabel directoryLabel = new JLabel("File menu location: ");
         JTextField directoryTextField = new JTextField();
+        directoryTextField.setColumns(65);
         JButton updateButton = new JButton("UPDATE");
+        JButton readButton = new JButton("READ");
+        JButton writeButton = new JButton("WRITE");
 
         ActionListener directoryActionListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String directory = directoryTextField.getText(); //.replaceAll("\\", "\\\\")
+                String directory = directoryTextField.getText();
                 chef.setMenuDirectory(directory);
-                JOptionPane.showMessageDialog(botPanel, chef.getMenuDirectory());
-
             }
         };
 
+        readButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chef.readMenu();
+                for (int i = 0; i < chef.getBufferPlate().size(); i++) {
+                    for (int j = 0; j < chef.getBufferPlate().get(i).size(); j++)
+                    menuListModel.addElement(chef.getBufferPlate().get(i).get(j));
+                }
+            }
+        });
+
+        writeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                chef.writeMenu();
+            }
+        });
         directoryTextField.addActionListener(directoryActionListener);
         updateButton.addActionListener(directoryActionListener);
 
-        botPanel.add(directoryLabel, BorderLayout.WEST);
-        botPanel.add(directoryTextField, BorderLayout.CENTER);
-        botPanel.add(updateButton, BorderLayout.EAST);
+        botPanel.add(directoryLabel);
+        botPanel.add(directoryTextField);
+        botPanel.add(updateButton);
+        botPanel.add(readButton);
+        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(800,2),new Dimension(800,2)));
+        botPanel.add(writeButton);
     }
 
 
