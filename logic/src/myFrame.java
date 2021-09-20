@@ -360,8 +360,9 @@ public class myFrame extends JFrame{
         botPanel.add(directoryTextField);
         botPanel.add(updateButton);
         botPanel.add(readButton);
-        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(800,2),new Dimension(800,2)));
         botPanel.add(writeButton);
+        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(800,2),new Dimension(800,2)));
+        botPanel.add()
     }
 
 
