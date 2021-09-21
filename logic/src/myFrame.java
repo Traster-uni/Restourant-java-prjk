@@ -17,7 +17,7 @@ public class myFrame extends JFrame{
     final int FRAME_WIDTH = 985;
     protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, cookPanel, cashierPanel;
     protected JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;
-    protected JPanel topPanel, midPanel1, midPanel2, botPanel;
+//    protected JPanel topPanel, midPanel1, midPanel2, botPanel;
     protected Restaurant restaurant;
 
 
@@ -27,11 +27,12 @@ public class myFrame extends JFrame{
         exitButtonMenu.setBounds(860, 700, 100, 30);
 
         createStartPanel();
-
         createMainMenuPanel();
-
+        mainMenuPanel.add(exitButtonStart);
         createChefPanel();
         chefPanel.add(exitButtonMenu);
+        createCookPanel();
+        cookPanel.add(exitButtonMenu);
 
         setSize(1000, 800);
         setTitle("Restaurant");
@@ -58,35 +59,15 @@ public class myFrame extends JFrame{
                 switchPanel(chefPanel);
             }
         });
-        waiterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //test purpose
-//                List<Plate> dishDummy1 = Arrays.asList(new Plate("Carbonara", 2,8.00), new Plate("Amatriciana",2,10.00));
-//                List<Plate> dishDummy2 = Arrays.asList((new Plate("Firoentina", 3, 25.00), new Plate("Stufato", 3, 25.00));
-//                ArrayList<Plate> array1 = new ArrayList<>();
-//                ArrayList<Plate> array2 = new ArrayList<>();
-//                array1.addAll(dishDummy1);
-//                array2.addAll(dishDummy2);
-//                restaurant.addArrayPlates(new ArrayList<Plate>());
-//                restaurant.addArrayPlates(array1);
-//                restaurant.addArrayPlates(array2);
-//                restaurant.addArrayPlates(new ArrayList<Plate>());
-                //test
-//                Waiter waiter1 = new Waiter();
-//                restaurant.addEmployee(waiter1);
-            }
-        });
-        exitButtonMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(mainMenuPanel);
-            }
-        });
+
+        // lambda functions: (parametro1, parametro2) -> { blocco di codice }
+        waiterButton.addActionListener(e -> switchPanel(waiterPanel));
+        cookButton.addActionListener(e -> switchPanel(cookPanel));
+        exitButtonMenu.addActionListener(e -> switchPanel(mainMenuPanel));
 
     }
 
-    public void createStartPanel(){
+    private void createStartPanel(){
         restaurant = new Restaurant();
         startPanel = new JPanel(new GridBagLayout());
         startButton = new JButton();
@@ -95,7 +76,7 @@ public class myFrame extends JFrame{
         startPanel.add(startButton);
     }
 
-    public void createMainMenuPanel() {
+    private void createMainMenuPanel() {
         mainMenuPanel = new JPanel(null);
 
         chefButton = new JButton();
@@ -119,49 +100,48 @@ public class myFrame extends JFrame{
         exitButtonStart.setText("BACK");
         exitButtonStart.setBounds(860, 700, 100, 30);
 
-        mainMenuPanel.add(Box.createVerticalGlue());
         mainMenuPanel.add(chefButton);
         mainMenuPanel.add(waiterButton);
         mainMenuPanel.add(cookButton);
         mainMenuPanel.add(cashierButton);
-        mainMenuPanel.add(exitButtonStart);
     }
 
-    public void createChefPanel(){
+    private void createChefPanel(){
         //logic
         Chef chef = new Chef(4);
         restaurant.setChef(chef);
-        //graphic
+        //graphics
         chefPanel = new JPanel();
         chefPanel.setLayout(null);
 
-        JPanel topPanel = new JPanel();
+        JPanel topChefPanel = new JPanel();
         //uncomment to see the panel
-//        topPanel.setBackground(Color.GREEN);
-        chefPanel.add(topPanel);
+//        topChefPanel.setBackground(Color.GREEN);
+        chefPanel.add(topChefPanel);
 
-        JPanel midPanel1 = new JPanel();
+        JPanel midChefPanel1 = new JPanel();
         //uncomment to see the panel
-//        midPanel1.setBackground(Color.BLACK);
-        chefPanel.add(midPanel1);
+//        midChefPanel1.setBackground(Color.BLACK);
+        chefPanel.add(midChefPanel1);
 
-        JPanel midPanel2 = new JPanel();
+        JPanel midChefPanel2 = new JPanel();
         //uncomment to see the panel
-//        midPanel2.setBackground(Color.RED);
-        chefPanel.add(midPanel2);
+//        midChefPanel2.setBackground(Color.RED);
+        chefPanel.add(midChefPanel2);
 
-        JPanel botPanel = new JPanel();
+        JPanel botChefPanel = new JPanel();
         //uncomment to see the panel
-//        botPanel.setBackground(Color.BLUE);
-        chefPanel.add(botPanel);
+//        botChefPanel.setBackground(Color.BLUE);
+        chefPanel.add(botChefPanel);
 
         //--------------------------------
         //--------topPanel
         //--------------------------------
-        topPanel.setBounds(0, 0, FRAME_WIDTH, 90);
+
+        topChefPanel.setBounds(0, 0, FRAME_WIDTH, 90);
         //panel borders and layout
-        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
-        topPanel.setLayout(new BorderLayout(5, 5));
+        topChefPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
+        topChefPanel.setLayout(new BorderLayout(5, 5));
         //panel components
         JLabel frameTitle = new JLabel("Chef Control Panel");
         frameTitle.setFont(new Font("Comic Sans", Font.BOLD, 20));
@@ -182,14 +162,19 @@ public class myFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 //checks for valid input from textfield
                 boolean editValid = textFieldTop.isEditValid();
-                if (editValid) {
-                    Integer intInputValue = Integer.parseInt(textFieldTop.getText());
-                    chef.setTablesLists(intInputValue);
-                    chef.setTablesAttribute(intInputValue);
-                    restaurant.setTablesAttribute(intInputValue);
-                    JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
-                }else{
-                    JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
+                try{
+                    if (editValid) {
+                        Integer intInputValue = Integer.parseInt(textFieldTop.getText());
+                        chef.setTablesLists(intInputValue);
+                        chef.setTablesAttribute(intInputValue);
+                        restaurant.setTablesAttribute(intInputValue);
+                        JOptionPane.showMessageDialog(topChefPanel, "Number of Tables is now set to: " + textFieldTop.getText());
+                    }else{
+                        JOptionPane.showMessageDialog(topChefPanel, "Insert only numerical value");
+                    }
+
+                }catch (NumberFormatException ne){
+                    JOptionPane.showMessageDialog(topChefPanel, "Please write an integer in the Text Field");
                 }
             }
         };
@@ -197,20 +182,21 @@ public class myFrame extends JFrame{
         textFieldTop.addActionListener(numberOfTablesListener);
         enterTextButton.addActionListener(numberOfTablesListener);
 
-        topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
-        topPanel.add(textFieldLabel, BorderLayout.WEST);
-        topPanel.add(textFieldTop, BorderLayout.CENTER);
-        topPanel.add(enterTextButton, BorderLayout.EAST);
-        topPanel.add(new JLabel("Add entries here: "), BorderLayout.SOUTH);
+        topChefPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
+        topChefPanel.add(textFieldLabel, BorderLayout.WEST);
+        topChefPanel.add(textFieldTop, BorderLayout.CENTER);
+        topChefPanel.add(enterTextButton, BorderLayout.EAST);
+        topChefPanel.add(new JLabel("Add entries here: "), BorderLayout.SOUTH);
 
 
         //--------------------------------
         //--------midPanel1---------------
         //--------------------------------
-        midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);
+
+        midChefPanel1.setBounds(0, 90, FRAME_WIDTH, 65);
         //panel borders and layout
-        midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
-        midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));
+        midChefPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
+        midChefPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));
 
         //panel components
         JTextField nameTextField = new JTextField();
@@ -242,28 +228,29 @@ public class myFrame extends JFrame{
         JButton addButton = new JButton("ADD");
         JButton deleteButton = new JButton("DELETE");
         addButton.addActionListener(menuEntryField);
-        midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
+        midChefPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
 
-        midPanel1.add(new JLabel("Dish's name: "));
-        midPanel1.add(nameTextField);
-        midPanel1.add(new JLabel("Category: "));
-        midPanel1.add(categoryTextField);
-        midPanel1.add(new JLabel("Price: "));
-        midPanel1.add(priceTextField);
+        midChefPanel1.add(new JLabel("Dish's name: "));
+        midChefPanel1.add(nameTextField);
+        midChefPanel1.add(new JLabel("Category: "));
+        midChefPanel1.add(categoryTextField);
+        midChefPanel1.add(new JLabel("Price: "));
+        midChefPanel1.add(priceTextField);
         //buttons and spacers
-        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));
-        midPanel1.add(addButton);
-        midPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));
-        midPanel1.add(deleteButton);
+        midChefPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));
+        midChefPanel1.add(addButton);
+        midChefPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));
+        midChefPanel1.add(deleteButton);
 
 
         //-----------------------------
         //-------midPanel2
         //-----------------------------
-        midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);
+
+        midChefPanel2.setBounds(0, 155, FRAME_WIDTH, 300);
         //panel borders and layout
-        midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        midPanel2.setLayout(new BorderLayout(5,5));
+        midChefPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        midChefPanel2.setLayout(new BorderLayout(5,5));
 
         //panel components
         JLabel readLabel = new JLabel("Menu content: ");
@@ -295,19 +282,17 @@ public class myFrame extends JFrame{
         displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
 
-        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
-        midPanel2.add(displayMenu, BorderLayout.CENTER);
-
+        midChefPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
+        midChefPanel2.add(displayMenu, BorderLayout.CENTER);
 
         //-----------------------------
         //-------botPanel
         //-----------------------------
-        botPanel.setBounds(0, 460, FRAME_WIDTH, 100);
-        //uncomment to see the panel
-//        botPanel.setBackground(Color.BLUE);
+
+        botChefPanel.setBounds(0, 460, FRAME_WIDTH, 100);
         //panel borders and layout
-        botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
-        botPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
+        botChefPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
+        botChefPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
 
         //panel components
         JLabel directoryLabel = new JLabel("File menu location: ");
@@ -350,10 +335,10 @@ public class myFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 try{
                     chef.writeMenu();
-                    JOptionPane.showMessageDialog(botPanel, "CSV file written");
+                    JOptionPane.showMessageDialog(botChefPanel, "CSV file written");
                 }catch (IOException e1){
                     e1.printStackTrace();
-                    JOptionPane.showMessageDialog(botPanel, "An error as occurred and the CSV file has not been written");
+                    JOptionPane.showMessageDialog(botChefPanel, "An error as occurred and the CSV file has not been written");
                 }
             }
         });
@@ -362,21 +347,93 @@ public class myFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 restaurant.loadMenuFromChef();
-                JOptionPane.showMessageDialog(botPanel, "Restaurant Array updated");
+                JOptionPane.showMessageDialog(botChefPanel, "Restaurant Array updated");
             }
         });
 
-        botPanel.add(directoryLabel);
-        botPanel.add(directoryTextField);
-        botPanel.add(updateButton);
-        botPanel.add(readButton);
-        botPanel.add(writeButton);
-        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(620,2),new Dimension(620,2)));
-        botPanel.add(dataRestaurantButton);
+        botChefPanel.add(directoryLabel);
+        botChefPanel.add(directoryTextField);
+        botChefPanel.add(updateButton);
+        botChefPanel.add(readButton);
+        botChefPanel.add(writeButton);
+        botChefPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(620,2),new Dimension(620,2)));
+        botChefPanel.add(dataRestaurantButton);
     }
 
+    private void createCookPanel() {
+        //logic
+        Cook cook = new Cook();
+        restaurant.addEmployee(cook);
+        //
+        cookPanel = new JPanel();
+        cookPanel.setLayout(null);
+        //3 panels - top/mid/bot panels
 
-    public void switchPanel(JPanel panelToSwitch){
+        //############
+        //---topPanel
+        //############
+
+        FlowLayout flow = new FlowLayout();
+        flow.setAlignment(FlowLayout.LEADING);
+        JPanel topCookPanel = new JPanel(flow);
+        //Uncomment to see the Panel
+//        topCookPanel.setBackground(Color.CYAN);
+        //
+        topCookPanel.setBounds(0,0, FRAME_WIDTH, 35);
+        topCookPanel.setBorder(BorderFactory.createEmptyBorder(5,10,0,10));
+        //Components
+        JLabel titleLabel = new JLabel("Cook Panel");
+        titleLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        JButton refreshButton = new JButton("REFRESH");
+        refreshButton.addActionListener(e -> {});
+        //
+        cookPanel.add(topCookPanel);
+
+        topCookPanel.add(titleLabel);
+
+        //############
+        //---midPanel
+        //############
+
+        JPanel midCookPanel = new JPanel(new BorderLayout(5,5));
+        //Uncomment to see the Panel
+//        midCookPanel.setBackground(Color.ORANGE);
+        //
+        midCookPanel.setBounds(0,35,FRAME_WIDTH,400);
+        midCookPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
+        //Components constructors and methods call
+        JLabel orderListLabel = new JLabel("Select the orders to evade here");
+        orderListLabel.setFont(new Font("Comic Sans", Font.PLAIN, 12));
+
+        DefaultListModel<Order<Plate>> orderDefaultListModel = new DefaultListModel<>();
+        JList orderList = new JList(orderDefaultListModel);
+        JScrollPane orderScrollPane = new JScrollPane(orderList);
+        //
+        cookPanel.add(midCookPanel);
+
+        midCookPanel.add(orderListLabel, BorderLayout.BEFORE_FIRST_LINE);
+        midCookPanel.add(orderScrollPane, BorderLayout.CENTER);
+
+        //############
+        //---botPanel
+        //############
+
+        JPanel botCookPanel= new JPanel(flow);
+        //Uncomment to see the Panel
+//        botCookPanel.setBackground(Color.YELLOW);
+        //
+        botCookPanel.setBounds(0,430, FRAME_WIDTH, 40);
+        botCookPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
+        //Components constructors and methods call
+        JButton evadeButton = new JButton("EVADE");
+        //
+        cookPanel.add(botCookPanel);
+
+        botCookPanel.add(evadeButton);
+
+    }
+
+    private void switchPanel(JPanel panelToSwitch){
         getContentPane().removeAll();
         getContentPane().add(panelToSwitch);
         revalidate();

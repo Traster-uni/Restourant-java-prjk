@@ -10,7 +10,7 @@ public class Cook extends Employee{
     private String cookedDirectory;
     private String allOrders;
     private Order<Plate> orderToPrepare;
-    private Order<Plate> orderReady;
+    private Order<Plate> orderReady; //?
 
     /**
      * Default constructor for Cook object calls
@@ -21,11 +21,11 @@ public class Cook extends Employee{
         allOrders = "Plate, category, price\n";
         cookedDirectory = "";
         orderToPrepare = new Order<>();
-        orderReady = new Order<>();
+        orderReady = new Order<>(); //?
     }
 
     /**
-     * Default constructor for Waiter object calls
+     * Default constructor for Cook object calls
      * super class constructor by default.
      * @param initialCookedDirectory - name of cooked directory
      */
@@ -34,7 +34,7 @@ public class Cook extends Employee{
         allOrders = "Plate;category;price\n";
         cookedDirectory = initialCookedDirectory;
         orderToPrepare = new Order<>();
-        orderReady = new Order<>();
+        orderReady = new Order<>(); //?
     }
 
     /**
@@ -42,7 +42,7 @@ public class Cook extends Employee{
      * @param num - table number
      */
     public void setServedTable(Integer num){
-        super.setServedTable(num);
+        super.setServedTable(num);          //redacted by Jlist
     }
 
     /**

@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class">
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="added functionality to commit changes in the menu to the Restarant main class.">
+      <change afterPath="$PROJECT_DIR$/logic/src/WrongOrderException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Cook.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Cook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -441,7 +443,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632154531401</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="added functionality to commit changes in the menu to the Restarant main class.">
+      <created>1632155186868</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1632155186868</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -472,7 +481,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="simple change line 158 Restourant" />
     <MESSAGE value="Added the container class Order with a status attribute to be applied to the object in the moment of creation, the modifier classes of the project must be modified accordingly." />
     <MESSAGE value="Modified Order.java to behave like an ArrayList but with a String attribute attached to it" />
     <MESSAGE value="added Java.doc" />
@@ -497,7 +505,8 @@
     <MESSAGE value="Solved various issues with the writer and read method in the class chef. Added Various tester for those method." />
     <MESSAGE value="//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}" />
     <MESSAGE value="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class" />
-    <option name="LAST_COMMIT_MESSAGE" value="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class" />
+    <MESSAGE value="added functionality to commit changes in the menu to the Restarant main class." />
+    <option name="LAST_COMMIT_MESSAGE" value="added functionality to commit changes in the menu to the Restarant main class." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
