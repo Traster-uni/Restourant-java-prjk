@@ -10,10 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 //class Cheff
 //	attributi:
@@ -69,13 +66,10 @@ public class Chef extends Restaurant{
      * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
      * @param tablesNumbs - number of tables present in the Restaurant
      */
-    protected void setTablesLists(Integer tablesNumbs) {
-        setTablesAttribute(tablesNumbs);
-        for(int i = 0; i < tablesNumbs; i++) {
-            orderDict.put(i, new ArrayList<>());
-            payableDict.put(i, new ArrayList<>());
-        }
-    }
+//    protected void setTables(Integer tablesNumbs) {
+//        setTablesLists(tablesNumbs);
+//        setTablesAttribute(tablesNumbs);
+//    }
     /**
      *  Sets the number of type of dishes that the restaurant will be serving
      * @param newQuantities

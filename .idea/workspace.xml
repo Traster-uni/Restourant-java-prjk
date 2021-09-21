@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="New Exception for the OrderClass">
-      <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment=".">
+      <change afterPath="$PROJECT_DIR$/logic/test/ChefTester2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,16 +81,16 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.myFrame">
-    <configuration name="ChefPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChefPanel" />
+  <component name="RunManager" selected="Application.ChefTester2">
+    <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChefTest" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ChefTest" />
+    <configuration name="ChefTester2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ChefTester2" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,19 +118,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.ChefPanel" />
       <item itemvalue="Application.RestaurantTester2" />
       <item itemvalue="Application.myFrame" />
       <item itemvalue="Application.ChefTest" />
       <item itemvalue="Application.ReadMenuTest" />
+      <item itemvalue="Application.ChefTester2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ChefTester2" />
         <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.ChefTest" />
         <item itemvalue="Application.ReadMenuTest" />
         <item itemvalue="Application.RestaurantTester2" />
-        <item itemvalue="Application.ChefPanel" />
       </list>
     </recent_temporary>
   </component>
@@ -453,7 +458,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632236673641</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="solved simple anchoring issue">
+      <created>1632236901825</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1632236901825</updated>
+    </task>
+    <task id="LOCAL-00047" summary=".">
+      <created>1632237054999</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1632237054999</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -484,7 +503,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Modified Order.java to behave like an ArrayList but with a String attribute attached to it" />
     <MESSAGE value="added Java.doc" />
     <MESSAGE value="Ho fatto la scherma iniziale" />
     <MESSAGE value="Ho fatto la finestra iniziale" />
@@ -500,7 +518,6 @@
     <MESSAGE value="corrected error in test case" />
     <MESSAGE value="Layout of the Chef panel completed, lacks implementation of action listeners" />
     <MESSAGE value="Heavly modified the ChefPanel content, ActionListeners are work-in-progress" />
-    <MESSAGE value="." />
     <MESSAGE value="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior." />
     <MESSAGE value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
     <MESSAGE value="Resolved strange behaviors of the chefs textFields" />
@@ -509,7 +526,9 @@
     <MESSAGE value="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class" />
     <MESSAGE value="added functionality to commit changes in the menu to the Restarant main class." />
     <MESSAGE value="New Exception for the OrderClass" />
-    <option name="LAST_COMMIT_MESSAGE" value="New Exception for the OrderClass" />
+    <MESSAGE value="solved simple anchoring issue" />
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -526,6 +545,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="8" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/logic/test/ChefTester2.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

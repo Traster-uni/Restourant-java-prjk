@@ -106,6 +106,20 @@ public class Restaurant {
         this.tablesNumbs = tablesAttribute;
     }
 
+    /**
+     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
+     * @param tablesNumbs - number of tables present in the Restaurant
+     */
+    protected void setTablesLists(Integer tablesNumbs) {
+        ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
+        for (Integer i = 1; i <= tablesNumbs; i++){
+            orderDict.put(i, orderPlate);
+            payableDict.put(i, orderPlate);
+        }
+        System.out.println(orderDict.toString());
+        System.out.println(payableDict.toString());
+    }
+
     public void setChef(Chef newChef){
         this.chef = newChef;
     }
@@ -117,6 +131,10 @@ public class Restaurant {
         employeeArrayList.add(newEmployee);
     }
 
+    public void setDictionaries(HashMap dict){
+        orderDict = dict;
+        payableDict = dict;
+    }
     /**
      * Adds a new order to be prepared by the kitchen.
      * @param tableNumber - the number of the tables that refers to the order.
