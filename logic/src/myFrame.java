@@ -325,7 +325,7 @@ public class myFrame extends JFrame{
                     }
                 } catch (IOException e2){
                     e2.printStackTrace();
-                    JOptionPane.showMessageDialog(writeButton, "Reading the file is impossible, check for extension in the name.");
+                    JOptionPane.showMessageDialog(botChefPanel, "Reading the file is impossible, check for extension in the name.");
                 }
             }
         });
