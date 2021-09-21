@@ -123,7 +123,7 @@ public class Restaurant {
      * @param orderArray - the Array containing a list of dishes
      */
     public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){
-        this.orderDict.get(tableNumber).add(newOrder);
+        this.orderDict.get(tableNumber - 1).add(newOrder);
     }
 
     //test methods
