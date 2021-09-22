@@ -47,33 +47,13 @@ public class Fram3 extends JFrame{
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(mainMenuPanel);
-            }
-        });
+        startButton.addActionListener( e -> switchPanel(mainMenuPanel));
 
-        exitButtonStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(startPanel);
-            }
-        });
+        exitButtonStart.addActionListener( e -> switchPanel(startPanel));
 
-        chefButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(chefPanel);
-            }
-        });
+        chefButton.addActionListener( e -> switchPanel(chefPanel));
 
-        exitButtonMenu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(mainMenuPanel);
-            }
-        });
+        exitButtonMenu.addActionListener( e -> switchPanel(mainMenuPanel));
 
         waiterButton.addActionListener(new ActionListener() {
             @Override
