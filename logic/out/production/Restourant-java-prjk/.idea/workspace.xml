@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nella classe Frame ho creato 3 panelli con alcuni pulsanti usando java SWING">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -77,7 +74,7 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ChefTester2">
+  <component name="RunManager" selected="Application.Fram3">
     <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChefTest" />
       <module name="Restourant-java-prjk" />
@@ -92,15 +89,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
+    <configuration name="Fram3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Fram3" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RestaurantTester2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="RestaurantTester2" />
+    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -114,19 +111,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.RestaurantTester2" />
       <item itemvalue="Application.myFrame" />
       <item itemvalue="Application.ChefTest" />
       <item itemvalue="Application.ReadMenuTest" />
       <item itemvalue="Application.ChefTester2" />
+      <item itemvalue="Application.Fram3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Fram3" />
         <item itemvalue="Application.ChefTester2" />
         <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.ChefTest" />
         <item itemvalue="Application.ReadMenuTest" />
-        <item itemvalue="Application.RestaurantTester2" />
       </list>
     </recent_temporary>
   </component>

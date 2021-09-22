@@ -13,11 +13,7 @@ public class ChefTester2 {
         Chef chef = new Chef();
         restaurant.setChef(chef);
 
-<<<<<<< HEAD
-        chef.setTablesLists(4);
-=======
         restaurant.setTablesLists(7);
->>>>>>> origin/main
 
         System.out.println(restaurant.getOrderDict());
         System.out.println(restaurant.getOrderDict().toString());

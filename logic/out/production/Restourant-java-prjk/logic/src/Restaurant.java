@@ -97,7 +97,6 @@ public class Restaurant {
         return payableDict;
     }
 
-
     public void loadMenuFromChef(){
         this.menuArray = chef.getBufferPlate();
     }
@@ -116,8 +115,8 @@ public class Restaurant {
             orderDict.put(i, orderPlate);
             payableDict.put(i, orderPlate);
         }
-        System.out.println(orderDict.toString());
-        System.out.println(payableDict.toString());
+        System.out.println("from setTablesList method: " + orderDict.toString());
+        System.out.println("from setTablesList method: " + payableDict.toString());
     }
 
     public void setChef(Chef newChef){
@@ -141,7 +140,7 @@ public class Restaurant {
      * @param orderArray - the Array containing a list of dishes
      */
     public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){
-        this.orderDict.get(tableNumber - 1).add(newOrder);
+        this.orderDict.get(tableNumber).add(newOrder);
     }
 
     //test methods
