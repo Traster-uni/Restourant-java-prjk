@@ -1,0 +1,1316 @@
+Index: logic/src/Cook.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.awt.desktop.SystemSleepEvent;\r\nimport java.io.BufferedWriter;\r\nimport java.io.File;\r\nimport java.io.FileWriter;\r\nimport java.io.IOException;\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\npublic class Cook extends Employee{\r\n    private String cookedDirectory;\r\n    private String allOrders;\r\n    private Order<Plate> orderToPrepare;\r\n    private Order<Plate> orderReady; //?\r\n\r\n    /**\r\n     * Default constructor for Cook object calls\r\n     * super class constructor by default with no arguments.\r\n     */\r\n    public Cook() {\r\n        super();\r\n        allOrders = \"Plate, category, price\\n\";\r\n        cookedDirectory = \"\";\r\n        orderToPrepare = new Order<>();\r\n        orderReady = new Order<>(); //?\r\n    }\r\n\r\n    /**\r\n     * Default constructor for Cook object calls\r\n     * super class constructor by default.\r\n     * @param initialCookedDirectory - name of cooked directory\r\n     */\r\n    public Cook(String initialCookedDirectory) {\r\n        super();\r\n        allOrders = \"Plate;category;price\\n\";\r\n        cookedDirectory = initialCookedDirectory;\r\n        orderToPrepare = new Order<>();\r\n        orderReady = new Order<>(); //?\r\n    }\r\n\r\n    /**\r\n     * Selects a table for service.\r\n     * @param num - table number\r\n     */\r\n    public void setServedTable(Integer num){\r\n        super.setServedTable(num);          //redacted by Jlist\r\n    }\r\n\r\n    /**\r\n     * Selects an order to prepare.\r\n     * @param restaurant - our restaurant\r\n     */\r\n    public void selectOrderToPrepare(Restaurant restaurant){\r\n        HashMap< Integer, ArrayList<Order<Plate>> > tableOrders = restaurant.getOrderDict();\r\n        orderToPrepare = tableOrders.get(super.getServedTable()).get(0);\r\n        restaurant.deleteOrder(super.getServedTable(), orderToPrepare);\r\n        for (int i=0; i<orderToPrepare.size(); i++)\r\n        {\r\n            Plate currentPlate = orderToPrepare.get(i);\r\n            allOrders += currentPlate.getName() +\";\" + currentPlate.getCategory() +\";\" +\r\n                    String.format(\"%.2f\", currentPlate.getPrize()).replace(\",\",\".\") + \"\\n\";\r\n        }\r\n        allOrders += \"\\n\" + \"\\n\";\r\n    }\r\n\r\n    /**\r\n     * Prepares one plate from the order.\r\n     * @param namePlate - plate name\r\n     */\r\n    public void preparePlate(String namePlate){\r\n        Plate currentPlate = new Plate();\r\n        for (int i=0; i < orderToPrepare.size(); i++){\r\n            Plate tempPlate = orderToPrepare.get(i);\r\n            if (tempPlate.getName().toLowerCase().equals(namePlate.toLowerCase()))\r\n            {\r\n                currentPlate = tempPlate;\r\n            }\r\n        }\r\n        orderReady.add(currentPlate);\r\n        orderToPrepare.remove(currentPlate);\r\n    }\r\n\r\n    /**\r\n     * Checks if the order is ready.\r\n     * Writes the order to a file and sends it for payment.\r\n     * @param restaurant - our restaurant\r\n     * @return true if order is ready, false otherwise\r\n     */\r\n    //TODO risolvere la scrittura del file\r\n    public boolean checkPreparedOrder(Restaurant restaurant){\r\n        if (orderToPrepare.isEmpty()){\r\n            orderReady.setStatusOrder(\"evaded\");\r\n            restaurant.addPaymentDict(super.getServedTable(), orderReady);\r\n            try {\r\n                File inputFile = new File(cookedDirectory);\r\n                FileWriter fileWriter = new FileWriter(inputFile);\r\n                if (!inputFile.exists()) {\r\n                    boolean created = inputFile.createNewFile();\r\n                    fileWriter.write(allOrders);\r\n                }\r\n                else {\r\n                    BufferedWriter bufferedWritter = new BufferedWriter(fileWriter);\r\n                    bufferedWritter.write(allOrders);\r\n                    bufferedWritter.close();\r\n                }\r\n                fileWriter.flush();\r\n                fileWriter.close();\r\n                allOrders = \"\";\r\n            }\r\n            catch (IOException ex){\r\n                System.out.println(ex.getMessage());\r\n            }\r\n            orderReady = new Order<Plate>();\r\n            return true;\r\n        }\r\n        else{\r\n            return false;\r\n        }\r\n    }\r\n\r\n    public ArrayList<Plate> getOrderToPrepare() {\r\n        return orderToPrepare;\r\n    }\r\n\r\n    public ArrayList<Plate> getOrderReady() {\r\n        return orderReady;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Cook.java b/logic/src/Cook.java
+--- a/logic/src/Cook.java	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ b/logic/src/Cook.java	(date 1632245291642)
+@@ -7,10 +7,12 @@
+ import java.util.HashMap;
+ 
+ public class Cook extends Employee{
+-    private String cookedDirectory;
+-    private String allOrders;
+-    private Order<Plate> orderToPrepare;
+-    private Order<Plate> orderReady; //?
++//    private String cookedDirectory;
++//    private String allOrders;
++//    private Order<Plate> orderToPrepare;
++//    private Order<Plate> orderReady; //?
++    private HashMap< Integer, ArrayList<Order<Plate>> > allOrders;
++
+ 
+     /**
+      * Default constructor for Cook object calls
+@@ -18,110 +20,116 @@
+      */
+     public Cook() {
+         super();
+-        allOrders = "Plate, category, price\n";
+-        cookedDirectory = "";
+-        orderToPrepare = new Order<>();
+-        orderReady = new Order<>(); //?
++//        allOrders = "Plate, category, price\n";
++//        cookedDirectory = "";
++//        orderToPrepare = new Order<>();
++//        orderReady = new Order<>(); //?
++        allOrders = new HashMap<>();
+     }
+ 
+     /**
+      * Default constructor for Cook object calls
+      * super class constructor by default.
+-     * @param initialCookedDirectory - name of cooked directory
++//     * @param initialCookedDirectory - name of cooked directory
+      */
+-    public Cook(String initialCookedDirectory) {
++    public Cook(Restaurant restaurant) {
+         super();
+-        allOrders = "Plate;category;price\n";
+-        cookedDirectory = initialCookedDirectory;
+-        orderToPrepare = new Order<>();
+-        orderReady = new Order<>(); //?
++//        allOrders = "Plate;category;price\n";
++//        cookedDirectory = initialCookedDirectory;
++//        orderToPrepare = new Order<>();
++//        orderReady = new Order<>(); //?
++        allOrders = restaurant.getOrderDict();
+     }
+ 
+-    /**
+-     * Selects a table for service.
+-     * @param num - table number
+-     */
+-    public void setServedTable(Integer num){
+-        super.setServedTable(num);          //redacted by Jlist
++    public void prepareOrder(Order order, Restaurant restaurant){
++        restaurant.deleteOrder(getServedTable(), order);
++        restaurant.addPaymentDict(getServedTable(), order);
+     }
++//    /**
++//     * Selects a table for service.
++//     * @param num - table number
++//     */
++//    public void setServedTable(Integer num){
++//        super.setServedTable(num);    //?      //redacted by Jlist
++//    }
+ 
+     /**
+      * Selects an order to prepare.
+      * @param restaurant - our restaurant
+      */
+-    public void selectOrderToPrepare(Restaurant restaurant){
+-        HashMap< Integer, ArrayList<Order<Plate>> > tableOrders = restaurant.getOrderDict();
+-        orderToPrepare = tableOrders.get(super.getServedTable()).get(0);
+-        restaurant.deleteOrder(super.getServedTable(), orderToPrepare);
+-        for (int i=0; i<orderToPrepare.size(); i++)
+-        {
+-            Plate currentPlate = orderToPrepare.get(i);
+-            allOrders += currentPlate.getName() +";" + currentPlate.getCategory() +";" +
+-                    String.format("%.2f", currentPlate.getPrize()).replace(",",".") + "\n";
+-        }
+-        allOrders += "\n" + "\n";
+-    }
++//    public void selectOrderToPrepare(){
++//        HashMap< Integer, ArrayList<Order<Plate>> > tableOrders = restaurant.getOrderDict();
++//        orderToPrepare = tableOrders.get(super.getServedTable()).get(0);
++//        restaurant.deleteOrder(super.getServedTable(), orderToPrepare);
++//        for (int i=0; i<orderToPrepare.size(); i++)
++//        {
++//            Plate currentPlate = orderToPrepare.get(i);
++////            allOrders += currentPlate.getName() +";" + currentPlate.getCategory() +";" +
++////                    String.format("%.2f", currentPlate.getPrize()).replace(",",".") + "\n";
++//        }
++//        allOrders += "\n" + "\n";
++//    }
+ 
+-    /**
+-     * Prepares one plate from the order.
+-     * @param namePlate - plate name
+-     */
+-    public void preparePlate(String namePlate){
+-        Plate currentPlate = new Plate();
+-        for (int i=0; i < orderToPrepare.size(); i++){
+-            Plate tempPlate = orderToPrepare.get(i);
+-            if (tempPlate.getName().toLowerCase().equals(namePlate.toLowerCase()))
+-            {
+-                currentPlate = tempPlate;
+-            }
+-        }
+-        orderReady.add(currentPlate);
+-        orderToPrepare.remove(currentPlate);
+-    }
++//    /**
++//     * Prepares one plate from the order.
++//     * @param namePlate - plate name
++//     */
++//    public void preparePlate(String namePlate){
++//        Plate currentPlate = new Plate();
++//        for (int i=0; i < orderToPrepare.size(); i++){
++//            Plate tempPlate = orderToPrepare.get(i);
++//            if (tempPlate.getName().toLowerCase().equals(namePlate.toLowerCase()))
++//            {
++//                currentPlate = tempPlate;
++//            }
++//        }
++//        orderReady.add(currentPlate);
++//        orderToPrepare.remove(currentPlate);
++//    }
+ 
+-    /**
+-     * Checks if the order is ready.
+-     * Writes the order to a file and sends it for payment.
+-     * @param restaurant - our restaurant
+-     * @return true if order is ready, false otherwise
+-     */
+-    //TODO risolvere la scrittura del file
+-    public boolean checkPreparedOrder(Restaurant restaurant){
+-        if (orderToPrepare.isEmpty()){
+-            orderReady.setStatusOrder("evaded");
+-            restaurant.addPaymentDict(super.getServedTable(), orderReady);
+-            try {
+-                File inputFile = new File(cookedDirectory);
+-                FileWriter fileWriter = new FileWriter(inputFile);
+-                if (!inputFile.exists()) {
+-                    boolean created = inputFile.createNewFile();
+-                    fileWriter.write(allOrders);
+-                }
+-                else {
+-                    BufferedWriter bufferedWritter = new BufferedWriter(fileWriter);
+-                    bufferedWritter.write(allOrders);
+-                    bufferedWritter.close();
+-                }
+-                fileWriter.flush();
+-                fileWriter.close();
+-                allOrders = "";
+-            }
+-            catch (IOException ex){
+-                System.out.println(ex.getMessage());
+-            }
+-            orderReady = new Order<Plate>();
+-            return true;
+-        }
+-        else{
+-            return false;
+-        }
+-    }
++//    /**
++//     * Checks if the order is ready.
++//     * Writes the order to a file and sends it for payment.
++//     * @param restaurant - our restaurant
++//     * @return true if order is ready, false otherwise
++//     */
++//    //TODO cambiare il nome
++//    public boolean checkPreparedOrder(Restaurant restaurant){
++////        if (orderToPrepare.isEmpty()){
++//            orderReady.setStatusOrder("evaded");
++//            restaurant.addPaymentDict(super.getServedTable(), orderReady);
++////            try {
++////                File inputFile = new File(cookedDirectory);
++////                FileWriter fileWriter = new FileWriter(inputFile);
++////                if (!inputFile.exists()) {
++////                    boolean created = inputFile.createNewFile();
++////                    fileWriter.write(allOrders);
++////                }
++////                else {
++////                    BufferedWriter bufferedWritter = new BufferedWriter(fileWriter);
++////                    bufferedWritter.write(allOrders);
++////                    bufferedWritter.close();
++////                }
++////                fileWriter.flush();
++////                fileWriter.close();
++////                allOrders = "";
++////            }
++////            catch (IOException ex){
++////                System.out.println(ex.getMessage());
++////            }
++//            orderReady = new Order<Plate>();
++//            return true;
++//        }
++//        else{
++//            return false;
++//        }
++//    }
+ 
+-    public ArrayList<Plate> getOrderToPrepare() {
+-        return orderToPrepare;
+-    }
++//    public ArrayList<Plate> getOrderToPrepare() {
++//        return orderToPrepare;
++//    }
+ 
+-    public ArrayList<Plate> getOrderReady() {
+-        return orderReady;
+-    }
++//    public ArrayList<Plate> getOrderReady() {
++//        return orderReady;
++//    }
+ }
+Index: logic/src/Restaurant.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\r\n  Created by Tommaso M. Lopedote on 21/07/2021\r\n  Time: 18:43\r\n  Project: Restourant-java-prjk\r\n */\r\n\r\nimport org.jetbrains.annotations.NotNull;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\n/**\r\n * class Ristorante:\r\n * \t\"contenitore di struttutre dati\"\r\n * \tattributi:\r\n * \t\tnomeRistorante: str\r\n * \t\tnumeroDiTavoli: determina le chiavi delle tabelle\r\n * \t\tCheff: contiene lo cheff, proprietario del risotriante\r\n * \t\tArrayList<Employee>: collezione di impioegati nel ristoriante\r\n * \t\tmenuArray: contiene i piatti letti dal file composto dalla classe Cheff\r\n * \t\ttabellaOrdine: \t\tnumTavolo : ArrayOrdine\r\n * \t\ttabellaPagamento:\tnumTavolo : ArrayPagamento\r\n * \t\t**\r\n * \tmetodi:\r\n * \t\tpublic sala():\r\n * \t\t\tcostruttore default\r\n * \t\tpublic sala(String nome, int numero, filepath)\r\n * \t\t\tgenera le Tabelle a partire dal numero di tavoli forniti, intanzia con un nome, genera il file del menu su cui la classe Cheff andra' a scrivere\r\n */\r\n\r\npublic class Restaurant {\r\n    private Integer tablesNumbs;\r\n    private Chef chef;\r\n    private ArrayList<Employee> employeeArrayList;\r\n    private ArrayList<ArrayList<Plate>> menuArray;\r\n    protected HashMap< Integer, ArrayList<Order<Plate>> > orderDict;\r\n    protected HashMap< Integer, ArrayList<Order<Plate>> > payableDict;\r\n\r\n    public Restaurant(){\r\n        this.tablesNumbs = 0;\r\n        this.chef = null;\r\n        employeeArrayList = new ArrayList<>();\r\n        menuArray = new ArrayList<>();\r\n        orderDict = new HashMap<>();\r\n        payableDict = new HashMap<>();\r\n    }\r\n\r\n    /**\r\n     *  Returns the number of tables in the Restaurant.\r\n     * @return tables\r\n     */\r\n    public Integer getTablesNumbs() {\r\n        return tablesNumbs;\r\n    }\r\n\r\n    /**\r\n     * Returns the Chef object.\r\n     * @return Chef instance\r\n     */\r\n    public Chef getChef() {\r\n        return chef;\r\n    }\r\n\r\n    /**\r\n     * Returns the collection of Employees working in the restaurant.\r\n     * @return Employees\r\n     */\r\n    public ArrayList<Employee> getEmployeeArray() {\r\n        return employeeArrayList;\r\n    }\r\n\r\n    /**\r\n     * Returns the menu Array o dishes orderable in the Restaurant.\r\n     * @return menuArray\r\n     */\r\n    public ArrayList<ArrayList<Plate>> getMenuArray() {\r\n        return menuArray;\r\n    }\r\n\r\n    public Integer getNumberOfTables(){\r\n        return tablesNumbs;\r\n    }\r\n\r\n    /**\r\n     * Returns a collection of table's numbers and Arrays of Array of dishes.\r\n     * @return OrderDictionary\r\n     */\r\n    public HashMap< Integer, ArrayList<Order<Plate> >> getOrderDict() {\r\n        return orderDict;\r\n    }\r\n\r\n    /**\r\n     * Returns the Dictionary containing the payable Orders evaded by the kitchen.\r\n     * @return Payable order Dictionary\r\n     */\r\n    public HashMap< Integer, ArrayList<Order<Plate> >> getPayableDict() {\r\n        return payableDict;\r\n    }\r\n\r\n\r\n    public void loadMenuFromChef(){\r\n        this.menuArray = chef.getBufferPlate();\r\n    }\r\n\r\n    public void setTablesAttribute(int tablesAttribute){\r\n        this.tablesNumbs = tablesAttribute;\r\n    }\r\n\r\n    /**\r\n     * Sets a new number of tables in the Restaurant and initializes the proper dictionaries\r\n     * @param tablesNumbs - number of tables present in the Restaurant\r\n     */\r\n    protected void setTablesLists(Integer tablesNumbs) {\r\n        ArrayList<Order<Plate>> orderPlate = new ArrayList<>();\r\n        for (Integer i = 1; i <= tablesNumbs; i++){\r\n            orderDict.put(i, orderPlate);\r\n            payableDict.put(i, orderPlate);\r\n        }\r\n        System.out.println(orderDict.toString());\r\n        System.out.println(payableDict.toString());\r\n    }\r\n\r\n    public void setChef(Chef newChef){\r\n        this.chef = newChef;\r\n    }\r\n    /**\r\n     * Adds to the array of Employees a new Employee instance\r\n     * @param newEmployee - a new Employee instance\r\n     */\r\n    public void addEmployee(Employee newEmployee){\r\n        employeeArrayList.add(newEmployee);\r\n    }\r\n\r\n    public void setDictionaries(HashMap dict){\r\n        orderDict = dict;\r\n        payableDict = dict;\r\n    }\r\n    /**\r\n     * Adds a new order to be prepared by the kitchen.\r\n     * @param tableNumber - the number of the tables that refers to the order.\r\n     * @param orderArray - the Array containing a list of dishes\r\n     */\r\n    public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){\r\n        this.orderDict.get(tableNumber - 1).add(newOrder);\r\n    }\r\n\r\n    //test methods\r\n    public void addArrayPlates(ArrayList<Plate> pArray){\r\n        menuArray.add(pArray);\r\n    }\r\n    /**\r\n     * Adds an evaded order to the to-be-Payed Dictionary.\r\n     * @param tablesNumbs - the number of the tables that refers to the order.\r\n     * @param tobePayedOrder - the Array of payable orders evaded by the kitchen.\r\n     */\r\n    public void addPaymentDict(Integer tablesNumbs, Order<Plate> tobePayedOrder){\r\n        this.payableDict.get(tablesNumbs).add(tobePayedOrder);\r\n    }\r\n\r\n    /**\r\n     * Deletes the first Array of dishes in the order Dictionary.\r\n     * @param tableNumber - table served\r\n     * @return True if the deletion is successful, False otherwise\r\n     */\r\n    public boolean deleteOrder(Integer tableNumber, Order<Plate> evadedOrder){\r\n        if (evadedOrder.equals(orderDict.get(tableNumber).get(0))) {\r\n            orderDict.get(tableNumber).remove(0);\r\n            return true;\r\n        }else{\r\n            return false;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Deletes the first array of orders contained into the Payable orders Dictionary defined by\r\n     * the number given for the table.\\\r\n     * Here's a reminder of the structure of the HashMap: HashMap< Integer, ArrayList<ArrayList<Plate>> >\r\n     * @param tableNumber - Number related to the table desired\r\n     * @return True if the deletion is successful, False otherwise.\r\n     */\r\n    public boolean deletePayedOrder(Integer tableNumber){\r\n        if (!payableDict.get(tableNumber).get(0).isEmpty()){\r\n            payableDict.get(tableNumber).clear();\r\n            return true;\r\n        } else {\r\n            return false;\r\n        }\r\n    }\r\n\r\n    //TODO: metodo dedito al confronto dei file csv generati dalle classi Cook e Cashier.\r\n    //TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Restaurant.java b/logic/src/Restaurant.java
+--- a/logic/src/Restaurant.java	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ b/logic/src/Restaurant.java	(date 1632304271703)
+@@ -113,6 +113,7 @@
+     protected void setTablesLists(Integer tablesNumbs) {
+         ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
+         for (Integer i = 1; i <= tablesNumbs; i++){
++//            ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
+             orderDict.put(i, orderPlate);
+             payableDict.put(i, orderPlate);
+         }
+@@ -141,7 +142,18 @@
+      * @param orderArray - the Array containing a list of dishes
+      */
+     public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){
+-        this.orderDict.get(tableNumber - 1).add(newOrder);
++        if (orderDict != null) {
++            if (orderDict.get(tableNumber) != null){
++                this.orderDict.get(tableNumber).add(newOrder);
++            }
++            else{
++                System.out.println("null pointer key");
++            }
++        }
++        else {
++            System.out.println("null pointer");
++        }
++
+     }
+ 
+     //test methods
+Index: logic/src/Waiter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\npublic class Waiter extends Employee{\r\n    private Order<Plate> order;\r\n\r\n    /**\r\n     * Default constructor for Waiter object calls\r\n     * super class constructor by default with no arguments.\r\n     */\r\n    public Waiter() {\r\n        super();\r\n        order = new Order<>();\r\n    }\r\n\r\n    /**\r\n     * Default constructor for Waiter object calls\r\n     * super class constructor by default.\r\n     * @param initialServedTable - the served table.\r\n     */\r\n    public Waiter(Integer initialServedTable){\r\n        super(initialServedTable);\r\n        order = new Order<>();\r\n    }\r\n\r\n    /**\r\n     * Adds the dish to the order list.\r\n     * @param plateName - plate name\r\n     * @param category - category\r\n     * @param restaurant - our restaurant\r\n     */\r\n    protected void addPlate(String plateName, Integer category, Restaurant restaurant){\r\n        ArrayList<ArrayList<Plate>> menu = restaurant.getMenuArray();\r\n        ArrayList<Plate> categoryMenu = menu.get(category-1);\r\n        for (int i = 0; i<categoryMenu.size(); i++){\r\n            Plate currentPlate = categoryMenu.get(i);\r\n            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))\r\n            {\r\n                order.add(currentPlate);\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Delete the dish to the order list.\r\n     * @param plateName - plate name.\r\n     */\r\n    protected void deletePlate(String plateName){\r\n        for (int i=0; i<order.size(); i++){\r\n            Plate currentPlate = order.get(i);\r\n            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))\r\n            {\r\n                order.remove(currentPlate);\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Submit the order in the order table and cancel the order.\r\n     * @param restaurant - our restaurant\r\n     */\r\n    protected void endOrder(Restaurant restaurant){\r\n        order.setStatusOrder(\"ready\");\r\n        restaurant.addOrderDict(super.getServedTable(), order);\r\n        order = new Order<>();\r\n    }\r\n\r\n    /**\r\n     * Sets a new served table.\r\n     * @param num - served table number\r\n     */\r\n    public void setServedTable(Integer num) {\r\n        super.setServedTable(num);\r\n    }\r\n\r\n    public ArrayList<Plate> getOrder() {\r\n        return order;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Waiter.java b/logic/src/Waiter.java
+--- a/logic/src/Waiter.java	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ b/logic/src/Waiter.java	(date 1632241498107)
+@@ -25,32 +25,23 @@
+ 
+     /**
+      * Adds the dish to the order list.
+-     * @param plateName - plate name
+-     * @param category - category
+-     * @param restaurant - our restaurant
++     * @param plate - plate name
+      */
+-    protected void addPlate(String plateName, Integer category, Restaurant restaurant){
+-        ArrayList<ArrayList<Plate>> menu = restaurant.getMenuArray();
+-        ArrayList<Plate> categoryMenu = menu.get(category-1);
+-        for (int i = 0; i<categoryMenu.size(); i++){
+-            Plate currentPlate = categoryMenu.get(i);
+-            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
+-            {
+-                order.add(currentPlate);
+-            }
+-        }
++    protected void addPlate(Plate plate){
++        order.add(plate);
+     }
+ 
+     /**
+      * Delete the dish to the order list.
+-     * @param plateName - plate name.
++     * @param plate - plate.
+      */
+-    protected void deletePlate(String plateName){
++    protected void deletePlate(Plate  plate){
+         for (int i=0; i<order.size(); i++){
+             Plate currentPlate = order.get(i);
+-            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
++            if (currentPlate.getName() == plate.getName())
+             {
+                 order.remove(currentPlate);
++                break;
+             }
+         }
+     }
+@@ -61,7 +52,7 @@
+      */
+     protected void endOrder(Restaurant restaurant){
+         order.setStatusOrder("ready");
+-        restaurant.addOrderDict(super.getServedTable(), order);
++        restaurant.addOrderDict(getServedTable(), order);
+         order = new Order<>();
+     }
+ 
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ /dev/null	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: logic/test/RestaurantTester.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.plaf.synth.SynthLookAndFeel;\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * Created by Tommaso M. Lopedote on 11/08/2021\r\n * Time: 18:09\r\n * Project: Restourant-java-prjk\r\n */\r\npublic class RestaurantTester {\r\n    public static void main(String[] args) {\r\n        Restaurant DaGino = new Restaurant();\r\n        Chef ginoChef = DaGino.getChef();\r\n        int tableNum = 5;\r\n\r\n\r\n        System.out.println(\"Welcome to Restourant \" );\r\n//        System.out.println(\"With 5 star micheline chef \"+ginoChef.getName());\r\n        System.out.println(\"Number of table at your disposal: \"+ DaGino.getTablesNumbs());\r\n\r\n//        Cook cook1 = new Cook();\r\n//        Waiter waiter = new Waiter();\r\n//        DaGino.addEmployee(cook1);\r\n//        DaGino.addEmployee(waiter);\r\n//        System.out.println(DaGino.getEmployeeArrayList());\r\n\r\n        String directory = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\menu.csv\";\r\n        ginoChef.setMenuDirectory(directory);\r\n        ginoChef.setNumberOfCategories(4);\r\n        try {\r\n            ginoChef.addNewDish(\"Pizza\", 2, 6.0);\r\n            ginoChef.addNewDish(\"Fritti Vari\", 1, 5.0);\r\n            ginoChef.addNewDish(\"Pizza\", 2, 6.0);\r\n        } catch (PlateAlreadyExistException p) {\r\n            System.out.println(\"AN ERROR OCCURRED\");\r\n            p.printStackTrace();\r\n        }\r\n\r\n//        ginoChef.writeMenu();\r\n//        System.out.println(ginoChef.getName()+\" ha scritto il menu\");\r\n        System.out.println(ginoChef.getBufferPlate());\r\n        ginoChef.clearBufferPlate();\r\n        System.out.println(\"Gino wiped the array\");\r\n//        ginoChef.readMenu();\r\n        System.out.println(\"Gino has read the menu\");\r\n        System.out.println(ginoChef.getBufferPlate());\r\n        DaGino.loadMenuFromChef();\r\n\r\n        System.out.println();\r\n        Waiter waiter = new Waiter(1);\r\n        waiter.addPlate(\"Pizza\", 2,  DaGino);\r\n        waiter.addPlate(\"Fritti Vari\",1, DaGino);\r\n        waiter.deletePlate(\"Fritti Vari\");\r\n//        ArrayList<Plate> plates = new ArrayList<>();\r\n//        plates.add(new Plate(\"Pasta\", 1, 7.0));\r\n//        DaGino.addOrderDict(1, plates);\r\n        waiter.endOrder(DaGino);\r\n\r\n        waiter.setServedTable(3);\r\n        waiter.addPlate(\"Fritti Vari\", 1, DaGino);\r\n        waiter.addPlate(\"Pizza\", 2, DaGino);\r\n        waiter.addPlate(\"Pizza\", 2, DaGino);\r\n        waiter.endOrder(DaGino);\r\n\r\n        waiter.setServedTable(1);\r\n        waiter.addPlate(\"Fritti Vari\", 1, DaGino);\r\n        waiter.endOrder(DaGino);\r\n        System.out.println(DaGino.getOrderDict());\r\n\r\n        String cookedDirectory = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\cooked.csv\";\r\n        Cook cook = new Cook(cookedDirectory);\r\n        System.out.println(\"Il cuoco sceglie il tavolo 1\");\r\n        cook.setServedTable(1);\r\n        cook.selectOrderToPrepare(DaGino);\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Pizza\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.checkPreparedOrder(DaGino);\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n\r\n        System.out.println();\r\n        System.out.println(\"Il cuoco sceglie il tavolo 3\");\r\n        cook.setServedTable(3);\r\n        cook.selectOrderToPrepare(DaGino);\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Fritti Vari\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Pizza\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Pizza\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.checkPreparedOrder(DaGino);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Il cuoco sceglie il tavolo 3\");\r\n        cook.setServedTable(1);\r\n        cook.selectOrderToPrepare(DaGino);\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Fritti Vari\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.checkPreparedOrder(DaGino);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Ordini non pagati: \" + DaGino.getPayableDict());\r\n        String payment = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\payment.csv\";\r\n        Cashier cashier = new Cashier(payment);\r\n        System.out.println(\"Il casiere sceglie il tavolo 1\");\r\n        cashier.setServedTable(1);\r\n        cashier.selectOrder(DaGino);\r\n        System.out.println(\"Il cliente deve pagare: \" + cashier.getPayment());\r\n        double amount = 20;\r\n        System.out.println(\"Il cliente riceve il resto: \" + cashier.giveChange(amount));\r\n        String receipt1 = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\receipt1.txt\";\r\n        cashier.printReceipt(receipt1, DaGino);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Ordini non pagati: \" + DaGino.getPayableDict());\r\n        cashier.setServedTable(3);\r\n        System.out.println(\"Il casiere sceglie il tavolo 3\");\r\n        cashier.selectOrder(DaGino);\r\n        System.out.println(\"Il cliente deve pagare: \" + cashier.getPayment());\r\n        double amount2 = 40;\r\n        System.out.println(\"Il cliente riceve il resto: \" + cashier.giveChange(amount2));\r\n        String receipt2 = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\receipt2.txt\";\r\n        cashier.printReceipt(receipt2, DaGino);\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/test/RestaurantTester.java b/logic/test/RestaurantTester.java
+--- a/logic/test/RestaurantTester.java	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ b/logic/test/RestaurantTester.java	(date 1632245291651)
+@@ -47,63 +47,63 @@
+ 
+         System.out.println();
+         Waiter waiter = new Waiter(1);
+-        waiter.addPlate("Pizza", 2,  DaGino);
+-        waiter.addPlate("Fritti Vari",1, DaGino);
+-        waiter.deletePlate("Fritti Vari");
++//        waiter.addPlate("Pizza", 2,  DaGino);
++//        waiter.addPlate("Fritti Vari",1, DaGino);
++//        waiter.deletePlate("Fritti Vari");
+ //        ArrayList<Plate> plates = new ArrayList<>();
+ //        plates.add(new Plate("Pasta", 1, 7.0));
+ //        DaGino.addOrderDict(1, plates);
+         waiter.endOrder(DaGino);
+ 
+-        waiter.setServedTable(3);
+-        waiter.addPlate("Fritti Vari", 1, DaGino);
+-        waiter.addPlate("Pizza", 2, DaGino);
+-        waiter.addPlate("Pizza", 2, DaGino);
+-        waiter.endOrder(DaGino);
+-
+-        waiter.setServedTable(1);
+-        waiter.addPlate("Fritti Vari", 1, DaGino);
+-        waiter.endOrder(DaGino);
+-        System.out.println(DaGino.getOrderDict());
+-
+-        String cookedDirectory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\cooked.csv";
+-        Cook cook = new Cook(cookedDirectory);
+-        System.out.println("Il cuoco sceglie il tavolo 1");
+-        cook.setServedTable(1);
+-        cook.selectOrderToPrepare(DaGino);
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.preparePlate("Pizza");
+-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.checkPreparedOrder(DaGino);
+-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        waiter.setServedTable(3);
++//        waiter.addPlate("Fritti Vari", 1, DaGino);
++//        waiter.addPlate("Pizza", 2, DaGino);
++//        waiter.addPlate("Pizza", 2, DaGino);
++//        waiter.endOrder(DaGino);
++//
++//        waiter.setServedTable(1);
++//        waiter.addPlate("Fritti Vari", 1, DaGino);
++//        waiter.endOrder(DaGino);
++//        System.out.println(DaGino.getOrderDict());
+ 
+-        System.out.println();
+-        System.out.println("Il cuoco sceglie il tavolo 3");
+-        cook.setServedTable(3);
+-        cook.selectOrderToPrepare(DaGino);
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.preparePlate("Fritti Vari");
+-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.preparePlate("Pizza");
+-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.preparePlate("Pizza");
+-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.checkPreparedOrder(DaGino);
+-
+-        System.out.println();
+-        System.out.println("Il cuoco sceglie il tavolo 3");
+-        cook.setServedTable(1);
+-        cook.selectOrderToPrepare(DaGino);
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.preparePlate("Fritti Vari");
+-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+-        cook.checkPreparedOrder(DaGino);
++//        String cookedDirectory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\cooked.csv";
++//        Cook cook = new Cook(cookedDirectory);
++//        System.out.println("Il cuoco sceglie il tavolo 1");
++//        cook.setServedTable(1);
++//        cook.selectOrderToPrepare(DaGino);
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.preparePlate("Pizza");
++//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.checkPreparedOrder(DaGino);
++//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//
++//        System.out.println();
++//        System.out.println("Il cuoco sceglie il tavolo 3");
++//        cook.setServedTable(3);
++//        cook.selectOrderToPrepare(DaGino);
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.preparePlate("Fritti Vari");
++//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.preparePlate("Pizza");
++//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.preparePlate("Pizza");
++//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.checkPreparedOrder(DaGino);
++//
++//        System.out.println();
++//        System.out.println("Il cuoco sceglie il tavolo 3");
++//        cook.setServedTable(1);
++//        cook.selectOrderToPrepare(DaGino);
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.preparePlate("Fritti Vari");
++//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
++//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
++//        cook.checkPreparedOrder(DaGino);
+ 
+         System.out.println();
+         System.out.println("Ordini non pagati: " + DaGino.getPayableDict());
+Index: menu.csv
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/menu.csv b/menu.csv
+new file mode 100644
+--- /dev/null	(date 1632241498131)
++++ b/menu.csv	(date 1632241498131)
+@@ -0,0 +1,2 @@
++Insalata;1;3.0;
++Pizza;2;6.0;
+Index: logic/src/Fram3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Fram3.java b/logic/src/Fram3.java
+new file mode 100644
+--- /dev/null	(date 1632243594025)
++++ b/logic/src/Fram3.java	(date 1632243594025)
+@@ -0,0 +1,621 @@
++import javax.swing.*;
++import javax.swing.event.ListSelectionEvent;
++import javax.swing.event.ListSelectionListener;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.awt.event.MouseAdapter;
++import java.awt.event.MouseEvent;
++import java.io.IOException;
++import java.text.DecimalFormat;
++import java.text.NumberFormat;
++import java.util.ArrayList;
++import java.util.Formattable;
++
++public class Fram3 extends JFrame{
++    final int FRAME_WIDTH = 985;
++    protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, orderPanel, cookPanel, cashierPanel;
++    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu, endOrderButton, updateTablesButton;
++    private ArrayList<JButton> tables;
++    protected Waiter waiter;
++    protected Restaurant restaurant;
++    protected Chef chef;
++    private boolean waiterInstanceIs = false;
++
++    public Fram3(){
++        restaurant = new Restaurant();
++        updateTablesButton = new JButton("UPDATE TABLES");
++        updateTablesButton.setBounds(300, 699, 150, 30);
++        exitButtonMenu = new JButton("BACK");
++        exitButtonMenu.setBounds(849, 699, 100, 30);
++        endOrderButton = new JButton("END ORDER");
++        endOrderButton.setBounds(806,699,140,30);
++
++        createStartPanel();
++        createMainMenuPanel();
++        createChefPanel();
++//        createWaiterPanel();
++        createCookPanel();
++
++        chefPanel.add(exitButtonMenu);
++//        waiterPanel.add(exitButtonMenu);
++
++        setResizable(false);
++        setSize(1000, 800);
++        setTitle("Restaurant");
++        getContentPane().add(startPanel);
++        setVisible(true);
++        setDefaultCloseOperation(EXIT_ON_CLOSE);
++
++        startButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(mainMenuPanel);
++            }
++        });
++
++        exitButtonStart.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(startPanel);
++            }
++        });
++
++        chefButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(chefPanel);
++            }
++        });
++
++        exitButtonMenu.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(mainMenuPanel);
++            }
++        });
++
++        waiterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                if (restaurant.getMenuArray().size() == 0){
++                    JOptionPane.showMessageDialog(mainMenuPanel, "The Menu doesn't exist yet, please set up your restaurant by selecting the Chef");
++                }
++                else {
++                    if (!waiterInstanceIs){
++                        createWaiterPanel();
++                    }
++                    switchPanel(waiterPanel);
++                }
++//                switchPanel(waiterPanel);
++            }
++        });
++        updateTablesButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                for (int i=0; i < tables.size(); i++){
++                    int tableNumber = i+1;
++                    tables.get(i).addActionListener(new ActionListener() {
++                    @Override
++                    public void actionPerformed(ActionEvent e) {
++                        createOrderPanel(tableNumber);
++                        waiter.endOrder(restaurant);
++                        switchPanel(orderPanel);
++                }
++            });
++        }
++            }
++        });
++
++        endOrderButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(waiterPanel);
++                waiter.endOrder(restaurant);
++            }
++        });
++
++        cookButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(cookPanel);
++            }
++        });
++
++
++    }
++
++    public void createStartPanel(){
++        startPanel = new JPanel(new GridBagLayout());
++        startButton = new JButton();
++        startButton.setPreferredSize(new Dimension(200, 60));
++        startButton.setText("START");
++        startPanel.add(startButton);
++    }
++
++    public void createMainMenuPanel() {
++        mainMenuPanel = new JPanel(null);
++        chefButton = new JButton();
++        chefButton.setBounds(99, 200, 300, 90);
++        chefButton.setText("CHEF");
++        waiterButton = new JButton();
++        waiterButton.setBounds(599, 200, 300, 90);
++        waiterButton.setText("WAITER");
++        cookButton = new JButton();
++        cookButton.setBounds(599, 500, 300, 90);
++        cookButton.setText("COOK");
++        cashierButton = new JButton();
++        cashierButton.setBounds(99, 500, 300, 90);
++        cashierButton.setText("CASHIER");
++        exitButtonStart = new JButton();
++        exitButtonStart.setText("EXIT");
++        exitButtonStart.setBounds(849, 699, 100, 30);
++        mainMenuPanel.add(chefButton);
++        mainMenuPanel.add(waiterButton);
++        mainMenuPanel.add(cookButton);
++        mainMenuPanel.add(cashierButton);
++        mainMenuPanel.add(exitButtonStart);
++    }
++
++    public void createChefPanel(){
++        //logic
++        chef = new Chef(4);
++        restaurant.setChef(chef);
++        //graphic
++        chefPanel = new JPanel();
++        chefPanel.setLayout(null);
++
++        JPanel topPanel = new JPanel();
++        //uncomment to see the panel
++//        topPanel.setBackground(Color.GREEN);
++        chefPanel.add(topPanel);
++
++        JPanel midPanel1 = new JPanel();
++        //uncomment to see the panel
++//        midPanel1.setBackground(Color.BLACK);
++        chefPanel.add(midPanel1);
++
++        JPanel midPanel2 = new JPanel();
++        //uncomment to see the panel
++//        midPanel2.setBackground(Color.RED);
++        chefPanel.add(midPanel2);
++
++        JPanel botPanel = new JPanel();
++        //uncomment to see the panel
++//        botPanel.setBackground(Color.BLUE);
++        chefPanel.add(botPanel);
++
++        //--------------------------------
++        //--------topPanel
++        //--------------------------------
++        topPanel.setBounds(0, 0, FRAME_WIDTH, 90);
++        //panel borders and layout
++        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
++        topPanel.setLayout(new BorderLayout(5, 5));
++        //panel components
++        JLabel frameTitle = new JLabel("Chef Control Panel");
++        frameTitle.setFont(new Font("Comic Sans", Font.BOLD, 20));
++        JLabel textFieldLabel = new JLabel("Number of tables: ");
++        //formatter
++        NumberFormat integerFormatter = NumberFormat.getIntegerInstance();
++        integerFormatter.setMaximumFractionDigits(0);
++        integerFormatter.setParseIntegerOnly(true);
++        //Formatted text field
++        JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);
++        textFieldTop.setText("");
++        textFieldTop.setFocusLostBehavior(JFormattedTextField.COMMIT);
++
++        JButton enterTextButton = new JButton("ENTER");
++
++        ActionListener numberOfTablesListener = new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                //checks for valid input from textfield
++                boolean editValid = textFieldTop.isEditValid();
++                if (editValid) {
++                    Integer intInputValue = Integer.parseInt(textFieldTop.getText());
++                    chef.setTablesLists(intInputValue);
++                    chef.setTablesAttribute(intInputValue);
++                    restaurant.setTablesAttribute(intInputValue);
++                    JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
++                }else{
++                    JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
++                }
++            }
++        };
++
++        textFieldTop.addActionListener(numberOfTablesListener);
++        enterTextButton.addActionListener(numberOfTablesListener);
++
++        topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);
++        topPanel.add(textFieldLabel, BorderLayout.WEST);
++        topPanel.add(textFieldTop, BorderLayout.CENTER);
++        topPanel.add(enterTextButton, BorderLayout.EAST);
++        topPanel.add(new JLabel("Add entries here: "), BorderLayout.SOUTH);
++
++
++        //--------------------------------
++        //--------midPanel1---------------
++        //--------------------------------
++        midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);
++        //panel borders and layout
++        midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));
++        midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));
++
++        //panel components
++        JTextField nameTextField = new JTextField();
++        nameTextField.setColumns(20);
++        JFormattedTextField categoryTextField = new JFormattedTextField(integerFormatter);
++
++        categoryTextField.setColumns(4);
++        //component for JList
++        DefaultListModel<Plate> menuListModel = new DefaultListModel<>();
++        JFormattedTextField priceTextField = new JFormattedTextField(new DecimalFormat("##0.00"));
++
++        ActionListener menuEntryField = new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) throws PlateAlreadyExistException {
++                String dishName = nameTextField.getText();
++                Integer category = Integer.parseInt( categoryTextField.getText() );
++                Double price = Double.parseDouble( priceTextField.getText().replaceAll(",",".") );
++                menuListModel.addElement(new Plate(dishName, category, price));
++                chef.addNewDish(dishName, category, price);
++            }
++        };
++
++        nameTextField.addActionListener(menuEntryField);
++        categoryTextField.addActionListener(menuEntryField);
++        priceTextField.addActionListener(menuEntryField);
++
++
++        priceTextField.setColumns(6);
++        JButton addButton = new JButton("ADD");
++        JButton deleteButton = new JButton("DELETE");
++        addButton.addActionListener(menuEntryField);
++        midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);
++
++        midPanel1.add(new JLabel("Dish's name: "));
++        midPanel1.add(nameTextField);
++        midPanel1.add(new JLabel("Category: "));
++        midPanel1.add(categoryTextField);
++        midPanel1.add(new JLabel("Price: "));
++        midPanel1.add(priceTextField);
++        //buttons and spacers
++        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));
++        midPanel1.add(addButton);
++        midPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));
++        midPanel1.add(deleteButton);
++
++
++        //-----------------------------
++        //-------midPanel2
++        //-----------------------------
++        midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);
++        //panel borders and layout
++        midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
++        midPanel2.setLayout(new BorderLayout(5,5));
++
++        //panel components
++        JLabel readLabel = new JLabel("Menu content: ");
++        readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
++
++        JList<Plate> textArea = new JList<>(menuListModel);
++        textArea.setCellRenderer(new PlateDisplay());
++        textArea.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
++
++        JScrollPane displayMenu = new JScrollPane(textArea);
++        displayMenu.setEnabled(true);
++
++        deleteButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                //removed from JList
++                String name = textArea.getSelectedValue().getName();
++                Integer cat = textArea.getSelectedValue().getCategory();
++                menuListModel.removeElement(textArea.getSelectedValue());
++                //removed from bufferPlate
++                if (chef.removeDish(name,cat)) {
++                    JOptionPane.showMessageDialog(deleteButton, "Plate deleted");
++                } else {
++                    JOptionPane.showMessageDialog(deleteButton, "Plate was not deleted");
++                }
++            }
++        });
++
++        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
++        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
++
++        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
++        midPanel2.add(displayMenu, BorderLayout.CENTER);
++
++
++        //-----------------------------
++        //-------botPanel
++        //-----------------------------
++        botPanel.setBounds(0, 460, FRAME_WIDTH, 100);
++        //uncomment to see the panel
++//        botPanel.setBackground(Color.BLUE);
++        //panel borders and layout
++        botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));
++        botPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
++
++        //panel components
++        JLabel directoryLabel = new JLabel("File menu location: ");
++        JTextField directoryTextField = new JTextField();
++        directoryTextField.setColumns(60);
++        JButton updateButton = new JButton("UPDATE DIRECTORY");
++        JButton readButton = new JButton("READ");
++        JButton writeButton = new JButton("WRITE");
++        JButton dataRestaurantButton = new JButton("UPDATE RESTAURANT");
++
++        ActionListener directoryActionListener = new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                String directory = directoryTextField.getText();
++                chef.setMenuDirectory(directory);
++            }
++        };
++        directoryTextField.addActionListener(directoryActionListener);
++        updateButton.addActionListener(directoryActionListener);
++
++        readButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                try {
++                    chef.readMenu();
++                    JOptionPane.showMessageDialog(writeButton, "Menu recovered");
++                    for (int i = 0; i < chef.getBufferPlate().size(); i++) {
++                        for (int j = 0; j < chef.getBufferPlate().get(i).size(); j++)
++                            menuListModel.addElement(chef.getBufferPlate().get(i).get(j));
++                    }
++                } catch (IOException e2){
++                    e2.printStackTrace();
++                    JOptionPane.showMessageDialog(writeButton, "Reading the file is impossible, check for extension in the name.");
++                }
++            }
++        });
++
++        writeButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                try{
++                    chef.writeMenu();
++                    JOptionPane.showMessageDialog(botPanel, "CSV file written");
++                }catch (IOException e1){
++                    e1.printStackTrace();
++                    JOptionPane.showMessageDialog(botPanel, "An error as occurred and the CSV file has not been written");
++                }
++            }
++        });
++
++        dataRestaurantButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                restaurant.loadMenuFromChef();
++                JOptionPane.showMessageDialog(botPanel, "Restaurant Array updated");
++            }
++        });
++
++        botPanel.add(directoryLabel);
++        botPanel.add(directoryTextField);
++        botPanel.add(updateButton);
++        botPanel.add(readButton);
++        botPanel.add(writeButton);
++        botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(620,2),new Dimension(620,2)));
++        botPanel.add(dataRestaurantButton);
++    }
++
++    public void createWaiterPanel(){
++        waiterInstanceIs = true;
++        waiter = new Waiter();
++        restaurant.addEmployee(waiter);
++        waiterPanel = new JPanel(null);
++        tables = new ArrayList<>();
++        JPanel panel1 = new JPanel();
++        int tablesNumber = chef.getNumberOfTables();
++        panel1.setBounds(0,0, 990, 670);
++        panel1.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
++        int divider;
++        if (tablesNumber<10){
++            divider = 2;
++        }
++        else{
++            divider = 4;
++        }
++        panel1.setLayout(new GridLayout(tablesNumber/divider,tablesNumber-tablesNumber/divider, 10, 10));
++        for (int i=0; i<tablesNumber; i++){
++            String text = "Table " + (i+1);
++            JButton tableButton = new JButton(text);
++            tables.add(tableButton);
++            panel1.add(tableButton);
++        }
++        panel1.setBackground(Color.RED);
++        waiterPanel.add(panel1);
++//        updateTablesButton = new JButton("UPDATE TABLES");
++////        (849, 699, 100, 30)
++//        updateTablesButton.setBounds(600, 699, 100, 30);
++        waiterPanel.add(exitButtonMenu);
++        waiterPanel.add(updateTablesButton);
++
++    }
++
++    public void switchPanel(JPanel panelToSwitch){
++        getContentPane().removeAll();
++        getContentPane().add(panelToSwitch);
++        revalidate();
++        repaint();
++    }
++
++    public void createOrderPanel(int tableNumber){
++        waiter.setServedTable(tableNumber);
++        int FRAME_WIDTH = 985;
++        orderPanel = new JPanel(null);
++        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
++        JPanel leftPanel = new JPanel();
++        JPanel rightPanel = new JPanel();
++        JPanel botPanel = new JPanel();
++
++        topPanel.setBounds(0,0, FRAME_WIDTH, 70);
++        topPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++//        topPanel.setBackground(Color.RED);
++        JLabel namePanel = new JLabel("Select the Dish from the menu: ");
++        namePanel.setFont(new Font("Serif", Font.ITALIC, 40));
++        topPanel.add(namePanel);
++
++        leftPanel.setBounds(0,70, FRAME_WIDTH/2, 600);
++        leftPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++//        leftPanel.setBackground(Color.YELLOW);
++        leftPanel.setLayout(new BorderLayout(5,5));
++
++        rightPanel.setBounds(FRAME_WIDTH/2, 70, FRAME_WIDTH/2, 600);
++        rightPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++//        rightPanel.setBackground(Color.BLUE);
++        rightPanel.setLayout(new BorderLayout(5,5));
++
++        DefaultListModel<Plate> orderListModel = new DefaultListModel<>();
++        JList<Plate> order = new JList(orderListModel);
++        order.setCellRenderer(new PlateDisplay());
++        JScrollPane rightScrollPane = new JScrollPane(order);
++        rightPanel.add(rightScrollPane, BorderLayout.CENTER);
++        JLabel orderText = new JLabel("You can modify your order here: ");
++        orderText.setFont(new Font("Comic sans", Font.BOLD, 15));
++        rightPanel.add(orderText, BorderLayout.BEFORE_FIRST_LINE);
++
++//        Plate plate1 = new Plate("Pizza", 1, 5.56);
++//        Plate plate2 = new Plate("Defe", 2, 8.97);
++//        Plate plate3 = new Plate("sfjfjwos", 1, 8);
++//        ArrayList<Plate> initialMenu = new ArrayList<>();
++//        initialMenu.add(plate1);
++//        initialMenu.add(plate2);
++//        initialMenu.add(plate3);
++        ArrayList<Plate> initialMenu = new ArrayList<>();
++        for(int i=0; i<restaurant.getMenuArray().size(); i++){
++            for (int j=0; j<restaurant.getMenuArray().get(i).size(); j++){
++                if (restaurant.getMenuArray().get(i).get(j) != null) {
++                    initialMenu.add(restaurant.getMenuArray().get(i).get(j));
++                }
++            }
++        }
++
++
++        JList<Plate> menu = new JList(initialMenu.toArray());
++        menu.setCellRenderer(new PlateDisplay());
++        JScrollPane leftScrollPane = new JScrollPane(menu);
++        leftPanel.add(leftScrollPane, BorderLayout.CENTER);
++        JLabel menuText = new JLabel("Select from the menu: ");
++        menuText.setFont(new Font("Comic sans", Font.BOLD, 15));
++        leftPanel.add(menuText, BorderLayout.BEFORE_FIRST_LINE);
++
++        menu.addMouseListener(new MouseAdapter() {
++            @Override
++            public void mouseClicked(MouseEvent e) {
++                waiter.addPlate(menu.getSelectedValue());
++                orderListModel.removeAllElements();
++                orderListModel.addAll(waiter.getOrder());
++                System.out.println(waiter.getOrder());
++            }
++        });
++        order.addMouseListener(new MouseAdapter() {
++            @Override
++            public void mouseClicked(MouseEvent e) {
++                if (JOptionPane.showConfirmDialog(rightPanel,"Would you like to delete? ","DELETE",
++                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
++                    waiter.deletePlate(order.getSelectedValue());
++                    orderListModel.removeAllElements();
++                    orderListModel.addAll(waiter.getOrder());
++                    System.out.println(waiter.getOrder());
++                    System.out.println(waiter.getServedTable());
++
++                }
++            }
++        });
++
++        orderPanel.add(topPanel);
++        orderPanel.add(leftPanel);
++        orderPanel.add(rightPanel);
++        orderPanel.add(botPanel);
++        orderPanel.add(endOrderButton);
++    }
++
++    private void createCookPanel() {
++        //logic
++        Cook cook = new Cook();
++        restaurant.addEmployee(cook);
++        //
++        cookPanel = new JPanel();
++        cookPanel.setLayout(null);
++        //3 panels - top/mid/bot panels
++
++        //############
++        //---topPanel
++        //############
++
++        FlowLayout flow = new FlowLayout();
++        flow.setAlignment(FlowLayout.LEADING);
++        JPanel topCookPanel = new JPanel(flow);
++        //Uncomment to see the Panel
++//        topCookPanel.setBackground(Color.CYAN);
++        //
++        topCookPanel.setBounds(0,0, FRAME_WIDTH, 35);
++        topCookPanel.setBorder(BorderFactory.createEmptyBorder(5,10,0,10));
++        //Components
++        JLabel titleLabel = new JLabel("Cook Panel");
++        titleLabel.setFont(new Font("Comic Sans", Font.BOLD, 20));
++        JButton refreshButton = new JButton("REFRESH");
++        refreshButton.addActionListener(e -> {});
++        //
++        cookPanel.add(topCookPanel);
++
++        topCookPanel.add(titleLabel);
++
++        //############
++        //---midPanel
++        //############
++
++        JPanel midCookPanel = new JPanel(new BorderLayout(5,5));
++        //Uncomment to see the Panel
++//        midCookPanel.setBackground(Color.ORANGE);
++        //
++        midCookPanel.setBounds(0,35,FRAME_WIDTH,400);
++        midCookPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++        //Components constructors and methods call
++        JLabel orderListLabel = new JLabel("Select the orders to evade here");
++        orderListLabel.setFont(new Font("Comic Sans", Font.PLAIN, 12));
++
++        DefaultListModel<Order<Plate>> orderDefaultListModel = new DefaultListModel<>();
++        JList orderList = new JList(orderDefaultListModel);
++        JScrollPane orderScrollPane = new JScrollPane(orderList);
++        //
++        cookPanel.add(midCookPanel);
++
++        midCookPanel.add(orderListLabel, BorderLayout.BEFORE_FIRST_LINE);
++        midCookPanel.add(orderScrollPane, BorderLayout.CENTER);
++
++        //############
++        //---botPanel
++        //############
++
++        JPanel botCookPanel= new JPanel(flow);
++        //Uncomment to see the Panel
++//        botCookPanel.setBackground(Color.YELLOW);
++        //
++        botCookPanel.setBounds(0,430, FRAME_WIDTH, 40);
++        botCookPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
++        //Components constructors and methods call
++        JButton evadeButton = new JButton("EVADE");
++        //
++        cookPanel.add(botCookPanel);
++        cookPanel.add(exitButtonMenu);
++
++        botCookPanel.add(evadeButton);
++
++    }
++
++    public static void main(String[] args) {
++        new Fram3();
++
++    }
++
++
++
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a\" name=\"Default Changelist\" comment=\".\">\r\n      <change afterPath=\"$PROJECT_DIR$/logic/test/ChefTester2.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/src/Chef.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/src/Chef.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/src/Restaurant.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/src/Restaurant.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Kotlin Class\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/logic/src/Restaurant.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/logic/src/Plate.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/logic/src/Chef.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/logic/test/ChefTest.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1vdPo2FplB15wHivhAszTXh8D30\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"Downloaded.Files.Path.Enabled\" value=\"false\" />\r\n    <property name=\"Repository.Attach.Annotations\" value=\"false\" />\r\n    <property name=\"Repository.Attach.JavaDocs\" value=\"false\" />\r\n    <property name=\"Repository.Attach.Sources\" value=\"false\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW\" value=\"true\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH\" value=\"277\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW\" value=\"true\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH\" value=\"475\" />\r\n    <property name=\"codeWithMe.voiceChat.enabledByDefault\" value=\"false\" />\r\n    <property name=\"jdk.selected.JAVA_MODULE\" value=\"15\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/javafx-sdk-11.0.2/lib\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"inlay.hints.JAVA\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\trast\\Desktop\\Università\\GitHub\\Restourant-java-prjk\\old\\src\" />\r\n      <recent name=\"C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\graphics\\src\" />\r\n      <recent name=\"C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\graphics\\src\\sample\" />\r\n      <recent name=\"C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\graphics\" />\r\n      <recent name=\"C:\\Users\\trast\\Desktop\\Università\\GitHub\\Restourant-java-prjk\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.ChefTester2\">\r\n    <configuration name=\"ChefTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ChefTest\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ChefTester2\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ChefTester2\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"ReadMenuTest\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ReadMenuTest\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantTester2\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantTester2\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"myFrame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"myFrame\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.RestaurantTester2\" />\r\n      <item itemvalue=\"Application.myFrame\" />\r\n      <item itemvalue=\"Application.ChefTest\" />\r\n      <item itemvalue=\"Application.ReadMenuTest\" />\r\n      <item itemvalue=\"Application.ChefTester2\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ChefTester2\" />\r\n        <item itemvalue=\"Application.myFrame\" />\r\n        <item itemvalue=\"Application.ChefTest\" />\r\n        <item itemvalue=\"Application.ReadMenuTest\" />\r\n        <item itemvalue=\"Application.RestaurantTester2\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task id=\"LOCAL-00001\" summary=\"modified Cheff's class and added a besic implementation of the Restaurant class\">\r\n      <created>1626887269603</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626887269603</updated>\r\n    </task>\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a\" name=\"Default Changelist\" comment=\"modified Cheff's class and added a besic implementation of the Restaurant class\" />\r\n      <created>1626889165263</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1626889165263</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added getter method to Restourant class, corrected a typo in chefs calass\">\r\n      <created>1626963681105</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626963681105</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Added a category argument in the Plate class, added the related JAVADOC.&#10;Corrected the Dictionaries included in the Restourant class, added the related JAVADOC, added 2 new set methods.\">\r\n      <created>1626969903141</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626969903141</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class.\">\r\n      <created>1626976108623</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626976108623</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class.\">\r\n      <created>1626980147969</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626980147969</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef.\">\r\n      <created>1627154480388</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1627154480388</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"added Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef.\">\r\n      <created>1628607192490</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628607192490</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Adjusted the Chef class methods with simple correction for some functions, more test have been conducted. chefTest.csv debug file added.\">\r\n      <created>1628620082481</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628620082481</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Added the deletePayedOrder Method to the Restaurant.java class. Adjusted some typos in the javadoc\">\r\n      <created>1628694670243</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628694670243</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Adjusted the chef class, added the Restourant tester, added the equals to method to Plate class obj\">\r\n      <created>1628701414689</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628701414689</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class.\">\r\n      <created>1628703492498</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628703492498</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class.\">\r\n      <created>1628703917376</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628703917376</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"simple change line 158 Restourant\">\r\n      <created>1628765066959</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628765066959</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\".\">\r\n      <created>1628765192228</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628765192228</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Added the container class Order with a status attribute to be applied to the object in the moment of creation, the modifier classes of the project must be modified accordingly.\">\r\n      <created>1628847156812</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628847156812</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Modified Order.java to behave like an ArrayList but with a String attribute attached to it\">\r\n      <created>1628850565429</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628850565429</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"added Java.doc\">\r\n      <created>1628851114653</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628851114653</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\".\">\r\n      <created>1629281072774</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629281072774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Ho fatto la scherma iniziale\">\r\n      <created>1629387891231</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629387891231</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Ho fatto la finestra iniziale\">\r\n      <created>1629453487005</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629453487005</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste\">\r\n      <created>1629476378947</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629476378947</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"removed fxmloader\">\r\n      <created>1631281619100</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631281619100</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"removed fxmloader\">\r\n      <created>1631281624836</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631281624836</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"removed fxmloader\">\r\n      <created>1631281663026</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631281663026</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"basic jSwing module\">\r\n      <created>1631283585815</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631283585815</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"mainMenu added\">\r\n      <created>1631296925939</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631296925939</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"readded old data that went lost wile changing branches\">\r\n      <created>1631343579867</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631343579867</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"deleted redacted files\">\r\n      <created>1631432568873</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631432568873</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"deleted redacted files\">\r\n      <created>1631694370786</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631694370786</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto).\">\r\n      <created>1631694610233</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631694610233</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"deprecated main in chefpanel\">\r\n      <created>1631694728694</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631694728694</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00032\" summary=\"rows form 56 to 63, added example for testing purpose.\">\r\n      <created>1631698975081</created>\r\n      <option name=\"number\" value=\"00032\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00032\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631698975081</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00033\" summary=\"corrected error in test case\">\r\n      <created>1631700354008</created>\r\n      <option name=\"number\" value=\"00033\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00033\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631700354008</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00034\" summary=\"Layout of the Chef panel completed, lacks implementation of action listeners\">\r\n      <created>1631728559121</created>\r\n      <option name=\"number\" value=\"00034\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00034\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631728559121</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00035\" summary=\"Heavly modified the ChefPanel content, ActionListeners are work-in-progress\">\r\n      <created>1631864013935</created>\r\n      <option name=\"number\" value=\"00035\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00035\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631864013935</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00036\" summary=\".\">\r\n      <created>1631893068446</created>\r\n      <option name=\"number\" value=\"00036\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00036\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631893068446</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00037\" summary=\"changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior.\">\r\n      <created>1631896957091</created>\r\n      <option name=\"number\" value=\"00037\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00037\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631896957091</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00038\" summary=\"heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist\">\r\n      <created>1631984451145</created>\r\n      <option name=\"number\" value=\"00038\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00038\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631984451146</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00039\" summary=\"Resolved strange behaviors of the chefs textFields\">\r\n      <created>1632073500150</created>\r\n      <option name=\"number\" value=\"00039\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00039\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632073500150</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00040\" summary=\"Solved various issues with the writer and read method in the class chef. Added Various tester for those method.\">\r\n      <created>1632135201129</created>\r\n      <option name=\"number\" value=\"00040\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00040\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632135201129</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00041\" summary=\"//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}\">\r\n      <created>1632135341856</created>\r\n      <option name=\"number\" value=\"00041\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00041\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632135341856</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00042\" summary=\"ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class\">\r\n      <created>1632154368767</created>\r\n      <option name=\"number\" value=\"00042\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00042\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632154368767</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00043\" summary=\"ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class\">\r\n      <created>1632154531401</created>\r\n      <option name=\"number\" value=\"00043\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00043\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632154531401</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00044\" summary=\"added functionality to commit changes in the menu to the Restarant main class.\">\r\n      <created>1632155186868</created>\r\n      <option name=\"number\" value=\"00044\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00044\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632155186868</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00045\" summary=\"New Exception for the OrderClass\">\r\n      <created>1632236673641</created>\r\n      <option name=\"number\" value=\"00045\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00045\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632236673641</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00046\" summary=\"solved simple anchoring issue\">\r\n      <created>1632236901825</created>\r\n      <option name=\"number\" value=\"00046\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00046\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632236901825</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00047\" summary=\".\">\r\n      <created>1632237054999</created>\r\n      <option name=\"number\" value=\"00047\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00047\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1632237054999</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"48\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.csv\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"added Java.doc\" />\r\n    <MESSAGE value=\"Ho fatto la scherma iniziale\" />\r\n    <MESSAGE value=\"Ho fatto la finestra iniziale\" />\r\n    <MESSAGE value=\"Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste\" />\r\n    <MESSAGE value=\"removed fxmloader\" />\r\n    <MESSAGE value=\"basic jSwing module\" />\r\n    <MESSAGE value=\"mainMenu added\" />\r\n    <MESSAGE value=\"readded old data that went lost wile changing branches\" />\r\n    <MESSAGE value=\"deleted redacted files\" />\r\n    <MESSAGE value=\"Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto).\" />\r\n    <MESSAGE value=\"deprecated main in chefpanel\" />\r\n    <MESSAGE value=\"rows form 56 to 63, added example for testing purpose.\" />\r\n    <MESSAGE value=\"corrected error in test case\" />\r\n    <MESSAGE value=\"Layout of the Chef panel completed, lacks implementation of action listeners\" />\r\n    <MESSAGE value=\"Heavly modified the ChefPanel content, ActionListeners are work-in-progress\" />\r\n    <MESSAGE value=\"changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior.\" />\r\n    <MESSAGE value=\"heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist\" />\r\n    <MESSAGE value=\"Resolved strange behaviors of the chefs textFields\" />\r\n    <MESSAGE value=\"Solved various issues with the writer and read method in the class chef. Added Various tester for those method.\" />\r\n    <MESSAGE value=\"//TODO: Valutare se eliminare funzionalità inutilizzate per snellire e semplificare il codice.&#10;}\" />\r\n    <MESSAGE value=\"ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class\" />\r\n    <MESSAGE value=\"added functionality to commit changes in the menu to the Restarant main class.\" />\r\n    <MESSAGE value=\"New Exception for the OrderClass\" />\r\n    <MESSAGE value=\"solved simple anchoring issue\" />\r\n    <MESSAGE value=\".\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\".\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.util.InputMismatchException\" package=\"java.util\" />\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.IndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"6\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.NullPointerException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"8\" />\r\n        </breakpoint>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/logic/test/ChefTester2.java</url>\r\n          <line>15</line>\r\n          <option name=\"timeStamp\" value=\"9\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ b/.idea/workspace.xml	(date 1632304271625)
+@@ -4,13 +4,21 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment=".">
+-      <change afterPath="$PROJECT_DIR$/logic/test/ChefTester2.java" afterDir="false" />
++    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nella classe Frame ho creato 3 panelli con alcuni pulsanti usando java SWING">
++      <change afterPath="$PROJECT_DIR$/Restourant-java-prjk - Ярлык.lnk" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/logic/src/Fram3.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/menu.csv" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Chef.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logic/src/Chef.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Chef.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Cook.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Cook.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Waiter.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestaurantTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/test/Restourant-java-prjk/RestaurantTester.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/src/Cook.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Cook.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/logic/src/Restaurant.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Restaurant.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/src/Waiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Waiter.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/test/RestaurantTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/test/RestaurantTester.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -38,9 +46,9 @@
+     </file-type-list>
+   </component>
+   <component name="HighlightingSettingsPerFile">
+-    <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/logic/test/ChefTest.java" root0="FORCE_HIGHLIGHTING" />
+   </component>
+   <component name="ProjectId" id="1vdPo2FplB15wHivhAszTXh8D30" />
+@@ -96,15 +104,15 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
++    <configuration name="Fram3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="Fram3" />
+       <module name="Restourant-java-prjk" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="RestaurantTester2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="RestaurantTester2" />
++    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
++      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
+       <module name="Restourant-java-prjk" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+@@ -118,19 +126,19 @@
+       </method>
+     </configuration>
+     <list>
+-      <item itemvalue="Application.RestaurantTester2" />
+       <item itemvalue="Application.myFrame" />
+       <item itemvalue="Application.ChefTest" />
+       <item itemvalue="Application.ReadMenuTest" />
++      <item itemvalue="Application.Fram3" />
+       <item itemvalue="Application.ChefTester2" />
+     </list>
+     <recent_temporary>
+       <list>
+         <item itemvalue="Application.ChefTester2" />
++        <item itemvalue="Application.Fram3" />
+         <item itemvalue="Application.myFrame" />
+         <item itemvalue="Application.ChefTest" />
+         <item itemvalue="Application.ReadMenuTest" />
+-        <item itemvalue="Application.RestaurantTester2" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -458,21 +466,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1632236673641</updated>
+     </task>
+-    <task id="LOCAL-00046" summary="solved simple anchoring issue">
+-      <created>1632236901825</created>
+-      <option name="number" value="00046" />
+-      <option name="presentableId" value="LOCAL-00046" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1632236901825</updated>
+-    </task>
+-    <task id="LOCAL-00047" summary=".">
+-      <created>1632237054999</created>
+-      <option name="number" value="00047" />
+-      <option name="presentableId" value="LOCAL-00047" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1632237054999</updated>
+-    </task>
+-    <option name="localTasksCounter" value="48" />
++    <option name="localTasksCounter" value="46" />
+     <servers />
+   </component>
+   <component name="UnknownFeatures">
+@@ -503,6 +497,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
++    <MESSAGE value="Modified Order.java to behave like an ArrayList but with a String attribute attached to it" />
+     <MESSAGE value="added Java.doc" />
+     <MESSAGE value="Ho fatto la scherma iniziale" />
+     <MESSAGE value="Ho fatto la finestra iniziale" />
+@@ -518,6 +513,7 @@
+     <MESSAGE value="corrected error in test case" />
+     <MESSAGE value="Layout of the Chef panel completed, lacks implementation of action listeners" />
+     <MESSAGE value="Heavly modified the ChefPanel content, ActionListeners are work-in-progress" />
++    <MESSAGE value="." />
+     <MESSAGE value="changed responsibility for the setTablesList() method from Restaurant.class to Chef.class. Corrected strange loop behavior." />
+     <MESSAGE value="heavly modified the Chef constructor, and restourant, added a DisplayPlate to use on a Jlist" />
+     <MESSAGE value="Resolved strange behaviors of the chefs textFields" />
+@@ -526,9 +522,7 @@
+     <MESSAGE value="ChefPanel now is completed in his core functionality but minor changes can still be made. Reversed changes done to the chef.class" />
+     <MESSAGE value="added functionality to commit changes in the menu to the Restarant main class." />
+     <MESSAGE value="New Exception for the OrderClass" />
+-    <MESSAGE value="solved simple anchoring issue" />
+-    <MESSAGE value="." />
+-    <option name="LAST_COMMIT_MESSAGE" value="." />
++    <option name="LAST_COMMIT_MESSAGE" value="New Exception for the OrderClass" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+@@ -545,11 +539,6 @@
+           <properties class="java.lang.NullPointerException" package="java.lang" />
+           <option name="timeStamp" value="8" />
+         </breakpoint>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/logic/test/ChefTester2.java</url>
+-          <line>15</line>
+-          <option name="timeStamp" value="9" />
+-        </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
+   </component>
+Index: logic/src/ChefPanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport javax.swing.border.Border;\r\nimport javax.swing.text.NumberFormatter;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.text.DecimalFormat;\r\nimport java.text.NumberFormat;\r\nimport java.text.ParseException;\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * Created by Tommaso M. Lopedote on 12/09/2021\r\n * Time: 10:30\r\n * Project: Restourant-java-prjk\r\n */\r\npublic class ChefPanel extends myFrame {\r\n    final int FRAME_WIDTH = 985;\r\n    private Restaurant restaurant;\r\n    private JPanel topPanel, midPanel1, midPanel2, botPanel;\r\n\r\n    public void createChefPanel() {\r\n        chefPanel = new JPanel();\r\n        chefPanel.setLayout(null);\r\n\r\n        topPanel = new JPanel();\r\n        chefPanel.add(topPanel);\r\n        applyTopPanelContent();\r\n\r\n        midPanel1 = new JPanel();\r\n        chefPanel.add(midPanel1);\r\n        applyMidPanel1Content();\r\n\r\n        midPanel2 = new JPanel();\r\n        chefPanel.add(midPanel2);\r\n        applyMidPanel2Content();\r\n\r\n        botPanel = new JPanel();\r\n        chefPanel.add(botPanel);\r\n        applyBotPanelContent();\r\n\r\n    }\r\n\r\n    public void applyTopPanelContent() {\r\n        topPanel.setBounds(0, 0, FRAME_WIDTH, 90);\r\n        //uncomment to see the panel\r\n        topPanel.setBackground(Color.GREEN);\r\n        //panel borders and layout\r\n        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));\r\n        topPanel.setLayout(new BorderLayout(5, 5));\r\n        //panel components\r\n        JLabel frameTitle = new JLabel(\"Chef Control Panel\");\r\n        frameTitle.setFont(new Font(\"Comic Sans\", Font.BOLD, 20));\r\n        JLabel textFieldLabel = new JLabel(\"Number of tables: \");\r\n\r\n        NumberFormat integerFormatter = NumberFormat.getIntegerInstance();\r\n        integerFormatter.setMaximumFractionDigits(0);\r\n        JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);\r\n        textFieldTop.setText(\"\");   // when one clicks on ok or just presses enter the text turns back to blank\r\n        textFieldTop.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(\",\", \"\"));\r\n\r\n                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());\r\n            }\r\n        });\r\n\r\n        JButton enterTextButton = new JButton(\"OK\");\r\n        enterTextButton.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n//                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());\r\n                \r\n            }\r\n        });\r\n\r\n        topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);\r\n        topPanel.add(textFieldLabel, BorderLayout.WEST);\r\n        topPanel.add(textFieldTop, BorderLayout.CENTER);\r\n        topPanel.add(enterTextButton, BorderLayout.EAST);\r\n\r\n        topPanel.add(new JLabel(\"Add entries here: \"), BorderLayout.SOUTH);\r\n    }\r\n\r\n    public void applyMidPanel1Content() {\r\n        midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);\r\n        //uncomment to see the panel\r\n        midPanel1.setBackground(Color.BLACK);\r\n        //panel borders and layout\r\n        midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));\r\n        midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));\r\n\r\n        //panel components\r\n        JTextField nameTextField = new JTextField();\r\n        nameTextField.setColumns(20);\r\n        JFormattedTextField categoryTextField = new JFormattedTextField(); //onlyFewNumbersTextField\r\n        categoryTextField.setColumns(4);\r\n        JFormattedTextField priceTextField = new JFormattedTextField(new NumberFormatter());\r\n        priceTextField.setColumns(6);\r\n        JButton addButton = new JButton(\"ADD\");\r\n        JButton deleteButton = new JButton(\"DELETE\");\r\n        midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);\r\n\r\n        midPanel1.add(new JLabel(\"Dish's name: \"));\r\n        midPanel1.add(nameTextField);\r\n        midPanel1.add(new JLabel(\"Category: \"));\r\n        midPanel1.add(categoryTextField);\r\n        midPanel1.add(new JLabel(\"Price: \"));\r\n        midPanel1.add(priceTextField);\r\n        //buttons and spacers\r\n        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));\r\n        midPanel1.add(addButton);\r\n        midPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));\r\n        midPanel1.add(deleteButton);\r\n    }\r\n\r\n    public void applyMidPanel2Content() {\r\n        midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);\r\n        //uncomment to see the panel\r\n        midPanel2.setBackground(Color.RED);\r\n        //panel borders and layout\r\n        midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));\r\n        midPanel2.setLayout(new BorderLayout(5,5));\r\n\r\n        //panel components\r\n        JLabel readLabel = new JLabel(\"Menu content: \");\r\n        readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);\r\n        // redacted\r\n//        JTextArea textArea = new JTextArea();\r\n//        textArea.setEditable(false);\r\n//        textArea.setFont(new Font(\"Comic Sans\", Font.PLAIN, 15));\r\n//        textArea.setEditable(false);\r\n//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){\r\n//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);\r\n//            textArea.append(restaurant.getMenuArray().get(i).toString());\r\n//        }\r\n//\r\n//        JScrollPane displayMenu = new JScrollPane(textArea);\r\n//        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);\r\n//        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);\r\n//\r\n//        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);\r\n//        midPanel2.add(displayMenu, BorderLayout.CENTER);\r\n    }\r\n\r\n    public void applyBotPanelContent() {\r\n        botPanel.setBounds(0, 455, FRAME_WIDTH, 40);\r\n        //uncomment to see the panel\r\n        botPanel.setBackground(Color.BLUE);\r\n        //panel borders and layout\r\n        botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));\r\n        botPanel.setLayout(new BorderLayout(5,5));\r\n\r\n        //panel components\r\n        JLabel directoryLabel = new JLabel(\"File menu location: \");\r\n        JTextField directoryTextField = new JTextField();\r\n        JButton updateButton = new JButton(\"UPDATE\");\r\n\r\n        botPanel.add(directoryLabel, BorderLayout.WEST);\r\n        botPanel.add(directoryTextField, BorderLayout.CENTER);\r\n        botPanel.add(updateButton, BorderLayout.EAST);\r\n    }\r\n}\r\n// DISPLAY THE ARRAY\r\n// https://stackoverflow.com/questions/30222157/displaying-arrayliststring-in-jtextarea\r\n//    JButton btnNewButton_1 = new JButton(\"Coordinate Anomalies\");\r\n//    btnNewButton_1.addActionListener(new ActionListener() {\r\n//            public void actionPerformed(ActionEvent arg0) {\r\n//                ArrayList<String> anomalies = vessels.coordinateAnomaly();\r\n//                JTextArea textArea = new JTextArea();\r\n//                textArea.setText(anomalies);\r\n//                textArea.setBounds(10, 79, 172, 339);\r\n//                frame.getContentPane().add(textArea);\r\n//            }\r\n//        });\r\n//}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/ChefPanel.java b/logic/src/ChefPanel.java
+--- a/logic/src/ChefPanel.java	(revision 39cc078d2cd5f629cb5a6ff71585f118a3364a56)
++++ b/logic/src/ChefPanel.java	(date 1632241501878)
+@@ -126,22 +126,22 @@
+         //panel components
+         JLabel readLabel = new JLabel("Menu content: ");
+         readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+-        // redacted
+-//        JTextArea textArea = new JTextArea();
+-//        textArea.setEditable(false);
+-//        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
+-//        textArea.setEditable(false);
+-//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
+-//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
+-//            textArea.append(restaurant.getMenuArray().get(i).toString());
+-//        }
+-//
+-//        JScrollPane displayMenu = new JScrollPane(textArea);
+-//        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+-//        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
+-//
+-//        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
+-//        midPanel2.add(displayMenu, BorderLayout.CENTER);
++
++        JTextArea textArea = new JTextArea();
++        textArea.setEditable(false);
++        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
++        textArea.setEditable(false);
++        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
++            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
++            textArea.append(restaurant.getMenuArray().get(i).toString());
++        }
++
++        JScrollPane displayMenu = new JScrollPane(textArea);
++        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
++        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
++
++        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
++        midPanel2.add(displayMenu, BorderLayout.CENTER);
+     }
+ 
+     public void applyBotPanelContent() {

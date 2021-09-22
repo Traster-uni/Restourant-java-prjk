@@ -1,0 +1,347 @@
+Index: logic/src/myFrame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\nimport java.util.List;\r\n\r\n//TODO: SPOSTARE LE CLASSI RELATIVE ALLA GRAFICA IN UNA CARTELLA APPOSITA.\r\n\r\npublic class myFrame extends JFrame{\r\n    protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, cookPanel, cashierPanel;\r\n    protected JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;\r\n    protected Restaurant restaurant;\r\n\r\n\r\n    public myFrame(){\r\n        exitButtonMenu = new JButton();\r\n        exitButtonMenu.setText(\"EXIT\");\r\n        exitButtonMenu.setBounds(860, 700, 100, 30);\r\n\r\n        createStartPanel();\r\n        createMainMenuPanel();\r\n        createChefPanel();\r\n\r\n        chefPanel.add(exitButtonMenu);\r\n        setSize(1000, 800);\r\n        setTitle(\"Restaurant\");\r\n        getContentPane().add(startPanel);\r\n        setVisible(true);\r\n        setResizable(false);\r\n        setDefaultCloseOperation(EXIT_ON_CLOSE);\r\n        startButton.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                switchPanel(mainMenuPanel);\r\n                restaurant = new Restaurant();\r\n            }\r\n        });\r\n        exitButtonStart.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                switchPanel(startPanel);\r\n            }\r\n        });\r\n        chefButton.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                switchPanel(chefPanel);\r\n            }\r\n        });\r\n        waiterButton.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                //test purpose\r\n                List<Plate> dishDummy1 = Arrays.asList(new Plate(\"Carbonara\", 2,8.00), new Plate(\"Amatriciana\",2,10.00));\r\n                List<Plate> dishDummy2 = Arrays.asList((new Plate(\"Firoentina\", 3, 25.00), new Plate(\"Stufato\", 3, 25.00));\r\n                ArrayList<Plate> array1 = new ArrayList<>();\r\n                ArrayList<Plate> array2 = new ArrayList<>();\r\n                array1.addAll(dishDummy1);\r\n                array2.addAll(dishDummy2);\r\n                restaurant.addArrayPlates(array1);\r\n                restaurant.addArrayPlates(array2);\r\n                //test\r\n                Waiter waiter1 = new Waiter();\r\n                restaurant.addEmployee(waiter1);\r\n            }\r\n        });\r\n        exitButtonMenu.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                switchPanel(mainMenuPanel);\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    public void createStartPanel(){\r\n        startPanel = new JPanel(new GridBagLayout());\r\n        startButton = new JButton();\r\n        startButton.setPreferredSize(new Dimension(200, 60));\r\n        startButton.setText(\"START\");\r\n        startPanel.add(startButton);\r\n    }\r\n\r\n    public void createMainMenuPanel() {\r\n        mainMenuPanel = new JPanel(null);\r\n        chefButton = new JButton();\r\n        chefButton.setBounds(99, 200, 300, 90);\r\n        chefButton.setText(\"CHEF\");\r\n        waiterButton = new JButton();\r\n        waiterButton.setBounds(599, 200, 300, 90);\r\n        waiterButton.setText(\"WAITER\");\r\n        cookButton = new JButton();\r\n        cookButton.setBounds(599, 500, 300, 90);\r\n        cookButton.setText(\"COOK\");\r\n        cashierButton = new JButton();\r\n        cashierButton.setBounds(99, 500, 300, 90);\r\n        cashierButton.setText(\"CASHIER\");\r\n        exitButtonStart = new JButton();\r\n        exitButtonStart.setText(\"EXIT\");\r\n        exitButtonStart.setBounds(860, 700, 100, 30);\r\n        mainMenuPanel.add(chefButton);\r\n        mainMenuPanel.add(waiterButton);\r\n        mainMenuPanel.add(cookButton);\r\n        mainMenuPanel.add(cashierButton);\r\n        mainMenuPanel.add(exitButtonStart);\r\n    }\r\n\r\n    public void createChefPanel(){\r\n        //editing\r\n        new ChefPanel();\r\n    }\r\n\r\n    public void switchPanel(JPanel panelToSwitch){\r\n        getContentPane().removeAll();\r\n        getContentPane().add(panelToSwitch);\r\n        revalidate();\r\n        repaint();\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        new myFrame();\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/myFrame.java b/logic/src/myFrame.java
+--- a/logic/src/myFrame.java	(revision 7eb4dd198828e028b71f48f40559445ed66d07cf)
++++ b/logic/src/myFrame.java	(date 1631699021655)
+@@ -19,10 +19,12 @@
+         exitButtonMenu.setText("EXIT");
+         exitButtonMenu.setBounds(860, 700, 100, 30);
+ 
++        setResizable(false);
+         createStartPanel();
+         createMainMenuPanel();
+         createChefPanel();
+ 
++
+         chefPanel.add(exitButtonMenu);
+         setSize(1000, 800);
+         setTitle("Restaurant");
+Index: logic/src/ChefPanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport javax.swing.border.Border;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\n\r\n/**\r\n * Created by Tommaso M. Lopedote on 12/09/2021\r\n * Time: 10:30\r\n * Project: Restourant-java-prjk\r\n */\r\npublic class ChefPanel extends myFrame {\r\n    final int FRAME_WIDTH = 985;\r\n    private Restaurant restaurant;\r\n    private JPanel topPanel, midPanel, botPanel;\r\n    private JPanel overMidPanel;\r\n\r\n    public void createChefPanel() {\r\n        chefPanel = new JPanel();\r\n        chefPanel.setLayout(null);\r\n\r\n        topPanel = new JPanel();\r\n        chefPanel.add(topPanel);\r\n        applyTopPanelContent();\r\n\r\n        midPanel = new JPanel();\r\n        chefPanel.add(midPanel);\r\n        applyMidPanelContent();\r\n\r\n        overMidPanel = new JPanel();\r\n        midPanel.add(overMidPanel);\r\n        applyOverMidPanelContent();\r\n\r\n        botPanel = new JPanel();\r\n        chefPanel.add(botPanel);\r\n        applyBotPanelContent();\r\n\r\n    }\r\n\r\n    public void applyTopPanelContent() {\r\n        topPanel.setBounds(0, 0, FRAME_WIDTH, 60);\r\n        //uncomment to see the panel\r\n        topPanel.setBackground(Color.GREEN);\r\n        //panel borders and layout\r\n        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 10));\r\n        topPanel.setLayout(new BorderLayout(5, 5));\r\n        //panel components\r\n        JLabel frameTitle = new JLabel(\"Chef Control Panel\");\r\n        JLabel textFieldLabel = new JLabel(\"Table Number: \");\r\n        JTextField textFieldTop = new JTextField(4);\r\n        JButton enterTextButton = new JButton(\"OK\");\r\n        topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);\r\n        topPanel.add(textFieldLabel, BorderLayout.WEST);\r\n        topPanel.add(textFieldTop, BorderLayout.CENTER);\r\n        topPanel.add(enterTextButton, BorderLayout.EAST);\r\n    }\r\n\r\n    public void applyMidPanelContent(){\r\n        midPanel.setBounds(0, 60, FRAME_WIDTH, 500);\r\n        //uncomment to see the panel\r\n        midPanel.setBackground(Color.RED);\r\n        //panel borders and layout\r\n        midPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));\r\n        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.Y_AXIS));\r\n\r\n        //panel components\r\n        JLabel writeLabel = new JLabel(\"Write the menu here: \");\r\n        writeLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);\r\n\r\n        JLabel readLabel = new JLabel(\"Menu entries: \");\r\n        readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);\r\n\r\n        JScrollPane displayMenu = new JScrollPane();\r\n        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);\r\n\r\n\r\n        midPanel.add(writeLabel);\r\n        midPanel.add(readLabel);\r\n        midPanel.add(displayMenu);\r\n\r\n\r\n//        public void displayAll() {\r\n//            JOptionPane.showMessageDialog(null,\r\n//                    new JScrollPane(new JList(cards.toArray())));\r\n//        }\r\n    }\r\n\r\n    public void applyOverMidPanelContent(){\r\n        overMidPanel.setBackground(Color.BLACK);\r\n        overMidPanel.add(new JTextField());\r\n        overMidPanel.add(new JLabel(\"Category: \"));\r\n        overMidPanel.add(new JTextField());\r\n        overMidPanel.add(new JLabel(\"Price: \"));\r\n        overMidPanel.add(new JTextField());\r\n\r\n        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));\r\n        overMidPanel.setLayout(new FlowLayout(FlowLayout.LEADING));\r\n\r\n        overMidPanel.setBounds(0,60,100,20);\r\n        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));\r\n        overMidPanel.setVisible(true);\r\n\r\n    }\r\n\r\n    public void applyBotPanelContent(){\r\n        botPanel.setBounds(0, 560, FRAME_WIDTH, 130);\r\n        botPanel.setBackground(Color.BLUE);\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/ChefPanel.java b/logic/src/ChefPanel.java
+--- a/logic/src/ChefPanel.java	(revision 7eb4dd198828e028b71f48f40559445ed66d07cf)
++++ b/logic/src/ChefPanel.java	(date 1631699021634)
+@@ -12,8 +12,9 @@
+ public class ChefPanel extends myFrame {
+     final int FRAME_WIDTH = 985;
+     private Restaurant restaurant;
+-    private JPanel topPanel, midPanel, botPanel;
+-    private JPanel overMidPanel;
++    private JPanel topPanel;
++    private JPanel midPanel;
++    private JPanel botPanel;
+ 
+     public void createChefPanel() {
+         chefPanel = new JPanel();
+@@ -27,14 +28,9 @@
+         chefPanel.add(midPanel);
+         applyMidPanelContent();
+ 
+-        overMidPanel = new JPanel();
+-        midPanel.add(overMidPanel);
+-        applyOverMidPanelContent();
+-
+         botPanel = new JPanel();
+         chefPanel.add(botPanel);
+         applyBotPanelContent();
+-
+     }
+ 
+     public void applyTopPanelContent() {
+@@ -85,20 +81,20 @@
+ //        }
+     }
+ 
+-    public void applyOverMidPanelContent(){
+-        overMidPanel.setBackground(Color.BLACK);
+-        overMidPanel.add(new JTextField());
+-        overMidPanel.add(new JLabel("Category: "));
+-        overMidPanel.add(new JTextField());
+-        overMidPanel.add(new JLabel("Price: "));
+-        overMidPanel.add(new JTextField());
++    public void textFieldFlowSetup(){
++        JPanel p = new JPanel();
++
++        JLabel categoryL = new JLabel("Category: ");
++        JTextField categoryTF = new JTextField();
++        JLabel priceL = new JLabel("Price: ");
++        JTextField priceTF = new JTextField();
+ 
+-        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
+-        overMidPanel.setLayout(new FlowLayout(FlowLayout.LEADING));
++        p.setBorder(BorderFactory.createEmptyBorder(0,5,0,0));
++        p.setLayout(new FlowLayout(FlowLayout.LEADING));
+ 
+-        overMidPanel.setBounds(0,60,100,20);
+-        overMidPanel.setBorder(BorderFactory.createEmptyBorder(0,10,0,10));
+-        overMidPanel.setVisible(true);
++        p.add(new JTextField());
++        p.add(new JLabel());
++
+ 
+     }
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a\" name=\"Default Changelist\" comment=\"deprecated main in chefpanel\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/src/ChefPanel.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/src/ChefPanel.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/src/Plate.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/src/Plate.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/logic/src/myFrame.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/logic/src/myFrame.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Kotlin Class\" />\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/logic/src/Restaurant.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/logic/src/Plate.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/logic/src/Chef.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/logic/test/ChefTest.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1vdPo2FplB15wHivhAszTXh8D30\" />\r\n  <component name=\"ProjectLevelVcsManager\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"Downloaded.Files.Path.Enabled\" value=\"false\" />\r\n    <property name=\"Repository.Attach.Annotations\" value=\"false\" />\r\n    <property name=\"Repository.Attach.JavaDocs\" value=\"false\" />\r\n    <property name=\"Repository.Attach.Sources\" value=\"false\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW\" value=\"true\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH\" value=\"277\" />\r\n    <property name=\"UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW\" value=\"false\" />\r\n    <property name=\"codeWithMe.voiceChat.enabledByDefault\" value=\"false\" />\r\n    <property name=\"jdk.selected.JAVA_MODULE\" value=\"15\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/javafx-sdk-11.0.2/lib\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.2\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"project.propGUI\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\trast\\Desktop\\Università\\GitHub\\Restourant-java-prjk\\old\\src\" />\r\n      <recent name=\"C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\graphics\\src\" />\r\n      <recent name=\"C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\graphics\\src\\sample\" />\r\n      <recent name=\"C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\graphics\" />\r\n      <recent name=\"C:\\Users\\trast\\Desktop\\Università\\GitHub\\Restourant-java-prjk\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.ChefPanel\">\r\n    <configuration name=\"ChefPanel\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"ChefPanel\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Frame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Frame\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"RestaurantGUI\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"RestaurantGUI\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"myFrame\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"myFrame\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"simpleChefPanel\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"simpleChefPanel\" />\r\n      <module name=\"Restourant-java-prjk\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"Application.RestaurantGUI\" />\r\n      <item itemvalue=\"Application.Frame\" />\r\n      <item itemvalue=\"Application.simpleChefPanel\" />\r\n      <item itemvalue=\"Application.myFrame\" />\r\n      <item itemvalue=\"Application.ChefPanel\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.ChefPanel\" />\r\n        <item itemvalue=\"Application.simpleChefPanel\" />\r\n        <item itemvalue=\"Application.myFrame\" />\r\n        <item itemvalue=\"Application.Frame\" />\r\n        <item itemvalue=\"Application.RestaurantGUI\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task id=\"LOCAL-00001\" summary=\"modified Cheff's class and added a besic implementation of the Restaurant class\">\r\n      <created>1626887269603</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626887269603</updated>\r\n    </task>\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a\" name=\"Default Changelist\" comment=\"modified Cheff's class and added a besic implementation of the Restaurant class\" />\r\n      <created>1626889165263</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1626889165263</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added getter method to Restourant class, corrected a typo in chefs calass\">\r\n      <created>1626963681105</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626963681105</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Added a category argument in the Plate class, added the related JAVADOC.&#10;Corrected the Dictionaries included in the Restourant class, added the related JAVADOC, added 2 new set methods.\">\r\n      <created>1626969903141</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626969903141</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class.\">\r\n      <created>1626976108623</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626976108623</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class.\">\r\n      <created>1626980147969</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1626980147969</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef.\">\r\n      <created>1627154480388</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1627154480388</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"added Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef.\">\r\n      <created>1628607192490</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628607192490</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"Adjusted the Chef class methods with simple correction for some functions, more test have been conducted. chefTest.csv debug file added.\">\r\n      <created>1628620082481</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628620082481</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"Added the deletePayedOrder Method to the Restaurant.java class. Adjusted some typos in the javadoc\">\r\n      <created>1628694670243</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628694670243</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Adjusted the chef class, added the Restourant tester, added the equals to method to Plate class obj\">\r\n      <created>1628701414689</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628701414689</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class.\">\r\n      <created>1628703492498</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628703492498</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class.\">\r\n      <created>1628703917376</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628703917376</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"simple change line 158 Restourant\">\r\n      <created>1628765066959</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628765066959</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\".\">\r\n      <created>1628765192228</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628765192228</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Added the container class Order with a status attribute to be applied to the object in the moment of creation, the modifier classes of the project must be modified accordingly.\">\r\n      <created>1628847156812</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628847156812</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Modified Order.java to behave like an ArrayList but with a String attribute attached to it\">\r\n      <created>1628850565429</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628850565429</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"added Java.doc\">\r\n      <created>1628851114653</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1628851114653</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\".\">\r\n      <created>1629281072774</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629281072774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00019\" summary=\"Ho fatto la scherma iniziale\">\r\n      <created>1629387891231</created>\r\n      <option name=\"number\" value=\"00019\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00019\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629387891231</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00020\" summary=\"Ho fatto la finestra iniziale\">\r\n      <created>1629453487005</created>\r\n      <option name=\"number\" value=\"00020\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00020\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629453487005</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00021\" summary=\"Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste\">\r\n      <created>1629476378947</created>\r\n      <option name=\"number\" value=\"00021\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00021\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1629476378947</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00022\" summary=\"removed fxmloader\">\r\n      <created>1631281619100</created>\r\n      <option name=\"number\" value=\"00022\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00022\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631281619100</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00023\" summary=\"removed fxmloader\">\r\n      <created>1631281624836</created>\r\n      <option name=\"number\" value=\"00023\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00023\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631281624836</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00024\" summary=\"removed fxmloader\">\r\n      <created>1631281663026</created>\r\n      <option name=\"number\" value=\"00024\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00024\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631281663026</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00025\" summary=\"basic jSwing module\">\r\n      <created>1631283585815</created>\r\n      <option name=\"number\" value=\"00025\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00025\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631283585815</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00026\" summary=\"mainMenu added\">\r\n      <created>1631296925939</created>\r\n      <option name=\"number\" value=\"00026\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00026\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631296925939</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00027\" summary=\"readded old data that went lost wile changing branches\">\r\n      <created>1631343579867</created>\r\n      <option name=\"number\" value=\"00027\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00027\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631343579867</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00028\" summary=\"deleted redacted files\">\r\n      <created>1631432568873</created>\r\n      <option name=\"number\" value=\"00028\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00028\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631432568873</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00029\" summary=\"deleted redacted files\">\r\n      <created>1631694370786</created>\r\n      <option name=\"number\" value=\"00029\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00029\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631694370786</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00030\" summary=\"Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto).\">\r\n      <created>1631694610233</created>\r\n      <option name=\"number\" value=\"00030\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00030\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631694610233</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00031\" summary=\"deprecated main in chefpanel\">\r\n      <created>1631694728694</created>\r\n      <option name=\"number\" value=\"00031\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00031\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1631694728694</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"32\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.csv\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.History.Properties\">\r\n    <option name=\"COLUMN_ID_ORDER\">\r\n      <list>\r\n        <option value=\"Default.Root\" />\r\n        <option value=\"Default.Author\" />\r\n        <option value=\"Default.Date\" />\r\n        <option value=\"Default.Subject\" />\r\n        <option value=\"Space.CommitStatus\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class.\" />\r\n    <MESSAGE value=\"corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class.\" />\r\n    <MESSAGE value=\"addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef.\" />\r\n    <MESSAGE value=\"added Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef.\" />\r\n    <MESSAGE value=\"Adjusted the Chef class methods with simple correction for some functions, more test have been conducted. chefTest.csv debug file added.\" />\r\n    <MESSAGE value=\"Added the deletePayedOrder Method to the Resta\" />\r\n    <MESSAGE value=\"Added the deletePayedOrder Method to the Restaurant.java class. Adjusted some typos in the javadoc\" />\r\n    <MESSAGE value=\"Adjusted the chef class, added the Restourant tester, added the equals to method to Plate class obj\" />\r\n    <MESSAGE value=\"Modified the Type of menuArray of Restourant Class,\" />\r\n    <MESSAGE value=\"Modified the Type of menuArray of Restourant Class,&#10;added a new method to load the menu from the buffer of the cheff class.\" />\r\n    <MESSAGE value=\"simple change line 158 Restourant\" />\r\n    <MESSAGE value=\"Added the container class Order with a status attribute to be applied to the object in the moment of creation, the modifier classes of the project must be modified accordingly.\" />\r\n    <MESSAGE value=\"Modified Order.java to behave like an ArrayList but with a String attribute attached to it\" />\r\n    <MESSAGE value=\"added Java.doc\" />\r\n    <MESSAGE value=\".\" />\r\n    <MESSAGE value=\"Ho fatto la scherma iniziale\" />\r\n    <MESSAGE value=\"Ho fatto la finestra iniziale\" />\r\n    <MESSAGE value=\"Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste\" />\r\n    <MESSAGE value=\"removed fxmloader\" />\r\n    <MESSAGE value=\"basic jSwing module\" />\r\n    <MESSAGE value=\"mainMenu added\" />\r\n    <MESSAGE value=\"readded old data that went lost wile changing branches\" />\r\n    <MESSAGE value=\"deleted redacted files\" />\r\n    <MESSAGE value=\"Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto).\" />\r\n    <MESSAGE value=\"deprecated main in chefpanel\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"deprecated main in chefpanel\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.util.InputMismatchException\" package=\"java.util\" />\r\n          <option name=\"timeStamp\" value=\"3\" />\r\n        </breakpoint>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.IndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"6\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\r\n    <expand />\r\n    <select />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7eb4dd198828e028b71f48f40559445ed66d07cf)
++++ b/.idea/workspace.xml	(date 1631699683416)
+@@ -4,10 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="deprecated main in chefpanel">
++    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="deleted redacted files">
++      <change afterPath="$PROJECT_DIR$/logic/src/Frame.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Restaurant.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Waiter.class" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/logic/src/ChefPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/ChefPanel.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/logic/src/Plate.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Plate.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/logic/src/myFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/myFrame.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -36,9 +38,9 @@
+     </file-type-list>
+   </component>
+   <component name="HighlightingSettingsPerFile">
+-    <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/logic/src/Plate.java" root0="FORCE_HIGHLIGHTING" />
+-    <setting file="file://$PROJECT_DIR$/logic/src/Chef.java" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/logic/src/Restaurant.java" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/logic/test/ChefTest.java" root0="FORCE_HIGHLIGHTING" />
+   </component>
+   <component name="ProjectId" id="1vdPo2FplB15wHivhAszTXh8D30" />
+@@ -350,14 +352,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1631694610233</updated>
+     </task>
+-    <task id="LOCAL-00031" summary="deprecated main in chefpanel">
+-      <created>1631694728694</created>
+-      <option name="number" value="00031" />
+-      <option name="presentableId" value="LOCAL-00031" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1631694728694</updated>
+-    </task>
+-    <option name="localTasksCounter" value="32" />
++    <option name="localTasksCounter" value="31" />
+     <servers />
+   </component>
+   <component name="UnknownFeatures">
+@@ -388,6 +383,7 @@
+   </component>
+   <component name="VcsManagerConfiguration">
+     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
++    <MESSAGE value="Added a category argument in the Plate class, added the related JAVADOC.&#10;Corrected the Dictionaries included in the Restourant class, added the related JAVADOC, added 2 new set methods." />
+     <MESSAGE value="added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class." />
+     <MESSAGE value="corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class." />
+     <MESSAGE value="addded Read and write menu methods, modified the addNewDish method.&#10;created and tested basic functiuonalities of classes Plates and Chef." />
+@@ -412,8 +408,7 @@
+     <MESSAGE value="readded old data that went lost wile changing branches" />
+     <MESSAGE value="deleted redacted files" />
+     <MESSAGE value="Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto)." />
+-    <MESSAGE value="deprecated main in chefpanel" />
+-    <option name="LAST_COMMIT_MESSAGE" value="deprecated main in chefpanel" />
++    <option name="LAST_COMMIT_MESSAGE" value="Modificata la classe myFrame relativa alla grafica, aggiunta la classe di gestione del pannello per lo Chef (incompleto)." />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: logic/src/Frame.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Frame.java b/logic/src/Frame.java
+new file mode 100644
+--- /dev/null	(date 1631700239837)
++++ b/logic/src/Frame.java	(date 1631700239837)
+@@ -0,0 +1,173 @@
++import javax.swing.*;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.util.ArrayList;
++import java.util.Arrays;
++import java.util.List;
++
++public class Frame extends JFrame{
++    private JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, doOrderPanel, cookPanel, cashierPanel;
++    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;
++    private ArrayList<JButton> tables;
++    protected Waiter waiter;
++    protected Restaurant restaurant;
++
++    public Frame(){
++        restaurant = new Restaurant();
++        java.util.List<Plate> dishDummy1 = Arrays.asList(new Plate("Carbonara", 2,8.00), new Plate("Amatriciana",2,10.00));
++        List<Plate> dishDummy2 = Arrays.asList((new Plate("Firoentina", 3, 25.00), new Plate("Stufato", 3, 25.00));
++        ArrayList<Plate> array1 = new ArrayList<>();
++        ArrayList<Plate> array2 = new ArrayList<>();
++        array1.addAll(dishDummy1);
++        array2.addAll(dishDummy2);
++        restaurant.addArrayPlates(array1);
++        restaurant.addArrayPlates(array2);
++
++
++        exitButtonMenu = new JButton();
++        exitButtonMenu.setText("EXIT");
++        exitButtonMenu.setBounds(849, 699, 100, 30);
++        setResizable(false);
++        createStartPanel();
++        createMainMenuPanel();
++        createChefPanel();
++        createWaiterPanel();
++        chefPanel.add(exitButtonMenu);
++        waiterPanel.add(exitButtonMenu);
++        setSize(1000, 800);
++        setTitle("Restaurant");
++        getContentPane().add(startPanel);
++        setVisible(true);
++        setDefaultCloseOperation(EXIT_ON_CLOSE);
++        startButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(mainMenuPanel);
++            }
++        });
++        exitButtonStart.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(startPanel);
++            }
++        });
++        chefButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(chefPanel);
++            }
++        });
++        exitButtonMenu.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(mainMenuPanel);
++            }
++        });
++        waiterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(waiterPanel);
++            }
++        });
++        for (int i=0; i < tables.size(); i++){
++            int tableNumber = i;
++            tables.get(i).addActionListener(new ActionListener() {
++                @Override
++                public void actionPerformed(ActionEvent e) {
++                    createDoOrderPanel(tableNumber);
++                    switchPanel(doOrderPanel);
++                }
++            });
++        }
++
++    }
++
++    public void createStartPanel(){
++        startPanel = new JPanel(new GridBagLayout());
++        startButton = new JButton();
++        startButton.setPreferredSize(new Dimension(200, 60));
++        startButton.setText("START");
++        startPanel.add(startButton);
++    }
++
++    public void createMainMenuPanel() {
++        mainMenuPanel = new JPanel(null);
++        chefButton = new JButton();
++        chefButton.setBounds(99, 200, 300, 90);
++        chefButton.setText("CHEF");
++        waiterButton = new JButton();
++        waiterButton.setBounds(599, 200, 300, 90);
++        waiterButton.setText("WAITER");
++        cookButton = new JButton();
++        cookButton.setBounds(599, 500, 300, 90);
++        cookButton.setText("COOK");
++        cashierButton = new JButton();
++        cashierButton.setBounds(99, 500, 300, 90);
++        cashierButton.setText("CASHIER");
++        exitButtonStart = new JButton();
++        exitButtonStart.setText("EXIT");
++        exitButtonStart.setBounds(849, 699, 100, 30);
++        mainMenuPanel.add(chefButton);
++        mainMenuPanel.add(waiterButton);
++        mainMenuPanel.add(cookButton);
++        mainMenuPanel.add(cashierButton);
++        mainMenuPanel.add(exitButtonStart);
++    }
++
++    public void createChefPanel(){
++        chefPanel = new JPanel(null);
++    }
++
++    public void createWaiterPanel(){
++        waiter = new Waiter();
++        waiterPanel = new JPanel(null);
++        tables = new ArrayList<>();
++        JPanel panel1 = new JPanel();
++        int tablesNumber = 15;
++        panel1.setBounds(0,0, 990, 670);
++        panel1.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
++        int divider;
++        if (tablesNumber<10){
++            divider = 2;
++        }
++        else{
++            divider = 4;
++        }
++        panel1.setLayout(new GridLayout(tablesNumber/divider,tablesNumber-tablesNumber/divider, 10, 10));
++        for (int i=0; i<tablesNumber; i++){
++            String nameButton = "tableButton" + (i+1);
++            String text = "Table " + (i+1);
++            JButton tableButton = new JButton(text);
++            tables.add(tableButton);
++            panel1.add(tableButton);
++        }
++        panel1.setBackground(Color.RED);
++        waiterPanel.add(panel1);
++
++    }
++
++    public void switchPanel(JPanel panelToSwitch){
++        getContentPane().removeAll();
++        getContentPane().add(panelToSwitch);
++        revalidate();
++        repaint();
++    }
++
++    public void createDoOrderPanel(int tableNumber){
++        doOrderPanel = new JPanel();
++        waiter.setServedTable(tableNumber);
++        JList<Plate> menu =  new JList<>();
++        
++
++
++
++    }
++
++    public static void main(String[] args) {
++        new Frame();
++    }
++
++
++
++}

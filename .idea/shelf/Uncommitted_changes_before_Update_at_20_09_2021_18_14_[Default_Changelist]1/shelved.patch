@@ -1,0 +1,432 @@
+Index: logic/test/RestaurantTester.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.plaf.synth.SynthLookAndFeel;\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * Created by Tommaso M. Lopedote on 11/08/2021\r\n * Time: 18:09\r\n * Project: Restourant-java-prjk\r\n */\r\npublic class RestaurantTester {\r\n    public static void main(String[] args) {\r\n        Restaurant DaGino = new Restaurant();\r\n        Chef ginoChef = DaGino.getChef();\r\n        int tableNum = 5;\r\n\r\n\r\n        System.out.println(\"Welcome to Restourant \" );\r\n//        System.out.println(\"With 5 star micheline chef \"+ginoChef.getName());\r\n        System.out.println(\"Number of table at your disposal: \"+ DaGino.getTablesNumbs());\r\n\r\n//        Cook cook1 = new Cook();\r\n//        Waiter waiter = new Waiter();\r\n//        DaGino.addEmployee(cook1);\r\n//        DaGino.addEmployee(waiter);\r\n//        System.out.println(DaGino.getEmployeeArrayList());\r\n\r\n        String directory = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\menu.csv\";\r\n        ginoChef.setMenuDirectory(directory);\r\n        ginoChef.setNumberOfCategories(4);\r\n        try {\r\n            ginoChef.addNewDish(\"Pizza\", 2, 6.0);\r\n            ginoChef.addNewDish(\"Fritti Vari\", 1, 5.0);\r\n            ginoChef.addNewDish(\"Pizza\", 2, 6.0);\r\n        } catch (PlateAlreadyExistException p) {\r\n            System.out.println(\"AN ERROR OCCURRED\");\r\n            p.printStackTrace();\r\n        }\r\n\r\n        ginoChef.writeMenu();\r\n//        System.out.println(ginoChef.getName()+\" ha scritto il menu\");\r\n        System.out.println(ginoChef.getBufferPlate());\r\n        ginoChef.clearBufferPlate();\r\n        System.out.println(\"Gino wiped the array\");\r\n        ginoChef.readMenu();\r\n        System.out.println(\"Gino has read the menu\");\r\n        System.out.println(ginoChef.getBufferPlate());\r\n        DaGino.loadMenuFromChef();\r\n\r\n        System.out.println();\r\n        Waiter waiter = new Waiter(1);\r\n        waiter.addPlate(\"Pizza\", 2,  DaGino);\r\n        waiter.addPlate(\"Fritti Vari\",1, DaGino);\r\n        waiter.deletePlate(\"Fritti Vari\");\r\n//        ArrayList<Plate> plates = new ArrayList<>();\r\n//        plates.add(new Plate(\"Pasta\", 1, 7.0));\r\n//        DaGino.addOrderDict(1, plates);\r\n        waiter.endOrder(DaGino);\r\n\r\n        waiter.setServedTable(3);\r\n        waiter.addPlate(\"Fritti Vari\", 1, DaGino);\r\n        waiter.addPlate(\"Pizza\", 2, DaGino);\r\n        waiter.addPlate(\"Pizza\", 2, DaGino);\r\n        waiter.endOrder(DaGino);\r\n\r\n        waiter.setServedTable(1);\r\n        waiter.addPlate(\"Fritti Vari\", 1, DaGino);\r\n        waiter.endOrder(DaGino);\r\n        System.out.println(DaGino.getOrderDict());\r\n\r\n        String cookedDirectory = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\cooked.csv\";\r\n        Cook cook = new Cook(cookedDirectory);\r\n        System.out.println(\"Il cuoco sceglie il tavolo 1\");\r\n        cook.setServedTable(1);\r\n        cook.selectOrderToPrepare(DaGino);\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Pizza\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.checkPreparedOrder(DaGino);\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n\r\n        System.out.println();\r\n        System.out.println(\"Il cuoco sceglie il tavolo 3\");\r\n        cook.setServedTable(3);\r\n        cook.selectOrderToPrepare(DaGino);\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Fritti Vari\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Pizza\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Pizza\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.checkPreparedOrder(DaGino);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Il cuoco sceglie il tavolo 3\");\r\n        cook.setServedTable(1);\r\n        cook.selectOrderToPrepare(DaGino);\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.preparePlate(\"Fritti Vari\");\r\n        System.out.println(\"Il cuoco ha preparato: \" + cook.getOrderReady());\r\n        System.out.println(\"Il cuoco deve preparare: \" + cook.getOrderToPrepare());\r\n        cook.checkPreparedOrder(DaGino);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Ordini non pagati: \" + DaGino.getPayableDict());\r\n        String payment = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\payment.csv\";\r\n        Cashier cashier = new Cashier(payment);\r\n        System.out.println(\"Il casiere sceglie il tavolo 1\");\r\n        cashier.setServedTable(1);\r\n        cashier.selectOrder(DaGino);\r\n        System.out.println(\"Il cliente deve pagare: \" + cashier.getPayment());\r\n        double amount = 20;\r\n        System.out.println(\"Il cliente riceve il resto: \" + cashier.giveChange(amount));\r\n        String receipt1 = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\receipt1.txt\";\r\n        cashier.printReceipt(receipt1, DaGino);\r\n\r\n        System.out.println();\r\n        System.out.println(\"Ordini non pagati: \" + DaGino.getPayableDict());\r\n        cashier.setServedTable(3);\r\n        System.out.println(\"Il casiere sceglie il tavolo 3\");\r\n        cashier.selectOrder(DaGino);\r\n        System.out.println(\"Il cliente deve pagare: \" + cashier.getPayment());\r\n        double amount2 = 40;\r\n        System.out.println(\"Il cliente riceve il resto: \" + cashier.giveChange(amount2));\r\n        String receipt2 = \"C:\\\\Users\\\\baran\\\\OneDrive\\\\Desktop\\\\eclipse-workspace\\\\Restourant-java-prjk\\\\receipt2.txt\";\r\n        cashier.printReceipt(receipt2, DaGino);\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/test/RestaurantTester.java b/logic/test/RestaurantTester.java
+--- a/logic/test/RestaurantTester.java	
++++ b/logic/test/RestaurantTester.java	
+@@ -47,24 +47,24 @@
+ 
+         System.out.println();
+         Waiter waiter = new Waiter(1);
+-        waiter.addPlate("Pizza", 2,  DaGino);
+-        waiter.addPlate("Fritti Vari",1, DaGino);
+-        waiter.deletePlate("Fritti Vari");
++//        waiter.addPlate("Pizza", 2,  DaGino);
++//        waiter.addPlate("Fritti Vari",1, DaGino);
++//        waiter.deletePlate("Fritti Vari");
+ //        ArrayList<Plate> plates = new ArrayList<>();
+ //        plates.add(new Plate("Pasta", 1, 7.0));
+ //        DaGino.addOrderDict(1, plates);
+         waiter.endOrder(DaGino);
+ 
+-        waiter.setServedTable(3);
+-        waiter.addPlate("Fritti Vari", 1, DaGino);
+-        waiter.addPlate("Pizza", 2, DaGino);
+-        waiter.addPlate("Pizza", 2, DaGino);
+-        waiter.endOrder(DaGino);
+-
+-        waiter.setServedTable(1);
+-        waiter.addPlate("Fritti Vari", 1, DaGino);
+-        waiter.endOrder(DaGino);
+-        System.out.println(DaGino.getOrderDict());
++//        waiter.setServedTable(3);
++//        waiter.addPlate("Fritti Vari", 1, DaGino);
++//        waiter.addPlate("Pizza", 2, DaGino);
++//        waiter.addPlate("Pizza", 2, DaGino);
++//        waiter.endOrder(DaGino);
++//
++//        waiter.setServedTable(1);
++//        waiter.addPlate("Fritti Vari", 1, DaGino);
++//        waiter.endOrder(DaGino);
++//        System.out.println(DaGino.getOrderDict());
+ 
+         String cookedDirectory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\cooked.csv";
+         Cook cook = new Cook(cookedDirectory);
+Index: logic/src/ChefPanel.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport javax.swing.border.Border;\r\nimport javax.swing.text.NumberFormatter;\r\nimport java.awt.*;\r\nimport java.awt.event.ActionEvent;\r\nimport java.awt.event.ActionListener;\r\nimport java.text.DecimalFormat;\r\nimport java.text.NumberFormat;\r\nimport java.text.ParseException;\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * Created by Tommaso M. Lopedote on 12/09/2021\r\n * Time: 10:30\r\n * Project: Restourant-java-prjk\r\n */\r\npublic class ChefPanel extends myFrame {\r\n    final int FRAME_WIDTH = 985;\r\n    private Restaurant restaurant;\r\n    private JPanel topPanel, midPanel1, midPanel2, botPanel;\r\n\r\n    public void createChefPanel() {\r\n        chefPanel = new JPanel();\r\n        chefPanel.setLayout(null);\r\n\r\n        topPanel = new JPanel();\r\n        chefPanel.add(topPanel);\r\n        applyTopPanelContent();\r\n\r\n        midPanel1 = new JPanel();\r\n        chefPanel.add(midPanel1);\r\n        applyMidPanel1Content();\r\n\r\n        midPanel2 = new JPanel();\r\n        chefPanel.add(midPanel2);\r\n        applyMidPanel2Content();\r\n\r\n        botPanel = new JPanel();\r\n        chefPanel.add(botPanel);\r\n        applyBotPanelContent();\r\n\r\n    }\r\n\r\n    public void applyTopPanelContent() {\r\n        topPanel.setBounds(0, 0, FRAME_WIDTH, 90);\r\n        //uncomment to see the panel\r\n        topPanel.setBackground(Color.GREEN);\r\n        //panel borders and layout\r\n        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));\r\n        topPanel.setLayout(new BorderLayout(5, 5));\r\n        //panel components\r\n        JLabel frameTitle = new JLabel(\"Chef Control Panel\");\r\n        frameTitle.setFont(new Font(\"Comic Sans\", Font.BOLD, 20));\r\n        JLabel textFieldLabel = new JLabel(\"Number of tables: \");\r\n\r\n        NumberFormat integerFormatter = NumberFormat.getIntegerInstance();\r\n        integerFormatter.setMaximumFractionDigits(0);\r\n        JFormattedTextField textFieldTop = new JFormattedTextField(integerFormatter);\r\n        textFieldTop.setText(\"\");   // when one clicks on ok or just presses enter the text turns back to blank\r\n        textFieldTop.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n                Integer intInputValue = Integer.parseInt(textFieldTop.getText().replaceAll(\",\", \"\"));\r\n\r\n                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());\r\n            }\r\n        });\r\n\r\n        JButton enterTextButton = new JButton(\"OK\");\r\n        enterTextButton.addActionListener(new ActionListener() {\r\n            @Override\r\n            public void actionPerformed(ActionEvent e) {\r\n//                JOptionPane.showMessageDialog(topPanel, textFieldTop.getText().toString());\r\n                \r\n            }\r\n        });\r\n\r\n        topPanel.add(frameTitle, BorderLayout.BEFORE_FIRST_LINE);\r\n        topPanel.add(textFieldLabel, BorderLayout.WEST);\r\n        topPanel.add(textFieldTop, BorderLayout.CENTER);\r\n        topPanel.add(enterTextButton, BorderLayout.EAST);\r\n\r\n        topPanel.add(new JLabel(\"Add entries here: \"), BorderLayout.SOUTH);\r\n    }\r\n\r\n    public void applyMidPanel1Content() {\r\n        midPanel1.setBounds(0, 90, FRAME_WIDTH, 65);\r\n        //uncomment to see the panel\r\n        midPanel1.setBackground(Color.BLACK);\r\n        //panel borders and layout\r\n        midPanel1.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 5));\r\n        midPanel1.setLayout(new FlowLayout(FlowLayout.LEADING));\r\n\r\n        //panel components\r\n        JTextField nameTextField = new JTextField();\r\n        nameTextField.setColumns(20);\r\n        JFormattedTextField categoryTextField = new JFormattedTextField(); //onlyFewNumbersTextField\r\n        categoryTextField.setColumns(4);\r\n        JFormattedTextField priceTextField = new JFormattedTextField(new NumberFormatter());\r\n        priceTextField.setColumns(6);\r\n        JButton addButton = new JButton(\"ADD\");\r\n        JButton deleteButton = new JButton(\"DELETE\");\r\n        midPanel1.setAlignmentX(JPanel.LEFT_ALIGNMENT);\r\n\r\n        midPanel1.add(new JLabel(\"Dish's name: \"));\r\n        midPanel1.add(nameTextField);\r\n        midPanel1.add(new JLabel(\"Category: \"));\r\n        midPanel1.add(categoryTextField);\r\n        midPanel1.add(new JLabel(\"Price: \"));\r\n        midPanel1.add(priceTextField);\r\n        //buttons and spacers\r\n        midPanel1.add(new Box.Filler(new Dimension(100, 2), new Dimension(400, 2), new Dimension(400, 2)));\r\n        midPanel1.add(addButton);\r\n        midPanel1.add(new Box.Filler(new Dimension(300,2), new Dimension(820,2),new Dimension(820,2)));\r\n        midPanel1.add(deleteButton);\r\n    }\r\n\r\n    public void applyMidPanel2Content() {\r\n        midPanel2.setBounds(0, 155, FRAME_WIDTH, 300);\r\n        //uncomment to see the panel\r\n        midPanel2.setBackground(Color.RED);\r\n        //panel borders and layout\r\n        midPanel2.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));\r\n        midPanel2.setLayout(new BorderLayout(5,5));\r\n\r\n        //panel components\r\n        JLabel readLabel = new JLabel(\"Menu content: \");\r\n        readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);\r\n        // redacted\r\n//        JTextArea textArea = new JTextArea();\r\n//        textArea.setEditable(false);\r\n//        textArea.setFont(new Font(\"Comic Sans\", Font.PLAIN, 15));\r\n//        textArea.setEditable(false);\r\n//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){\r\n//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);\r\n//            textArea.append(restaurant.getMenuArray().get(i).toString());\r\n//        }\r\n//\r\n//        JScrollPane displayMenu = new JScrollPane(textArea);\r\n//        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);\r\n//        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);\r\n//\r\n//        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);\r\n//        midPanel2.add(displayMenu, BorderLayout.CENTER);\r\n    }\r\n\r\n    public void applyBotPanelContent() {\r\n        botPanel.setBounds(0, 455, FRAME_WIDTH, 40);\r\n        //uncomment to see the panel\r\n        botPanel.setBackground(Color.BLUE);\r\n        //panel borders and layout\r\n        botPanel.setBorder(BorderFactory.createEmptyBorder(0,10,10,10));\r\n        botPanel.setLayout(new BorderLayout(5,5));\r\n\r\n        //panel components\r\n        JLabel directoryLabel = new JLabel(\"File menu location: \");\r\n        JTextField directoryTextField = new JTextField();\r\n        JButton updateButton = new JButton(\"UPDATE\");\r\n\r\n        botPanel.add(directoryLabel, BorderLayout.WEST);\r\n        botPanel.add(directoryTextField, BorderLayout.CENTER);\r\n        botPanel.add(updateButton, BorderLayout.EAST);\r\n    }\r\n}\r\n// DISPLAY THE ARRAY\r\n// https://stackoverflow.com/questions/30222157/displaying-arrayliststring-in-jtextarea\r\n//    JButton btnNewButton_1 = new JButton(\"Coordinate Anomalies\");\r\n//    btnNewButton_1.addActionListener(new ActionListener() {\r\n//            public void actionPerformed(ActionEvent arg0) {\r\n//                ArrayList<String> anomalies = vessels.coordinateAnomaly();\r\n//                JTextArea textArea = new JTextArea();\r\n//                textArea.setText(anomalies);\r\n//                textArea.setBounds(10, 79, 172, 339);\r\n//                frame.getContentPane().add(textArea);\r\n//            }\r\n//        });\r\n//}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/ChefPanel.java b/logic/src/ChefPanel.java
+--- a/logic/src/ChefPanel.java	
++++ b/logic/src/ChefPanel.java	
+@@ -126,22 +126,22 @@
+         //panel components
+         JLabel readLabel = new JLabel("Menu content: ");
+         readLabel.setAlignmentX(JLabel.LEFT_ALIGNMENT);
+-        // redacted
+-//        JTextArea textArea = new JTextArea();
+-//        textArea.setEditable(false);
+-//        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
+-//        textArea.setEditable(false);
+-//        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
+-//            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
+-//            textArea.append(restaurant.getMenuArray().get(i).toString());
+-//        }
+-//
+-//        JScrollPane displayMenu = new JScrollPane(textArea);
+-//        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+-//        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
+-//
+-//        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
+-//        midPanel2.add(displayMenu, BorderLayout.CENTER);
++
++        JTextArea textArea = new JTextArea();
++        textArea.setEditable(false);
++        textArea.setFont(new Font("Comic Sans", Font.PLAIN, 15));
++        textArea.setEditable(false);
++        for(int i = 0; i < restaurant.getMenuArray().size(); i++){
++            for(int j = 0; j < restaurant.getMenuArray().get(i).size(); j++);
++            textArea.append(restaurant.getMenuArray().get(i).toString());
++        }
++
++        JScrollPane displayMenu = new JScrollPane(textArea);
++        displayMenu.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
++        displayMenu.setAlignmentX(JScrollPane.LEFT_ALIGNMENT);
++
++        midPanel2.add(readLabel, BorderLayout.BEFORE_FIRST_LINE);
++        midPanel2.add(displayMenu, BorderLayout.CENTER);
+     }
+ 
+     public void applyBotPanelContent() {
+Index: logic/src/Waiter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.util.ArrayList;\r\nimport java.util.HashMap;\r\n\r\npublic class Waiter extends Employee{\r\n    private Order<Plate> order;\r\n\r\n    /**\r\n     * Default constructor for Waiter object calls\r\n     * super class constructor by default with no arguments.\r\n     */\r\n    public Waiter() {\r\n        super();\r\n        order = new Order<>();\r\n    }\r\n\r\n    /**\r\n     * Default constructor for Waiter object calls\r\n     * super class constructor by default.\r\n     * @param initialServedTable - the served table.\r\n     */\r\n    public Waiter(Integer initialServedTable){\r\n        super(initialServedTable);\r\n        order = new Order<>();\r\n    }\r\n\r\n    /**\r\n     * Adds the dish to the order list.\r\n     * @param plateName - plate name\r\n     * @param category - category\r\n     * @param restaurant - our restaurant\r\n     */\r\n    protected void addPlate(String plateName, Integer category, Restaurant restaurant){\r\n        ArrayList<ArrayList<Plate>> menu = restaurant.getMenuArray();\r\n        ArrayList<Plate> categoryMenu = menu.get(category-1);\r\n        for (int i = 0; i<categoryMenu.size(); i++){\r\n            Plate currentPlate = categoryMenu.get(i);\r\n            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))\r\n            {\r\n                order.add(currentPlate);\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Delete the dish to the order list.\r\n     * @param plateName - plate name.\r\n     */\r\n    protected void deletePlate(String plateName){\r\n        for (int i=0; i<order.size(); i++){\r\n            Plate currentPlate = order.get(i);\r\n            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))\r\n            {\r\n                order.remove(currentPlate);\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Submit the order in the order table and cancel the order.\r\n     * @param restaurant - our restaurant\r\n     */\r\n    protected void endOrder(Restaurant restaurant){\r\n        order.setStatusOrder(\"ready\");\r\n        restaurant.addOrderDict(super.getServedTable(), order);\r\n        order = new Order<>();\r\n    }\r\n\r\n    /**\r\n     * Sets a new served table.\r\n     * @param num - served table number\r\n     */\r\n    public void setServedTable(Integer num) {\r\n        super.setServedTable(num);\r\n    }\r\n\r\n    public ArrayList<Plate> getOrder() {\r\n        return order;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Waiter.java b/logic/src/Waiter.java
+--- a/logic/src/Waiter.java	
++++ b/logic/src/Waiter.java	
+@@ -29,12 +29,12 @@
+      * @param category - category
+      * @param restaurant - our restaurant
+      */
+-    protected void addPlate(String plateName, Integer category, Restaurant restaurant){
++    protected void addPlate(Plate plate, Integer category, Restaurant restaurant){
+         ArrayList<ArrayList<Plate>> menu = restaurant.getMenuArray();
+         ArrayList<Plate> categoryMenu = menu.get(category-1);
+         for (int i = 0; i<categoryMenu.size(); i++){
+             Plate currentPlate = categoryMenu.get(i);
+-            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
++            if (currentPlate.getName() == plate.getName() && currentPlate.getCategory() == plate.getCategory() && currentPlate.getPrize() == plate.getPrize())
+             {
+                 order.add(currentPlate);
+             }
+@@ -45,10 +45,10 @@
+      * Delete the dish to the order list.
+      * @param plateName - plate name.
+      */
+-    protected void deletePlate(String plateName){
++    protected void deletePlate(Plate  plate){
+         for (int i=0; i<order.size(); i++){
+             Plate currentPlate = order.get(i);
+-            if (currentPlate.getName().toLowerCase().equals(plateName.toLowerCase()))
++            if (currentPlate.getName().equals(plate.getName()))
+             {
+                 order.remove(currentPlate);
+             }
+Index: .idea/runConfigurations.xml
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	
++++ /dev/null	
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: logic/src/Fram3.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/logic/src/Fram3.java b/logic/src/Fram3.java
+new file mode 100644
+--- /dev/null	
++++ b/logic/src/Fram3.java	
+@@ -0,0 +1,269 @@
++import javax.swing.*;
++import javax.swing.event.ListSelectionEvent;
++import javax.swing.event.ListSelectionListener;
++import java.awt.*;
++import java.awt.event.ActionEvent;
++import java.awt.event.ActionListener;
++import java.awt.event.MouseAdapter;
++import java.awt.event.MouseEvent;
++import java.text.DecimalFormat;
++import java.text.NumberFormat;
++import java.util.ArrayList;
++import java.util.Formattable;
++
++public class Fram3 extends JFrame{
++    final int FRAME_WIDTH = 985;
++    protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, orderPanel, cookPanel, cashierPanel;
++    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu, endOrderButton;
++    protected ArrayList<JButton> tables;
++    protected Waiter waiter;
++    protected Restaurant restaurant;
++
++    public Fram3(){
++        restaurant = new Restaurant();
++        exitButtonMenu = new JButton("BACK");
++        exitButtonMenu.setBounds(849, 699, 100, 30);
++        endOrderButton = new JButton("END ORDER");
++        endOrderButton.setPreferredSize(new Dimension(150,30));
++
++        createStartPanel();
++        createMainMenuPanel();
++        createChefPanel();
++        createWaiterPanel();
++
++        chefPanel.add(exitButtonMenu);
++        waiterPanel.add(exitButtonMenu);
++
++        setResizable(false);
++        setSize(1000, 800);
++        setTitle("Restaurant");
++        getContentPane().add(startPanel);
++        setVisible(true);
++        setDefaultCloseOperation(EXIT_ON_CLOSE);
++
++        startButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(mainMenuPanel);
++            }
++        });
++
++        exitButtonStart.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(startPanel);
++            }
++        });
++
++        chefButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(chefPanel);
++            }
++        });
++
++        exitButtonMenu.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(mainMenuPanel);
++            }
++        });
++
++        waiterButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(waiterPanel);
++            }
++        });
++
++        for (int i=0; i < tables.size(); i++){
++            int tableNumber = i+1;
++            tables.get(i).addActionListener(new ActionListener() {
++                @Override
++                public void actionPerformed(ActionEvent e) {
++                    createOrderPanel(tableNumber);
++                    waiter.endOrder(restaurant);
++                    switchPanel(orderPanel);
++                }
++            });
++        }
++
++        endOrderButton.addActionListener(new ActionListener() {
++            @Override
++            public void actionPerformed(ActionEvent e) {
++                switchPanel(waiterPanel);
++            }
++        });
++
++
++    }
++
++    public void createStartPanel(){
++        startPanel = new JPanel(new GridBagLayout());
++        startButton = new JButton();
++        startButton.setPreferredSize(new Dimension(200, 60));
++        startButton.setText("START");
++        startPanel.add(startButton);
++    }
++
++    public void createMainMenuPanel() {
++        mainMenuPanel = new JPanel(null);
++        chefButton = new JButton();
++        chefButton.setBounds(99, 200, 300, 90);
++        chefButton.setText("CHEF");
++        waiterButton = new JButton();
++        waiterButton.setBounds(599, 200, 300, 90);
++        waiterButton.setText("WAITER");
++        cookButton = new JButton();
++        cookButton.setBounds(599, 500, 300, 90);
++        cookButton.setText("COOK");
++        cashierButton = new JButton();
++        cashierButton.setBounds(99, 500, 300, 90);
++        cashierButton.setText("CASHIER");
++        exitButtonStart = new JButton();
++        exitButtonStart.setText("EXIT");
++        exitButtonStart.setBounds(849, 699, 100, 30);
++        mainMenuPanel.add(chefButton);
++        mainMenuPanel.add(waiterButton);
++        mainMenuPanel.add(cookButton);
++        mainMenuPanel.add(cashierButton);
++        mainMenuPanel.add(exitButtonStart);
++    }
++
++    public void createChefPanel(){
++        chefPanel = new JPanel();
++    }
++
++    public void createWaiterPanel(){
++        waiter = new Waiter();
++        waiterPanel = new JPanel(null);
++        tables = new ArrayList<>();
++        JPanel panel1 = new JPanel();
++        int tablesNumber = 15;  //restaurant.getTablesNumbs
++        panel1.setBounds(0,0, 990, 670);
++        panel1.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
++        int divider;
++        if (tablesNumber<10){
++            divider = 2;
++        }
++        else{
++            divider = 4;
++        }
++        panel1.setLayout(new GridLayout(tablesNumber/divider,tablesNumber-tablesNumber/divider, 10, 10));
++        for (int i=0; i<tablesNumber; i++){
++            String text = "Table " + (i+1);
++            JButton tableButton = new JButton(text);
++            tables.add(tableButton);
++            panel1.add(tableButton);
++        }
++        panel1.setBackground(Color.RED);
++        waiterPanel.add(panel1);
++//        new WaiterPanel();
++    }
++
++    public void switchPanel(JPanel panelToSwitch){
++        getContentPane().removeAll();
++        getContentPane().add(panelToSwitch);
++        revalidate();
++        repaint();
++    }
++
++    public void createOrderPanel(int tableNumber){
++        waiter.setServedTable(tableNumber);
++        int FRAME_WIDTH = 985;
++        orderPanel = new JPanel(null);
++        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
++        JPanel leftPanel = new JPanel();
++        JPanel rightPanel = new JPanel();
++        JPanel botPanel = new JPanel();
++
++        topPanel.setBounds(0,0, FRAME_WIDTH, 70);
++        topPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++//        topPanel.setBackground(Color.RED);
++        JLabel namePanel = new JLabel("Select the Dish from the menu: ");
++        namePanel.setFont(new Font("Serif", Font.ITALIC, 40));
++        topPanel.add(namePanel);
++
++        leftPanel.setBounds(0,70, FRAME_WIDTH/2, 600);
++        leftPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++//        leftPanel.setBackground(Color.YELLOW);
++        leftPanel.setLayout(new BorderLayout(5,5));
++
++        rightPanel.setBounds(FRAME_WIDTH/2, 70, FRAME_WIDTH/2, 600);
++        rightPanel.setBorder(BorderFactory.createEmptyBorder(5,10,5,10));
++//        rightPanel.setBackground(Color.BLUE);
++        rightPanel.setLayout(new BorderLayout(5,5));
++
++        DefaultListModel<Plate> orderListModel = new DefaultListModel<>();
++        JList<Plate> order = new JList(orderListModel);
++        order.setCellRenderer(new PlateDisplay());
++        JScrollPane rightScrollPane = new JScrollPane(order);
++        rightPanel.add(rightScrollPane, BorderLayout.CENTER);
++        JLabel orderText = new JLabel("You can modify your order here: ");
++        orderText.setFont(new Font("Comic sans", Font.BOLD, 15));
++        rightPanel.add(orderText, BorderLayout.BEFORE_FIRST_LINE);
++
++//        Plate plate1 = new Plate("Pizza", 1, 5.56);
++//        Plate plate2 = new Plate("Defe", 2, 8.97);
++//        Plate plate3 = new Plate("sfjfjwos", 1, 8);
++//        ArrayList<Plate> initialMenu = new ArrayList<>();
++//        initialMenu.add(plate1);
++//        initialMenu.add(plate2);
++//        initialMenu.add(plate3);
++        ArrayList<Plate> initialMenu = new ArrayList<>();
++        for(int i=0; i<restaurant.getMenuArray().size(); i++){
++            for (int j=0; j<restaurant.getMenuArray().get(i).size(); j++){
++                initialMenu.add(restaurant.getMenuArray().get(i).get(j));
++            }
++        }
++
++
++        JList<Plate> menu = new JList(initialMenu.toArray());
++        menu.setCellRenderer(new PlateDisplay());
++        JScrollPane leftScrollPane = new JScrollPane(menu);
++        leftPanel.add(leftScrollPane, BorderLayout.CENTER);
++        JLabel menuText = new JLabel("Select from the menu: ");
++        menuText.setFont(new Font("Comic sans", Font.BOLD, 15));
++        leftPanel.add(menuText, BorderLayout.BEFORE_FIRST_LINE);
++
++        menu.addMouseListener(new MouseAdapter() {
++            @Override
++            public void mouseClicked(MouseEvent e) {
++                orderListModel.addElement(menu.getSelectedValue());
++                waiter.addPlate(menu.getSelectedValue(), menu.getSelectedValue().getCategory(), restaurant);
++            }
++        });
++        order.addMouseListener(new MouseAdapter() {
++            @Override
++            public void mouseClicked(MouseEvent e) {
++//                JOptionPane.showConfirmDialog(rightPanel, "Would you like to delete? ", JOptionPane.YES_NO_OPTION);
++                if (JOptionPane.showConfirmDialog(rightPanel,"Would you like to delete? ","DELETE",
++                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
++                    orderListModel.removeElement(order.getSelectedValue());
++                    waiter.deletePlate(order.getSelectedValue());
++                }
++//                else {
++//                    System.out.println("NO");
++//                }
++
++            }
++        });
++
++        botPanel.setBounds(0, 670, FRAME_WIDTH, 100);
++//        botPanel.setBackground(Color.GREEN);
++        botPanel.add(endOrderButton);
++
++        orderPanel.add(topPanel);
++        orderPanel.add(leftPanel);
++        orderPanel.add(rightPanel);
++        orderPanel.add(botPanel);
++    }
++
++    public static void main(String[] args) {
++        new Fram3();
++
++    }
++
++
++
++}

@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine." />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nella classe Frame ho creato 3 panelli con alcuni pulsanti usando java SWING">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +77,7 @@
       <recent name="C:\Users\trast\Desktop\Università\GitHub\Restourant-java-prjk" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Fram3">
+  <component name="RunManager" selected="Application.ChefTester2">
     <configuration name="ChefTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ChefTest" />
       <module name="Restourant-java-prjk" />
@@ -89,15 +92,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Fram3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Fram3" />
+    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReadMenuTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ReadMenuTest" />
+    <configuration name="RestaurantTester2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="RestaurantTester2" />
       <module name="Restourant-java-prjk" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -111,19 +114,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.RestaurantTester2" />
       <item itemvalue="Application.myFrame" />
       <item itemvalue="Application.ChefTest" />
       <item itemvalue="Application.ReadMenuTest" />
       <item itemvalue="Application.ChefTester2" />
-      <item itemvalue="Application.Fram3" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Fram3" />
         <item itemvalue="Application.ChefTester2" />
         <item itemvalue="Application.myFrame" />
         <item itemvalue="Application.ChefTest" />
         <item itemvalue="Application.ReadMenuTest" />
+        <item itemvalue="Application.RestaurantTester2" />
       </list>
     </recent_temporary>
   </component>
@@ -465,14 +468,7 @@
       <option name="project" value="LOCAL" />
       <updated>1632237054999</updated>
     </task>
-    <task id="LOCAL-00048" summary="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine.">
-      <created>1632305586494</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1632305586494</updated>
-    </task>
-    <option name="localTasksCounter" value="49" />
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -503,6 +499,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="added Java.doc" />
     <MESSAGE value="Ho fatto la scherma iniziale" />
     <MESSAGE value="Ho fatto la finestra iniziale" />
     <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
@@ -527,8 +524,7 @@
     <MESSAGE value="New Exception for the OrderClass" />
     <MESSAGE value="solved simple anchoring issue" />
     <MESSAGE value="." />
-    <MESSAGE value="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine." />
-    <option name="LAST_COMMIT_MESSAGE" value="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -545,6 +541,11 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="8" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/logic/test/ChefTester2.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

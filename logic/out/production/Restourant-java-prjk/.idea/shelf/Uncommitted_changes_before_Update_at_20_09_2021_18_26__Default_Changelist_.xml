@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_Update_at_20_09_2021_18_26_[Default_Changelist]" date="1632155216751" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_09_2021_18_26_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 20.09.2021 18:26 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="logic/out/test/Restourant-java-prjk/RestaurantTester.class" />
+    <option name="AFTER_PATH" value="logic/out/test/Restourant-java-prjk/RestaurantTester.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_20_09_2021_18_26_[Default_Changelist]/RestaurantTester.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="logic/out/production/Restourant-java-prjk/Restaurant.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="logic/out/production/Restourant-java-prjk/Waiter.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>
