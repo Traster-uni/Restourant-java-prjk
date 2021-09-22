@@ -16,23 +16,21 @@ import java.util.Locale;
 public class myFrame extends JFrame{
     final int FRAME_WIDTH = 985;
     protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, cookPanel, cashierPanel;
-    protected JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu;
-//    protected JPanel topPanel, midPanel1, midPanel2, botPanel;
+    protected JButton startButton, chefButton, waiterButton, cookButton, cashierButton, backToStartButton, backToMainMenuButton;
+    //    protected JPanel topPanel, midPanel1, midPanel2, botPanel;
     protected Restaurant restaurant;
 
 
     public myFrame(){
-        exitButtonMenu = new JButton();
-        exitButtonMenu.setText("BACK");
-        exitButtonMenu.setBounds(860, 700, 100, 30);
+        backToMainMenuButton = new JButton();
+        backToMainMenuButton.setText("BACK");
+        backToMainMenuButton.setBounds(860, 700, 100, 30);
 
         createStartPanel();
         createMainMenuPanel();
-        mainMenuPanel.add(exitButtonStart);
         createChefPanel();
-        chefPanel.add(exitButtonMenu);
         createCookPanel();
-        cookPanel.add(exitButtonMenu);
+
 
         setSize(1000, 800);
         setTitle("Restaurant");
@@ -41,69 +39,77 @@ public class myFrame extends JFrame{
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(mainMenuPanel);
-            }
-        });
-        exitButtonStart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(startPanel);
-            }
-        });
-        chefButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                switchPanel(chefPanel);
-            }
-        });
-
+        //anonymous ActionListeners can be converted to lambda function for better readability
         // lambda functions: (parametro1, parametro2) -> { blocco di codice }
-        waiterButton.addActionListener(e -> switchPanel(waiterPanel));
-        cookButton.addActionListener(e -> switchPanel(cookPanel));
-        exitButtonMenu.addActionListener(e -> switchPanel(mainMenuPanel));
+
+        //main menu
+
 
     }
 
     private void createStartPanel(){
         restaurant = new Restaurant();
         startPanel = new JPanel(new GridBagLayout());
-        startButton = new JButton();
+        //panel Content
+        startButton = new JButton("START");
         startButton.setPreferredSize(new Dimension(200, 60));
-        startButton.setText("START");
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchPanel(mainMenuPanel);
+            }
+        });
+
         startPanel.add(startButton);
     }
 
     private void createMainMenuPanel() {
-        mainMenuPanel = new JPanel(null);
+        mainMenuPanel = new JPanel(null); //new BoxLayout(mainMenuPanel, BoxLayout.LINE_AXIS)
+        //uncomment to see the panel
+//        mainMenuPanel.setBackground(Color.CYAN);
+        //
+        mainMenuPanel.setBounds(350,220,300, 360);
 
         chefButton = new JButton();
-        chefButton.setBounds(99, 200, 300, 90);
+        chefButton.setBounds(350, 200, 300, 90);
         chefButton.setText("CHEF");
         chefButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        //action Listener
+        chefButton.addActionListener( e -> switchPanel(chefPanel));
 
         waiterButton = new JButton();
-        waiterButton.setBounds(599, 200, 300, 90);
+        waiterButton.setBounds(350, 100 + 200, 300, 90);
         waiterButton.setText("WAITER");
+        waiterButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        //action Listener
+        waiterButton.addActionListener(e -> switchPanel(waiterPanel));
 
         cookButton = new JButton();
-        cookButton.setBounds(599, 500, 300, 90);
+        cookButton.setBounds(350, 200 + 200, 300, 90);
         cookButton.setText("COOK");
+        cookButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        //action Listener
+        cookButton.addActionListener(e -> switchPanel(cookPanel));
 
         cashierButton = new JButton();
-        cashierButton.setBounds(99, 500, 300, 90);
+        cashierButton.setBounds(350, 300 + 200, 300, 90);
         cashierButton.setText("CASHIER");
+        cashierButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+        //action Listener
+        backToMainMenuButton.addActionListener(e -> switchPanel(mainMenuPanel));
 
-        exitButtonStart = new JButton();
-        exitButtonStart.setText("BACK");
-        exitButtonStart.setBounds(860, 700, 100, 30);
-
+        backToStartButton = new JButton();
+        backToStartButton.setText("BACK");
+        backToStartButton.setBounds(860, 700, 100, 30);
+        //action Listener
+        backToStartButton.addActionListener(e -> switchPanel(startPanel));
+        //
         mainMenuPanel.add(chefButton);
         mainMenuPanel.add(waiterButton);
         mainMenuPanel.add(cookButton);
         mainMenuPanel.add(cashierButton);
+
+        mainMenuPanel.add(backToStartButton);
     }
 
     private void createChefPanel(){
@@ -358,6 +364,8 @@ public class myFrame extends JFrame{
         botChefPanel.add(writeButton);
         botChefPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(620,2),new Dimension(620,2)));
         botChefPanel.add(dataRestaurantButton);
+
+        chefPanel.add(backToMainMenuButton);
     }
 
     private void createCookPanel() {
@@ -428,9 +436,9 @@ public class myFrame extends JFrame{
         JButton evadeButton = new JButton("EVADE");
         //
         cookPanel.add(botCookPanel);
-
         botCookPanel.add(evadeButton);
 
+        cookPanel.add(backToMainMenuButton);
     }
 
     private void switchPanel(JPanel panelToSwitch){
