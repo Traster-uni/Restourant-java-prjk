@@ -11,6 +11,7 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Formattable;
+import java.util.HashMap;
 
 public class Fram3 extends JFrame{
     final int FRAME_WIDTH = 985;
@@ -20,6 +21,7 @@ public class Fram3 extends JFrame{
     protected Waiter waiter;
     protected Restaurant restaurant;
     protected Chef chef;
+    public Cook cook;
     private boolean waiterInstanceIs = false;
 
     public Fram3(){
@@ -33,7 +35,7 @@ public class Fram3 extends JFrame{
         createMainMenuPanel();
         createChefPanel();
 //        createWaiterPanel();
-        createCookPanel();
+//        createCookPanel();
 
         back1 = new JButton();
         createBackButton(back1);
@@ -42,7 +44,7 @@ public class Fram3 extends JFrame{
         createBackButton(back2);
         back3 = new JButton();
         createBackButton(back3);
-        cookPanel.add(back3);
+
 
         setResizable(false);
         setSize(1000, 800);
@@ -111,6 +113,8 @@ public class Fram3 extends JFrame{
         cookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                createCookPanel();
+                cookPanel.add(back3);
                 switchPanel(cookPanel);
             }
         });
@@ -209,6 +213,7 @@ public class Fram3 extends JFrame{
                 if (editValid) {
                     Integer intInputValue = Integer.parseInt(textFieldTop.getText());
                     restaurant.setTablesLists(intInputValue);
+                    chef.setTablesAttribute(intInputValue);
                     restaurant.setTablesAttribute(intInputValue);
                     JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
                 }else{
@@ -530,7 +535,7 @@ public class Fram3 extends JFrame{
 
     }
 
-    private void createCookPanel() {
+    public void createCookPanel() {
         //logic
         Cook cook = new Cook();
         restaurant.addEmployee(cook);
@@ -575,9 +580,23 @@ public class Fram3 extends JFrame{
         JLabel orderListLabel = new JLabel("Select the orders to evade here");
         orderListLabel.setFont(new Font("Comic Sans", Font.PLAIN, 12));
 
-        DefaultListModel<Order<Plate>> orderDefaultListModel = new DefaultListModel<>();
-        JList orderList = new JList(orderDefaultListModel);
+//        DefaultListModel<ArrayList<String>> orderDefaultListModel = new DefaultListModel<>();
+//        JList orderList = new JList(orderDefaultListModel);
+//        JScrollPane orderScrollPane = new JScrollPane(orderList);
+
+        DefaultListModel<ArrayList<String>> allOrdersListModel = new DefaultListModel<>();
+        HashMap<Integer, ArrayList<Order<Plate>> > allOrders = restaurant.getOrderDict();
+        JList orderList = new JList(allOrdersListModel);
         JScrollPane orderScrollPane = new JScrollPane(orderList);
+        ArrayList<String> arrayString = new ArrayList<>();
+        for (int i=1; i<=allOrders.size(); i++){
+            String s = "Table " + i + " has " + allOrders.get(i-1).size() + " orders";
+            arrayString.add(s);
+        }
+
+
+//        allOrdersListModel.addAll(allOrders);
+
         //
         cookPanel.add(midCookPanel);
 

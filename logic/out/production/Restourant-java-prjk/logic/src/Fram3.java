@@ -11,24 +11,23 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Formattable;
+import java.util.HashMap;
 
 public class Fram3 extends JFrame{
     final int FRAME_WIDTH = 985;
     protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, orderPanel, cookPanel, cashierPanel;
-    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu, endOrderButton, updateTablesButton, back1, back2, back3, back4;
+    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, endOrderButton, updateTablesButton, back1, back2, back3, back4;
     private ArrayList<JButton> tables;
     protected Waiter waiter;
     protected Restaurant restaurant;
     protected Chef chef;
+    public Cook cook;
     private boolean waiterInstanceIs = false;
-    private ActionListener backToMainMenu;
 
     public Fram3(){
         restaurant = new Restaurant();
         updateTablesButton = new JButton("UPDATE TABLES");
         updateTablesButton.setBounds(300, 699, 150, 30);
-//        exitButtonMenu = new JButton("BACK");
-//        exitButtonMenu.setBounds(849, 699, 100, 30);
         endOrderButton = new JButton("END ORDER");
         endOrderButton.setBounds(806,699,140,30);
 
@@ -36,21 +35,16 @@ public class Fram3 extends JFrame{
         createMainMenuPanel();
         createChefPanel();
 //        createWaiterPanel();
-        createCookPanel();
+//        createCookPanel();
 
         back1 = new JButton();
         createBackButton(back1);
         chefPanel.add(back1);
         back2 = new JButton();
         createBackButton(back2);
-//        waiterPanel.add(back2);
         back3 = new JButton();
         createBackButton(back3);
-        cookPanel.add(back3);
 
-//        chefPanel.add(exitButtonMenu);
-//        cookPanel.add(exitButtonMenu);
-//        waiterPanel.add(exitButtonMenu);
 
         setResizable(false);
         setSize(1000, 800);
@@ -71,8 +65,6 @@ public class Fram3 extends JFrame{
         exitButtonStart.addActionListener( e -> switchPanel(startPanel));
 
         chefButton.addActionListener( e -> switchPanel(chefPanel));
-
-//        exitButtonMenu.addActionListener( e -> switchPanel(mainMenuPanel));
 
         back1.addActionListener( e -> switchPanel(mainMenuPanel));
         back2.addActionListener( e -> switchPanel(mainMenuPanel));
@@ -104,7 +96,6 @@ public class Fram3 extends JFrame{
                         public void actionPerformed(ActionEvent e) {
                             createOrderPanel(tableNumber);
                             switchPanel(orderPanel);
-                            System.out.println(restaurant.getOrderDict());
                         }
                     });
                 }
@@ -116,13 +107,14 @@ public class Fram3 extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 switchPanel(waiterPanel);
                 waiter.endOrder(restaurant);
-                System.out.println(restaurant.getOrderDict());
             }
         });
 
         cookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                createCookPanel();
+                cookPanel.add(back3);
                 switchPanel(cookPanel);
             }
         });
@@ -223,14 +215,12 @@ public class Fram3 extends JFrame{
                     restaurant.setTablesLists(intInputValue);
                     chef.setTablesAttribute(intInputValue);
                     restaurant.setTablesAttribute(intInputValue);
-                    System.out.println("In Action Listener in Chef: " + restaurant.getOrderDict());
                     JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
                 }else{
                     JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
                 }
             }
         };
-        System.out.println("After Action Listener in Chef: " + restaurant.getOrderDict());
         textFieldTop.addActionListener(numberOfTablesListener);
         enterTextButton.addActionListener(numberOfTablesListener);
 
@@ -522,8 +512,6 @@ public class Fram3 extends JFrame{
                 waiter.addPlate(menu.getSelectedValue());
                 orderListModel.removeAllElements();
                 orderListModel.addAll(waiter.getOrder());
-//                System.out.println(waiter.getOrder());
-                System.out.println(restaurant.getOrderDict());
             }
         });
         order.addMouseListener(new MouseAdapter() {
@@ -534,9 +522,6 @@ public class Fram3 extends JFrame{
                     waiter.deletePlate(order.getSelectedValue());
                     orderListModel.removeAllElements();
                     orderListModel.addAll(waiter.getOrder());
-//                    System.out.println(waiter.getOrder());
-//                    System.out.println(waiter.getServedTable());
-                    System.out.println(restaurant.getOrderDict());
 
                 }
             }
@@ -548,11 +533,9 @@ public class Fram3 extends JFrame{
         orderPanel.add(botPanel);
         orderPanel.add(endOrderButton);
 
-        System.out.println("method getOrderDict: " + restaurant.getOrderDict());
-        System.out.println(("method getMenuArray" + restaurant.getMenuArray()));
     }
 
-    private void createCookPanel() {
+    public void createCookPanel() {
         //logic
         Cook cook = new Cook();
         restaurant.addEmployee(cook);
@@ -597,9 +580,23 @@ public class Fram3 extends JFrame{
         JLabel orderListLabel = new JLabel("Select the orders to evade here");
         orderListLabel.setFont(new Font("Comic Sans", Font.PLAIN, 12));
 
-        DefaultListModel<Order<Plate>> orderDefaultListModel = new DefaultListModel<>();
-        JList orderList = new JList(orderDefaultListModel);
+//        DefaultListModel<ArrayList<String>> orderDefaultListModel = new DefaultListModel<>();
+//        JList orderList = new JList(orderDefaultListModel);
+//        JScrollPane orderScrollPane = new JScrollPane(orderList);
+
+        DefaultListModel<ArrayList<String>> allOrdersListModel = new DefaultListModel<>();
+        HashMap<Integer, ArrayList<Order<Plate>> > allOrders = restaurant.getOrderDict();
+        JList orderList = new JList(allOrdersListModel);
         JScrollPane orderScrollPane = new JScrollPane(orderList);
+        ArrayList<String> arrayString = new ArrayList<>();
+        for (int i=1; i<=allOrders.size(); i++){
+            String s = "Table " + i + " has " + allOrders.get(i-1).size() + " orders";
+            arrayString.add(s);
+        }
+
+
+//        allOrdersListModel.addAll(allOrders);
+
         //
         cookPanel.add(midCookPanel);
 
