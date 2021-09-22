@@ -44,66 +44,66 @@ public class RestaurantTester {
         System.out.println("Gino has read the menu");
         System.out.println(ginoChef.getBufferPlate());
         DaGino.loadMenuFromChef();
-
-        System.out.println();
-        Waiter waiter = new Waiter(1);
-        waiter.addPlate("Pizza", 2,  DaGino);
-        waiter.addPlate("Fritti Vari",1, DaGino);
-        waiter.deletePlate("Fritti Vari");
-//        ArrayList<Plate> plates = new ArrayList<>();
-//        plates.add(new Plate("Pasta", 1, 7.0));
-//        DaGino.addOrderDict(1, plates);
-        waiter.endOrder(DaGino);
-
-        waiter.setServedTable(3);
-        waiter.addPlate("Fritti Vari", 1, DaGino);
-        waiter.addPlate("Pizza", 2, DaGino);
-        waiter.addPlate("Pizza", 2, DaGino);
-        waiter.endOrder(DaGino);
-
-        waiter.setServedTable(1);
-        waiter.addPlate("Fritti Vari", 1, DaGino);
-        waiter.endOrder(DaGino);
-        System.out.println(DaGino.getOrderDict());
-
-        String cookedDirectory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\cooked.csv";
-        Cook cook = new Cook(cookedDirectory);
-        System.out.println("Il cuoco sceglie il tavolo 1");
-        cook.setServedTable(1);
-        cook.selectOrderToPrepare(DaGino);
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.preparePlate("Pizza");
-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.checkPreparedOrder(DaGino);
-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-
-        System.out.println();
-        System.out.println("Il cuoco sceglie il tavolo 3");
-        cook.setServedTable(3);
-        cook.selectOrderToPrepare(DaGino);
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.preparePlate("Fritti Vari");
-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.preparePlate("Pizza");
-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.preparePlate("Pizza");
-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.checkPreparedOrder(DaGino);
-
-        System.out.println();
-        System.out.println("Il cuoco sceglie il tavolo 3");
-        cook.setServedTable(1);
-        cook.selectOrderToPrepare(DaGino);
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.preparePlate("Fritti Vari");
-        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
-        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
-        cook.checkPreparedOrder(DaGino);
+//
+//        System.out.println();
+//        Waiter waiter = new Waiter(1);
+//        waiter.addPlate("Pizza", 2,  DaGino);
+//        waiter.addPlate("Fritti Vari",1, DaGino);
+//        waiter.deletePlate("Fritti Vari");
+////        ArrayList<Plate> plates = new ArrayList<>();
+////        plates.add(new Plate("Pasta", 1, 7.0));
+////        DaGino.addOrderDict(1, plates);
+//        waiter.endOrder(DaGino);
+//
+//        waiter.setServedTable(3);
+//        waiter.addPlate("Fritti Vari", 1, DaGino);
+//        waiter.addPlate("Pizza", 2, DaGino);
+//        waiter.addPlate("Pizza", 2, DaGino);
+//        waiter.endOrder(DaGino);
+//
+//        waiter.setServedTable(1);
+//        waiter.addPlate("Fritti Vari", 1, DaGino);
+//        waiter.endOrder(DaGino);
+//        System.out.println(DaGino.getOrderDict());
+//
+//        String cookedDirectory = "C:\\Users\\baran\\OneDrive\\Desktop\\eclipse-workspace\\Restourant-java-prjk\\cooked.csv";
+//        Cook cook = new Cook(cookedDirectory);
+//        System.out.println("Il cuoco sceglie il tavolo 1");
+//        cook.setServedTable(1);
+//        cook.selectOrderToPrepare(DaGino);
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.preparePlate("Pizza");
+//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.checkPreparedOrder(DaGino);
+//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//
+//        System.out.println();
+//        System.out.println("Il cuoco sceglie il tavolo 3");
+//        cook.setServedTable(3);
+//        cook.selectOrderToPrepare(DaGino);
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.preparePlate("Fritti Vari");
+//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.preparePlate("Pizza");
+//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.preparePlate("Pizza");
+//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.checkPreparedOrder(DaGino);
+//
+//        System.out.println();
+//        System.out.println("Il cuoco sceglie il tavolo 3");
+//        cook.setServedTable(1);
+//        cook.selectOrderToPrepare(DaGino);
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.preparePlate("Fritti Vari");
+//        System.out.println("Il cuoco ha preparato: " + cook.getOrderReady());
+//        System.out.println("Il cuoco deve preparare: " + cook.getOrderToPrepare());
+//        cook.checkPreparedOrder(DaGino);
 
         System.out.println();
         System.out.println("Ordini non pagati: " + DaGino.getPayableDict());
