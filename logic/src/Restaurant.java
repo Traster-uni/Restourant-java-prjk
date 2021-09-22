@@ -110,8 +110,8 @@ public class Restaurant {
      * @param tablesNumbs - number of tables present in the Restaurant
      */
     protected void setTablesLists(Integer tablesNumbs) {
-        ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
         for (Integer i = 1; i <= tablesNumbs; i++){
+            ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
             orderDict.put(i, orderPlate);
             payableDict.put(i, orderPlate);
         }
@@ -140,6 +140,7 @@ public class Restaurant {
      * @param orderArray - the Array containing a list of dishes
      */
     public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){
+        System.out.println("from addOrderDict method: " + orderDict.toString());
         this.orderDict.get(tableNumber).add(newOrder);
     }
 

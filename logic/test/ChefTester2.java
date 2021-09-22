@@ -17,6 +17,12 @@ public class ChefTester2 {
 
         System.out.println(restaurant.getOrderDict());
         System.out.println(restaurant.getOrderDict().toString());
+        Order o = new Order();
+        o.add(new Plate("a", 1, 5));
+        o.add(new Plate("b", 2, 6));
+
+        restaurant.addOrderDict(2, o);
+        System.out.println(restaurant.getOrderDict());
 
     }
 }
