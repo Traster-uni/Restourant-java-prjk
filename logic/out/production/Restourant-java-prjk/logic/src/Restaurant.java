@@ -109,8 +109,7 @@ public class Restaurant {
      * Sets a new number of tables in the Restaurant and initializes the proper dictionaries
      * @param tablesNumbs - number of tables present in the Restaurant
      */
-    protected void setTablesLists(Integer tablesNumbs) {
-//        ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
+    public void setTablesLists(Integer tablesNumbs) {
         for (Integer i = 1; i <= tablesNumbs; i++){
             ArrayList<Order<Plate>> orderPlate = new ArrayList<>();
             orderDict.put(i, orderPlate);
@@ -142,6 +141,7 @@ public class Restaurant {
      */
     public void addOrderDict(Integer tableNumber, Order<Plate> newOrder){
         System.out.println("from addOrderDict method: " + orderDict.toString());
+        System.out.println(orderDict.isEmpty());
         this.orderDict.get(tableNumber).add(newOrder);
     }
 

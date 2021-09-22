@@ -15,19 +15,20 @@ import java.util.Formattable;
 public class Fram3 extends JFrame{
     final int FRAME_WIDTH = 985;
     protected JPanel startPanel, mainMenuPanel, chefPanel, waiterPanel, orderPanel, cookPanel, cashierPanel;
-    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu, endOrderButton, updateTablesButton;
+    private JButton startButton, chefButton, waiterButton, cookButton, cashierButton, exitButtonStart, exitButtonMenu, endOrderButton, updateTablesButton, back1, back2, back3, back4;
     private ArrayList<JButton> tables;
     protected Waiter waiter;
     protected Restaurant restaurant;
     protected Chef chef;
     private boolean waiterInstanceIs = false;
+    private ActionListener backToMainMenu;
 
     public Fram3(){
         restaurant = new Restaurant();
         updateTablesButton = new JButton("UPDATE TABLES");
         updateTablesButton.setBounds(300, 699, 150, 30);
-        exitButtonMenu = new JButton("BACK");
-        exitButtonMenu.setBounds(849, 699, 100, 30);
+//        exitButtonMenu = new JButton("BACK");
+//        exitButtonMenu.setBounds(849, 699, 100, 30);
         endOrderButton = new JButton("END ORDER");
         endOrderButton.setBounds(806,699,140,30);
 
@@ -37,7 +38,18 @@ public class Fram3 extends JFrame{
 //        createWaiterPanel();
         createCookPanel();
 
-        chefPanel.add(exitButtonMenu);
+        back1 = new JButton();
+        createBackButton(back1);
+        chefPanel.add(back1);
+        back2 = new JButton();
+        createBackButton(back2);
+//        waiterPanel.add(back2);
+        back3 = new JButton();
+        createBackButton(back3);
+        cookPanel.add(back3);
+
+//        chefPanel.add(exitButtonMenu);
+//        cookPanel.add(exitButtonMenu);
 //        waiterPanel.add(exitButtonMenu);
 
         setResizable(false);
@@ -47,13 +59,24 @@ public class Fram3 extends JFrame{
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
+        ActionListener backToMainMenu = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                switchPanel(mainMenuPanel);
+            }
+        };
+
         startButton.addActionListener( e -> switchPanel(mainMenuPanel));
 
         exitButtonStart.addActionListener( e -> switchPanel(startPanel));
 
         chefButton.addActionListener( e -> switchPanel(chefPanel));
 
-        exitButtonMenu.addActionListener( e -> switchPanel(mainMenuPanel));
+//        exitButtonMenu.addActionListener( e -> switchPanel(mainMenuPanel));
+
+        back1.addActionListener( e -> switchPanel(mainMenuPanel));
+        back2.addActionListener( e -> switchPanel(mainMenuPanel));
+        back3.addActionListener( e -> switchPanel(mainMenuPanel));
 
         waiterButton.addActionListener(new ActionListener() {
             @Override
@@ -64,12 +87,13 @@ public class Fram3 extends JFrame{
                 else {
                     if (!waiterInstanceIs){
                         createWaiterPanel();
+                        waiterPanel.add(back2);
                     }
                     switchPanel(waiterPanel);
                 }
-//                switchPanel(waiterPanel);
             }
         });
+
         updateTablesButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,8 +103,8 @@ public class Fram3 extends JFrame{
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             createOrderPanel(tableNumber);
-                            waiter.endOrder(restaurant);
                             switchPanel(orderPanel);
+                            System.out.println(restaurant.getOrderDict());
                         }
                     });
                 }
@@ -92,6 +116,7 @@ public class Fram3 extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 switchPanel(waiterPanel);
                 waiter.endOrder(restaurant);
+                System.out.println(restaurant.getOrderDict());
             }
         });
 
@@ -142,8 +167,9 @@ public class Fram3 extends JFrame{
         chef = new Chef(4);
         restaurant.setChef(chef);
         //graphic
-        chefPanel = new JPanel();
-        chefPanel.setLayout(null);
+        chefPanel = new JPanel(null);
+//        chefPanel.add(exitButtonMenu);
+//        chefPanel.setLayout(null);
 
         JPanel topPanel = new JPanel();
         //uncomment to see the panel
@@ -194,16 +220,17 @@ public class Fram3 extends JFrame{
                 boolean editValid = textFieldTop.isEditValid();
                 if (editValid) {
                     Integer intInputValue = Integer.parseInt(textFieldTop.getText());
-                    chef.setTablesLists(intInputValue);
+                    restaurant.setTablesLists(intInputValue);
                     chef.setTablesAttribute(intInputValue);
                     restaurant.setTablesAttribute(intInputValue);
+                    System.out.println("In Action Listener in Chef: " + restaurant.getOrderDict());
                     JOptionPane.showMessageDialog(topPanel, "Number of Tables is now set to: " + textFieldTop.getText());
                 }else{
                     JOptionPane.showMessageDialog(topPanel, "Insert only numerical value");
                 }
             }
         };
-
+        System.out.println("After Action Listener in Chef: " + restaurant.getOrderDict());
         textFieldTop.addActionListener(numberOfTablesListener);
         enterTextButton.addActionListener(numberOfTablesListener);
 
@@ -383,6 +410,9 @@ public class Fram3 extends JFrame{
         botPanel.add(writeButton);
         botPanel.add(new Box.Filler(new Dimension(300,2), new Dimension(620,2),new Dimension(620,2)));
         botPanel.add(dataRestaurantButton);
+
+//        chefPanel.add(back1);
+
     }
 
     public void createWaiterPanel(){
@@ -414,7 +444,7 @@ public class Fram3 extends JFrame{
 //        updateTablesButton = new JButton("UPDATE TABLES");
 ////        (849, 699, 100, 30)
 //        updateTablesButton.setBounds(600, 699, 100, 30);
-        waiterPanel.add(exitButtonMenu);
+//        waiterPanel.add(exitButtonMenu);
         waiterPanel.add(updateTablesButton);
 
     }
@@ -492,7 +522,8 @@ public class Fram3 extends JFrame{
                 waiter.addPlate(menu.getSelectedValue());
                 orderListModel.removeAllElements();
                 orderListModel.addAll(waiter.getOrder());
-                System.out.println(waiter.getOrder());
+//                System.out.println(waiter.getOrder());
+                System.out.println(restaurant.getOrderDict());
             }
         });
         order.addMouseListener(new MouseAdapter() {
@@ -503,8 +534,9 @@ public class Fram3 extends JFrame{
                     waiter.deletePlate(order.getSelectedValue());
                     orderListModel.removeAllElements();
                     orderListModel.addAll(waiter.getOrder());
-                    System.out.println(waiter.getOrder());
-                    System.out.println(waiter.getServedTable());
+//                    System.out.println(waiter.getOrder());
+//                    System.out.println(waiter.getServedTable());
+                    System.out.println(restaurant.getOrderDict());
 
                 }
             }
@@ -515,6 +547,9 @@ public class Fram3 extends JFrame{
         orderPanel.add(rightPanel);
         orderPanel.add(botPanel);
         orderPanel.add(endOrderButton);
+
+        System.out.println("method getOrderDict: " + restaurant.getOrderDict());
+        System.out.println(("method getMenuArray" + restaurant.getMenuArray()));
     }
 
     private void createCookPanel() {
@@ -585,10 +620,15 @@ public class Fram3 extends JFrame{
         JButton evadeButton = new JButton("EVADE");
         //
         cookPanel.add(botCookPanel);
-        cookPanel.add(exitButtonMenu);
+//        cookPanel.add(exitButtonMenu);
 
         botCookPanel.add(evadeButton);
 
+    }
+
+    public void createBackButton(JButton button){
+        button.setText("BACK");
+        button.setBounds(849, 699, 100, 30);
     }
 
     public static void main(String[] args) {
@@ -599,3 +639,4 @@ public class Fram3 extends JFrame{
 
 
 }
+// C:\Users\baran\OneDrive\Desktop\eclipse-workspace\Restourant-java-prjk\menutest1.csv
