@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -131,13 +129,6 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="modified Cheff's class and added a besic implementation of the Restaurant class">
-      <created>1626887269603</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1626887269603</updated>
-    </task>
     <task active="true" id="Default" summary="Default task">
       <changelist id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="modified Cheff's class and added a besic implementation of the Restaurant class" />
       <created>1626889165263</created>
@@ -481,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632305945016</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Nelle classe Fram3 ho finito il panello Waiter. Ho aggiunto il panello Chef e Cook dalla classe MyFrame. &#10;Nella classe Waiter ho cambiato alcuni metodi. Nella classe cook ho comentato tutto e ho creatto una nuove classe che prepara un ordine.">
+      <created>1632319788506</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1632319788506</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="UnknownFeatures">
