@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Fixed everything">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logic/src/Fram3.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/Fram3.java" afterDir="false" />
+    <list default="true" id="2584da16-c1e7-4af8-bcec-c9f2a0c3fd8a" name="Default Changelist" comment="Ho aggiunto il codice per creare la lista con i tavoli con i loro ordini nel metodo createCookPanel">
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$11.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$12.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$13.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3.class" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/Fram3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/src/Fram3.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/out/production/Restourant-java-prjk/logic/src/Fram3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logic/src/PlateDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/logic/src/PlateDisplay.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,13 +147,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1626889165263</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added varius metods to chef class to add end modify the bufferArray.&#10;added the deleteOrder functionality.&#10;added setters to Plate class.">
-      <created>1626976108623</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1626976108623</updated>
     </task>
     <task id="LOCAL-00005" summary="corrected errors in indexing arrays in methods of Chef class.&#10;added an incomplete implementation of writeMenu() method of Chef class.&#10;Corrected typo in toSting() of Plate class.">
       <created>1626980147969</created>
@@ -483,7 +484,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632407661100</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Ho aggiunto il codice per creare la lista con i tavoli con i loro ordini nel metodo createCookPanel">
+      <created>1632409413086</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1632409413086</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -514,7 +522,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Ho creato un file txt con tutti i nomi dei ristoranti creati. Ho creato la finestra con errore se un ristorante già esiste" />
     <MESSAGE value="removed fxmloader" />
     <MESSAGE value="basic jSwing module" />
     <MESSAGE value="mainMenu added" />
@@ -539,7 +546,8 @@
     <MESSAGE value="Nella classe Fram3 ActionListener ho riscritto con lambda function" />
     <MESSAGE value="risolta discrepanza array in setTablesList" />
     <MESSAGE value="Fixed everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed everything" />
+    <MESSAGE value="Ho aggiunto il codice per creare la lista con i tavoli con i loro ordini nel metodo createCookPanel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ho aggiunto il codice per creare la lista con i tavoli con i loro ordini nel metodo createCookPanel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
