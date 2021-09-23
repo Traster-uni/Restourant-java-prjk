@@ -132,21 +132,28 @@ public class Fram3 extends JFrame{
 
     public void createMainMenuPanel() {
         mainMenuPanel = new JPanel(null);
-        chefButton = new JButton();
-        chefButton.setBounds(99, 200, 300, 90);
-        chefButton.setText("CHEF");
-        waiterButton = new JButton();
-        waiterButton.setBounds(599, 200, 300, 90);
-        waiterButton.setText("WAITER");
-        cookButton = new JButton();
-        cookButton.setBounds(599, 500, 300, 90);
-        cookButton.setText("COOK");
-        cashierButton = new JButton();
-        cashierButton.setBounds(99, 500, 300, 90);
-        cashierButton.setText("CASHIER");
-        exitButtonStart = new JButton();
-        exitButtonStart.setText("EXIT");
+        mainMenuPanel.setBounds(350,220,300, 360);
+
+        chefButton = new JButton("CHEF");
+        chefButton.setBounds(350, 200, 300, 90);
+        chefButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+
+
+        waiterButton = new JButton("WAITER");
+        waiterButton.setBounds(350, 100 + 200, 300, 90);
+        waiterButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+
+        cookButton = new JButton("COOK");
+        cookButton.setBounds(350, 200 + 200, 300, 90);
+        cookButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+
+        cashierButton = new JButton("CASHIER");
+        cashierButton.setBounds(350, 300 + 200, 300, 90);
+        cashierButton.setFont(new Font("Comic Sans", Font.BOLD, 20));
+
+        exitButtonStart = new JButton("BACK");
         exitButtonStart.setBounds(849, 699, 100, 30);
+
         mainMenuPanel.add(chefButton);
         mainMenuPanel.add(waiterButton);
         mainMenuPanel.add(cookButton);
@@ -584,15 +591,18 @@ public class Fram3 extends JFrame{
 //        JList orderList = new JList(orderDefaultListModel);
 //        JScrollPane orderScrollPane = new JScrollPane(orderList);
 
-        DefaultListModel<ArrayList<String>> allOrdersListModel = new DefaultListModel<>();
+        DefaultListModel<String> allOrdersListModel = new DefaultListModel<>();
         HashMap<Integer, ArrayList<Order<Plate>> > allOrders = restaurant.getOrderDict();
-        JList orderList = new JList(allOrdersListModel);
+        JList<String> orderList = new JList(allOrdersListModel);
         JScrollPane orderScrollPane = new JScrollPane(orderList);
         ArrayList<String> arrayString = new ArrayList<>();
         for (int i=1; i<=allOrders.size(); i++){
-            String s = "Table " + i + " has " + allOrders.get(i-1).size() + " orders";
+            String s = "Table " + i + " has " + allOrders.get(i).size() + " orders";
             arrayString.add(s);
         }
+        allOrdersListModel.addAll(arrayString);
+
+
 
 
 //        allOrdersListModel.addAll(allOrders);
